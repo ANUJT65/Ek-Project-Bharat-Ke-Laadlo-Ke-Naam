@@ -4,6 +4,7 @@ import StudentDashboardPage from "./pages/StudentDashboardPage"
 import StudentClass from "./pages/StudentClass"
 import StudentSingleSubjectPage from "./pages/StudentSingleSubjectPage"
 import StudentCalendar from "./pages/StudentCalendar"
+import TeacherDashboard from "./pages/TeacherDashboard"
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     <Route path="/student/class/:id" element={<StudentClass />} />
     <Route path="/student/subject/:name" element={<StudentSingleSubjectPage />} />
     <Route path="/student/calendar/" element={<StudentCalendar />} />
+    <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
     </Routes>
     </BrowserRouter>
   )
