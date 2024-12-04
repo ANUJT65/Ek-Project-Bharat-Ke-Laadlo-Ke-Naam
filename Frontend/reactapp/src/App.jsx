@@ -7,6 +7,7 @@ import StudentCalendar from "./pages/StudentCalendar"
 import TeacherDashboard from "./pages/TeacherDashboard"
 import StudentVocationalLearningPage from "./pages/StudentVocationalLearningPage"
 import TeacherSingleSubjectPage from "./pages/TeacherSingleSubjectPage"
+import RecordedLecturePage from "./pages/RecordedLecturePage"
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
     <Route path="/student/subject/:name" element={<StudentSingleSubjectPage />} />
     <Route path="/student/vocational-learning" element={<StudentVocationalLearningPage />} />
     <Route path="/student/calendar/" element={<StudentCalendar />} />
+    <Route path="/student/lecture/recorded/:id" element={<RecordedLecturePage />} />
 
     <Route path="/teacher/subject/:name" element={<TeacherSingleSubjectPage />} />
     </Routes>
