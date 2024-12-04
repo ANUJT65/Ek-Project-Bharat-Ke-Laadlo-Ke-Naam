@@ -17,9 +17,10 @@ function App() {
     <Route path="/student/dashboard" element={<StudentDashboardPage />}/>
     <Route path="/student/class/:id" element={<StudentClass />} />
     <Route path="/student/subject/:name" element={<StudentSingleSubjectPage />} />
-    <Route path="/student/calendar/" element={<StudentCalendar />} />
-    <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
     <Route path="/student/vocational-learning" element={<StudentVocationalLearningPage />} />
+    <Route path="/student/calendar/" element={<StudentCalendar />} />
+
+    <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
     </Routes>
     </BrowserRouter>
   )
