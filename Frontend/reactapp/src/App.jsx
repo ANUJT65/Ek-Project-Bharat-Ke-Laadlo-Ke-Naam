@@ -8,6 +8,8 @@ import TeacherDashboard from "./pages/TeacherDashboard"
 import StudentVocationalLearningPage from "./pages/StudentVocationalLearningPage"
 import TeacherSingleSubjectPage from "./pages/TeacherSingleSubjectPage"
 import RecordedLecturePage from "./pages/RecordedLecturePage"
+import CommonSignupPage from "./pages/CommonSignupPage"
+import CommonLoginPage from "./pages/CommonLoginPage"
 
 
 function App() {
@@ -16,6 +18,9 @@ function App() {
     <BrowserRouter>
     <Routes>
     <Route path="/comptest" element={<ComponentTesterPage />}/>
+    <Route path="/auth/login" element={<CommonLoginPage />}/>
+    <Route path="/auth/signup" element={<CommonSignupPage />}/>
+
     <Route path="/student/dashboard" element={<StudentDashboardPage />}/>
     <Route path="/student/class/:id" element={<StudentClass />} />
     <Route path="/student/subject/:name" element={<StudentSingleSubjectPage />} />
