@@ -4,6 +4,12 @@ import DashboardSidebar from '../components/DashboardSidebar';
 import Navbar from '../components/Navbar';
 import VideoRecordingCard from '../components/VideoRecordingCard';
 
+const videoIdToSubjectName = {
+  'Stateofmatter.mp4': 'States of Matter',
+  'second.mp4': 'Second Subject',
+  // Add more mappings as needed
+};
+
 const TeacherSingleSubjectPage = () => {
   const [data, setData] = useState(null);
 
@@ -50,12 +56,19 @@ const TeacherSingleSubjectPage = () => {
         </div>
 
         <div className='flex flex-col mt-10 mx-10'>
-          <div className='text-2xl'>Videos</div>
+          <div className='text-2xl text-blue-600'>Videos</div>
           {data && data.map((item, index) => (
             <div key={index} className='mb-4'>
-              <VideoRecordingCard videoUrl={item.video_url} />
+              <VideoRecordingCard
+                subjectName={videoIdToSubjectName[item.video_id] || 'Unknown Subject'}
+                date="Date" // Replace with actual date if available
+                videoName="Video Name" // Replace with actual video name if available
+                notesLink={JSON.parse(item.notes).pdf_url}
+                illustrationsLink="Illustrations Link" // Replace with actual illustrations link if available
+                videoUrl={item.video_url}
+              />
               <div className='mt-2'>
-                <h3 className='text-xl'>Mind Maps</h3>
+                <h3 className='text-xl text-green-600'>Mind Maps</h3>
                 <div className='flex flex-wrap'>
                   {item.mind_map.urls.map((url, idx) => (
                     <img key={idx} src={url} alt={`Mind Map ${idx + 1}`} className='w-1/5 h-auto m-2' />
@@ -63,18 +76,18 @@ const TeacherSingleSubjectPage = () => {
                 </div>
               </div>
               <div className='mt-2'>
-                <h3 className='text-xl'>Image Links</h3>
+                <h3 className='text-xl text-red-600'>Image Links</h3>
                 <div className='flex flex-wrap'>
                   {Object.entries(item.image_links).map(([key, url], idx) => (
                     <div key={idx} className='w-1/5 h-auto m-2'>
                       <img src={url} alt={key} className='w-full h-auto' />
-                      <p className='text-center'>{key}</p>
+                      <p className='text-center text-purple-600'>{key}</p>
                     </div>
                   ))}
                 </div>
               </div>
               <div className='mt-2'>
-                <h3 className='text-xl'>Notes</h3>
+                <h3 className='text-xl text-yellow-600'>Notes</h3>
                 <a href={JSON.parse(item.notes).pdf_url} target='_blank' rel='noopener noreferrer' className='text-blue-500 underline'>
                   Download Notes
                 </a>
