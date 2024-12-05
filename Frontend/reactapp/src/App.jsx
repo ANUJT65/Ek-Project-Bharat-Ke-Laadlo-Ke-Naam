@@ -22,7 +22,7 @@ function App() {
     <Route path="/student/vocational-learning" element={<StudentVocationalLearningPage />} />
     <Route path="/student/calendar/" element={<StudentCalendar />} />
     <Route path="/student/lecture/recorded/:id" element={<RecordedLecturePage />} />
-
+    <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
     <Route path="/teacher/subject/:name" element={<TeacherSingleSubjectPage />} />
     </Routes>
     </BrowserRouter>
