@@ -10,6 +10,7 @@ import TeacherSingleSubjectPage from "./pages/TeacherSingleSubjectPage"
 import RecordedLecturePage from "./pages/RecordedLecturePage"
 import CommonSignupPage from "./pages/CommonSignupPage"
 import CommonLoginPage from "./pages/CommonLoginPage"
+import TeacherEngagementAnalytics from "./pages/TeacherEngagementAnalytics"
 
 
 function App() {
@@ -17,18 +18,23 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-    <Route path="/comptest" element={<ComponentTesterPage />}/>
-    <Route path="/auth/login" element={<CommonLoginPage />}/>
-    <Route path="/auth/signup" element={<CommonSignupPage />}/>
+      {/*Common Routes */}
+      <Route path="/comptest" element={<ComponentTesterPage />}/>
+      <Route path="/auth/login" element={<CommonLoginPage />}/>
+      <Route path="/auth/signup" element={<CommonSignupPage />}/>
 
-    <Route path="/student/dashboard" element={<StudentDashboardPage />}/>
-    <Route path="/student/class/:id" element={<StudentClass />} />
-    <Route path="/student/subject/:name" element={<StudentSingleSubjectPage />} />
-    <Route path="/student/vocational-learning" element={<StudentVocationalLearningPage />} />
-    <Route path="/student/calendar/" element={<StudentCalendar />} />
-    <Route path="/student/lecture/recorded/:id" element={<RecordedLecturePage />} />
-    <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
-    <Route path="/teacher/subject/:name" element={<TeacherSingleSubjectPage />} />
+      {/*Student Routes */}
+      <Route path="/student/dashboard" element={<StudentDashboardPage />}/>
+      <Route path="/student/class/:id" element={<StudentClass />} />
+      <Route path="/student/subject/:name" element={<StudentSingleSubjectPage />} />
+      <Route path="/student/vocational-learning" element={<StudentVocationalLearningPage />} />
+      <Route path="/student/calendar/" element={<StudentCalendar />} />
+      <Route path="/student/lecture/recorded/:id" element={<RecordedLecturePage />} />
+
+      {/*Teacher Routes */}
+      <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
+      <Route path="/teacher/subject/:name" element={<TeacherSingleSubjectPage />} />
+      <Route path="/teacher/engagement-analytics/:video" element={<TeacherEngagementAnalytics />} />
     </Routes>
     </BrowserRouter>
   )
