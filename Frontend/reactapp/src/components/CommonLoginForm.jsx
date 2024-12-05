@@ -1,18 +1,67 @@
-import React from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
 
-const CommonLoginForm = ({url, type}) => {
+const CommonLoginForm = ({ url, type }) => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      role: type.toLowerCase(),
+      email: formData.email,
+      password: formData.password,
+    };
+
+    try {
+      const response = await axios.post(url, data);
+      alert(response.data.message);
+    } catch (error) {
+      console.error('Error logging in:', error);
+      alert(error.response?.data?.error || 'An error occurred');
+    }
+  };
+
   return (
-    <>
-    <div className='justify-start w-3/4 text-left'>You're loging in as a {type}</div>
-    <div className='justify-start w-3/4 text-left'>Email ID:</div>
-        <input className='p-1 w-3/4 mb-5 border border-gray-400'></input>
-        <div className='justify-start w-3/4 text-left'>Password:</div>
-        <input className='p-1 w-3/4 mb-5 border border-gray-400'></input>
+    <form onSubmit={handleSubmit} className='w-full max-w-sm'>
+      <div className='justify-start w-3/4 text-left'>You're logging in as a {type}</div>
 
-        {/*Suraj, idhar url naam ka ek param hai, usko login page se pass karde. udhar redirect karwa dena */}
-        <button className='p-3 bg-[#912F56] w-3/4 text-white'>Login as {type}</button>
-    </>
-  )
-}
+      <div className='justify-start w-3/4 text-left'>Email ID:</div>
+      <input
+        className='p-1 w-3/4 mb-5 border border-gray-400'
+        type='email'
+        name='email'
+        value={formData.email}
+        onChange={handleChange}
+        required
+      />
 
-export default CommonLoginForm
+      <div className='justify-start w-3/4 text-left'>Password:</div>
+      <input
+        className='p-1 w-3/4 mb-5 border border-gray-400'
+        type='password'
+        name='password'
+        value={formData.password}
+        onChange={handleChange}
+        required
+      />
+
+      <button type='submit' className='p-3 bg-[#912F56] w-3/4 text-white'>
+        Login as {type}
+      </button>
+    </form>
+  );
+};
+
+export default CommonLoginForm;

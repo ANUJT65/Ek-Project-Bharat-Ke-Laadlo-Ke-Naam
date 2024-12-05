@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
 import CommonLoginForm from '../components/CommonLoginForm';
 import loginImage from '../assets/images/cover.jpg'; // Adjust the filename and extension as needed
 
@@ -30,9 +29,9 @@ const CommonLoginPage = () => {
         </div>
 
         {type === 'student' ? (
-          <CommonLoginForm type='Student' />
+          <CommonLoginForm type='Student' url='http://localhost:5000/login/login' />
         ) : (
-          <CommonLoginForm type='Teacher' />
+          <CommonLoginForm type='Teacher' url='http://localhost:5000/login/login' />
         )}
       </div>
 
