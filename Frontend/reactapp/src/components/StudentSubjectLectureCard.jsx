@@ -1,25 +1,22 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const StudentSubjectLectureCard = ({name, date, url}) => {
+const StudentSubjectLectureCard = ({ name, url }) => {
+    const navigate=useNavigate();
   return (
-    <div className='bg-[#F4F4F8] mt-2 flex justify-between p-5 rounded-md border border-gray-200 border-2'>
-            <div className='flex flex-col'>
-                
-                <div className='font-bold text-xl'>Proper Fractions</div>
-            </div>
 
-            <div className='flex flex-col'>
-                <div className='font-semibold'>Date</div>
-                <div className='text-[#615F5F]'>27 Sep 2024</div>
-            </div>
+    <button className='bg-[#F4F4F8] mt-2 flex justify-between p-5 rounded-md border border-gray-200 border-2' onClick={()=>navigate(`/student/lecture/recorded/${name}`)} >
+      <div className='flex flex-col'>
+        <div className='font-bold text-xl'>{name}</div>
+      </div>
 
-            <div className='flex flex-col'>
-                <div className='font-semibold'>Watch Recording</div>
-            </div>
+      <div className='flex flex-col'>
+        <a href={url} target='_blank' rel='noopener noreferrer' className='font-semibold text-blue-500'>
+          Watch Recording
+        </a>
+      </div>
+    </button>
+  );
+};
 
-            
-        </div>
-  )
-}
-
-export default StudentSubjectLectureCard
+export default StudentSubjectLectureCard;
