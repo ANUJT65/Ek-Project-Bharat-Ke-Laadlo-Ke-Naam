@@ -11,6 +11,7 @@ import RecordedLecturePage from "./pages/RecordedLecturePage"
 import CommonSignupPage from "./pages/CommonSignupPage"
 import CommonLoginPage from "./pages/CommonLoginPage"
 import TeacherEngagementAnalytics from "./pages/TeacherEngagementAnalytics"
+import PDFTest from "./pages/PDFTest"
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <Route path="/comptest" element={<ComponentTesterPage />}/>
       <Route path="/auth/login" element={<CommonLoginPage />}/>
       <Route path="/auth/signup" element={<CommonSignupPage />}/>
+      <Route path="/test/pdf" element={<PDFTest />}/>
 
       {/*Student Routes */}
       <Route path="/student/dashboard" element={<StudentDashboardPage />}/>
