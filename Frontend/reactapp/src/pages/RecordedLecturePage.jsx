@@ -162,6 +162,7 @@ const RecordedLecturePage = () => {
               onAnswer={handleAnswer}
             />
           )}
+          
           <StudentClassChat />
         </div>
       </div>
