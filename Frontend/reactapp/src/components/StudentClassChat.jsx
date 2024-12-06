@@ -1,10 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import StudentClassChatMessages from './StudentClassChatMessages';
+import { useParams } from 'react-router-dom';
 
 const StudentClassChat = () => {
+  const { id } = useParams();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const [imageLinks, setImageLinks] = useState([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const fetchImageLinks = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/dy_db/get_video_details/${id}`);
+        setImageLinks(Object.entries(response.data.image_links));
+      } catch (error) {
+        console.error('Error fetching image links:', error);
+      }
+    };
+
+    fetchImageLinks();
+  }, [id]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (imageLinks.length > 0) {
+        const newIndex = (currentImageIndex + 1) % imageLinks.length;
+        const [imageTitle, imageUrl] = imageLinks[newIndex];
+        const imageMessage = { sender: 'system', text: 'Here is an image:', imageUrl, imageTitle };
+        setMessages((prevMessages) => [...prevMessages, imageMessage]);
+        setCurrentImageIndex(newIndex);
+      }
+    }, 30000); // Send image every 30 seconds
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, [imageLinks, currentImageIndex]);
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
@@ -36,8 +67,10 @@ const StudentClassChat = () => {
   return (
     <div className='h-full p-3 flex flex-col justify-between'>
       <div className='font-bold text-xl'>Chat</div>
-      <StudentClassChatMessages messages={messages} />
-      <div className='flex flex-grow'>
+      <div className='flex-grow overflow-y-auto h-90'> {/* Set fixed height */}
+        <StudentClassChatMessages messages={messages} />
+      </div>
+      <div className='flex'>
         <input
           className='bg-[#2F4550] text-white w-full p-2 border border-black rounded-l-md'
           placeholder='send a message'

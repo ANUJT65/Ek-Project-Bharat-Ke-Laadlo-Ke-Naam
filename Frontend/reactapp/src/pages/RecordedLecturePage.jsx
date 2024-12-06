@@ -16,6 +16,8 @@ const RecordedLecturePage = () => {
   const [currentLevel, setCurrentLevel] = useState('easy');
   const [score, setScore] = useState(0);
   const [answerStatus, setAnswerStatus] = useState(null); // To track the answer status
+  const [currentIllustrationIndex, setCurrentIllustrationIndex] = useState(0);
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     const fetchVideoDetails = async () => {
@@ -86,6 +88,20 @@ const RecordedLecturePage = () => {
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [currentQuestion, currentLevel, mcqsEasy, mcqsMedium, mcqsHard]);
+
+  useEffect(() => {
+    if (videoDetails && videoDetails.image_links) {
+      const interval = setInterval(() => {
+        setCurrentIllustrationIndex((prevIndex) => {
+          const newIndex = (prevIndex + 1) % Object.keys(videoDetails.image_links).length;
+          handleSendMessage(`Illustration: ${Object.keys(videoDetails.image_links)[newIndex]}`, Object.values(videoDetails.image_links)[newIndex]);
+          return newIndex;
+        });
+      }, 30000); // Send illustration to chat every 30 seconds
+
+      return () => clearInterval(interval); // Cleanup interval on component unmount
+    }
+  }, [videoDetails]);
 
   const showNextQuestion = () => {
     let nextQuestion;
@@ -180,11 +196,11 @@ const RecordedLecturePage = () => {
               onAnswer={handleAnswer}
             />
           )}
-          <StudentClassChat sendMessage={handleSendMessage} />
+          <StudentClassChat messages={messages} />
         </div>
       </div>
       <div className='notes and stuff p-5'>
-        <RecordedLectureAttachments notes={videoDetails.notes} illustrations={videoDetails.image_links} mindMap={videoDetails.mind_map} sendMessage={handleSendMessage} />
+        <RecordedLectureAttachments notes={videoDetails.notes} mindMap={videoDetails.mind_map} sendMessage={handleSendMessage} />
       </div>
     </div>
   );
