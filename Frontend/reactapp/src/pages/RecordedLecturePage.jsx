@@ -144,6 +144,11 @@ const RecordedLecturePage = () => {
     setTimeout(showNextQuestion, 3000); // Show the next question after 3 seconds
   };
 
+  const handleSendMessage = (text, imageUrl) => {
+    const message = { sender: 'system', text, imageUrl };
+    setMessages((prevMessages) => [...prevMessages, message]);
+  };
+
   if (!videoDetails) {
     return <div>Loading...</div>;
   }
@@ -175,11 +180,11 @@ const RecordedLecturePage = () => {
               onAnswer={handleAnswer}
             />
           )}
-          <StudentClassChat />
+          <StudentClassChat sendMessage={handleSendMessage} />
         </div>
       </div>
       <div className='notes and stuff p-5'>
-        <RecordedLectureAttachments />
+        <RecordedLectureAttachments notes={videoDetails.notes} illustrations={videoDetails.image_links} mindMap={videoDetails.mind_map} sendMessage={handleSendMessage} />
       </div>
     </div>
   );
