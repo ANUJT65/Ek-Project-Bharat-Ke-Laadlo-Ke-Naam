@@ -54,10 +54,23 @@ const RecordedLecturePage = () => {
       }
     };
 
+    const fetchTranscription = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/dy_db/transcript/${id}`);
+        const transcriptionText = response.data.transcript;
+        await axios.post('http://localhost:5000/chat_bot/set_transcription', {
+          transcription_text: transcriptionText,
+        });
+      } catch (error) {
+        console.error('Error fetching or setting transcription:', error);
+      }
+    };
+
     fetchVideoDetails();
     fetchMcqsEasy();
     fetchMcqsMedium();
     fetchMcqsHard();
+    fetchTranscription();
   }, [id]);
 
   useEffect(() => {
@@ -162,7 +175,6 @@ const RecordedLecturePage = () => {
               onAnswer={handleAnswer}
             />
           )}
-          
           <StudentClassChat />
         </div>
       </div>
