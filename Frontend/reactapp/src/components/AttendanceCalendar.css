@@ -1,0 +1,18 @@
+/* AttendanceCalendar.css */
+.calendar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px; /* space between cells */
+  }
+  
+  .attendance-cell {
+    width: 30px; /* size of each cell */
+    height: 30px; /* size of each cell */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 3px;
+    font-size: 12px;
+  }
+  

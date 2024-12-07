@@ -26,7 +26,7 @@ const TeacherDashboard = () => {
           {option === 'dashboard' ? <TeacherDashboardHero2 /> : <></>}
           {option === 'resources' ? <TeacherResourcesHero /> : <></>}
           {option === 'analytics' ? <TeacherEngagementAnalyticsHero /> : <></>}
-          {option === 'students' ? <TeacherEngagementAnalytics /> : <></>}
+          {option === 'students' ? <TeacherStudentAnalytics /> : <></>}
 
           
         </div>
