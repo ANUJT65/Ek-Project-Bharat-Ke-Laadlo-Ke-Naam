@@ -25,7 +25,7 @@ const TeacherDashboard = () => {
 
           {option === 'dashboard' ? <TeacherDashboardHero2 /> : <></>}
           {option === 'resources' ? <TeacherResourcesHero /> : <></>}
-          {option === 'analytics' ? <TeacherEngagementAnalytics /> : <></>}
+          {option === 'analytics' ? <TeacherEngagementAnalyticsHero /> : <></>}
           {option === 'students' ? <TeacherEngagementAnalytics /> : <></>}
 
           
