@@ -12,16 +12,18 @@ import TeacherResourcesHero from '../components/TeacherResourcesHero';
 import TeacherEngagementAnalytics from './TeacherEngagementAnalytics';
 import TeacherStudentAnalytics from '../components/TeacherStudentAnalytics';
 import TeacherEngagementAnalyticsHero from '../components/TeacherEngagementAnalyticsHero';
+import { useAuth } from '../contexts/userContext';
 
 const TeacherDashboard = () => {
   const { option, setOption } = useTeacherdb();
+  const { user, login, logout } = useAuth();
 
   return (
       <div className='flex'>
         <TeacherSidebar />
 
         <div className='flex flex-col w-full'>
-          <Navbar title='Teacher dashboard' />
+          <Navbar title={user} />
 
           {option === 'dashboard' ? <TeacherDashboardHero2 /> : <></>}
           {option === 'resources' ? <TeacherResourcesHero /> : <></>}

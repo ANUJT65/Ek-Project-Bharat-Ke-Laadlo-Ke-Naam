@@ -11,7 +11,7 @@ const CommonLoginForm = ({ url, type }) => {
 
   
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { user, login, logout } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +33,8 @@ const CommonLoginForm = ({ url, type }) => {
     try {
       const response = await axios.post(url, data);
       alert(response.data.message);
-      login(response.data.user); // Save user data in context
+      login(response.data.user);
+      console.log(user) // Save user data in context
       if (type.toLowerCase() === 'student') {
         navigate('/student/dashboard');
       } else if (type.toLowerCase() === 'teacher') {
