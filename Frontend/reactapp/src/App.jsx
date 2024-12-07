@@ -13,14 +13,14 @@ import CommonLoginPage from "./pages/CommonLoginPage"
 import TeacherEngagementAnalytics from "./pages/TeacherEngagementAnalytics"
 import PDFTest from "./pages/PDFTest"
 
-import { userProvider } from "./contexts/userContext"
+import { UserProvider } from "./contexts/userContext"
 import { TeacherdbProvider } from "./contexts/teacherdbContext"
 
 function App() {
 
   return (
     <BrowserRouter>
-    <userProvider>
+    <UserProvider>
     <TeacherdbProvider>
     <Routes>
       {/*Common Routes */}
@@ -45,7 +45,7 @@ function App() {
       
     </Routes>
     </TeacherdbProvider>
-    </userProvider>
+    </UserProvider>
     </BrowserRouter>
   )
 }

@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/userContext';
 
 const CommonLoginForm = ({ url, type }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+
+  
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,6 +33,12 @@ const CommonLoginForm = ({ url, type }) => {
     try {
       const response = await axios.post(url, data);
       alert(response.data.message);
+      login(response.data.user); // Save user data in context
+      if (type.toLowerCase() === 'student') {
+        navigate('/student/dashboard');
+      } else if (type.toLowerCase() === 'teacher') {
+        navigate('/teacher/dashboard');
+      }
     } catch (error) {
       console.error('Error logging in:', error);
       alert(error.response?.data?.error || 'An error occurred');
