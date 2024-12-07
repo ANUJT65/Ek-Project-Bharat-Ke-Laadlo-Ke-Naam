@@ -20,7 +20,7 @@ const StudentDashboardPage = () => {
     <div className="flex">
       <StudentSidebar />
       <div className="flex flex-col w-full">
-        <Navbar title="Student Dashboard" />
+        <Navbar title={user.email} />
         <StudentDashboardHero />
         
         <div className="mt-10 grid grid-cols-5 gap-4 flex-grow">
