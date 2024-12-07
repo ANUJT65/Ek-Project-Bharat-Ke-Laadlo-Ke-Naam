@@ -6,11 +6,9 @@ import EngagementGraph from './EngagementGraph'
 
 const TeacherEngagementAnalytics = () => {
   return (
-    <div className='flex'>
-        <DashboardSidebar />
+    <div className=''>
 
-        <div className='flex flex-col w-full'>
-        <Navbar title='Engagement Analytics'/>
+        <div className='flex flex-col w-5/6'>
         <EngagementGraph />
         <StudentTable />
         

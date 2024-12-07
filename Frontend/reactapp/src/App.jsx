@@ -13,11 +13,15 @@ import CommonLoginPage from "./pages/CommonLoginPage"
 import TeacherEngagementAnalytics from "./pages/TeacherEngagementAnalytics"
 import PDFTest from "./pages/PDFTest"
 
+import { userProvider } from "./contexts/userContext"
+import { TeacherdbProvider } from "./contexts/teacherdbContext"
 
 function App() {
 
   return (
     <BrowserRouter>
+    <userProvider>
+    <TeacherdbProvider>
     <Routes>
       {/*Common Routes */}
       <Route path="/comptest" element={<ComponentTesterPage />}/>
@@ -26,6 +30,7 @@ function App() {
       <Route path="/test/pdf" element={<PDFTest />}/>
 
       {/*Student Routes */}
+      
       <Route path="/student/dashboard" element={<StudentDashboardPage />}/>
       <Route path="/student/class/:id" element={<StudentClass />} />
       <Route path="/student/subject/:name" element={<StudentSingleSubjectPage />} />
@@ -37,7 +42,10 @@ function App() {
       <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
       <Route path="/teacher/subject/:name" element={<TeacherSingleSubjectPage />} />
       <Route path="/teacher/engagement-analytics/:video" element={<TeacherEngagementAnalytics />} />
+      
     </Routes>
+    </TeacherdbProvider>
+    </userProvider>
     </BrowserRouter>
   )
 }

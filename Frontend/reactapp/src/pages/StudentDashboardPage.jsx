@@ -6,11 +6,12 @@ import StudentDashboardAttendance from '../components/StudentDashboardAttendance
 import StudentCalendarPreview from '../components/StudentCalendarPreview';
 import StudentResources from '../components/StudentResources';
 import StudentVocationalLearning from '../components/StudentVocationalLearning';
+import StudentSidebar from '../components/StudentSidebar';
 
 const StudentDashboardPage = () => {
   return (
     <div className="flex">
-      <DashboardSidebar />
+      <StudentSidebar />
       <div className="flex flex-col w-full">
         <Navbar title="Student Dashboard" />
         <StudentDashboardHero />
