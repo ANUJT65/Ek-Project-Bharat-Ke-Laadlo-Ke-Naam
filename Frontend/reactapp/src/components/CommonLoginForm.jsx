@@ -9,7 +9,7 @@ const CommonLoginForm = ({ url, type }) => {
     password: '',
   });
 
-  
+
   const navigate = useNavigate();
   const { user, login, logout } = useAuth();
 
@@ -33,8 +33,7 @@ const CommonLoginForm = ({ url, type }) => {
     try {
       const response = await axios.post(url, data);
       alert(response.data.message);
-      login(response.data.user);
-      console.log(user) // Save user data in context
+      login(data);
       if (type.toLowerCase() === 'student') {
         navigate('/student/dashboard');
       } else if (type.toLowerCase() === 'teacher') {
