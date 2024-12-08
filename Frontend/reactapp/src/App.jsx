@@ -15,6 +15,8 @@ import PDFTest from "./pages/PDFTest"
 
 import { UserProvider } from "./contexts/userContext"
 import { TeacherdbProvider } from "./contexts/teacherdbContext"
+import { StudentDBProvider } from "./contexts/StudentDBContext"
+
 
 function App() {
 
@@ -22,6 +24,7 @@ function App() {
     <BrowserRouter>
     <UserProvider>
     <TeacherdbProvider>
+    <StudentDBProvider>
     <Routes>
       {/*Common Routes */}
       <Route path="/comptest" element={<ComponentTesterPage />}/>
@@ -44,6 +47,7 @@ function App() {
       <Route path="/teacher/engagement-analytics/:video" element={<TeacherEngagementAnalytics />} />
       
     </Routes>
+    </StudentDBProvider>
     </TeacherdbProvider>
     </UserProvider>
     </BrowserRouter>

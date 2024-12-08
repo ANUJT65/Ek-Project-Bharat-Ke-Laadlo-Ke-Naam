@@ -1,8 +1,17 @@
 import React from 'react'
 import coverImage from '../assets/images/logo1.jpg';
 import kv_logo from '../assets/images/kv_logo.png';
+import { MdSpaceDashboard } from "react-icons/md";
+import { GrResources } from "react-icons/gr";
+import { SiGoogleanalytics } from "react-icons/si";
+import { useStudentDB } from '../contexts/StudentDBContext';
 
 const StudentSidebar = () => {
+    const { option, setOption } = useStudentDB();
+
+    const activeButtonStyles = 'mx-3 flex border bg-[#ACD5F2] font-bold text-[#0094FF] border-[#0094FF] my-1 py-1 px-2 text-left rounded';
+    const inactiveButtonStyles = 'flex mx-3  border-[#507385] my-1 py-1 px-2 text-left rounded';
+    console.log(option);
   return (
     <div className='flex flex-col w-1/5  border-r border-gray-300'>
 
@@ -34,9 +43,21 @@ const StudentSidebar = () => {
         {/*buttons*/}
         <div className='flex flex-col'>
             <div className='text-gray-500 mt-5 font-semibold mx-3'>MAIN MENU</div>
-            <button className='mx-3 border bg-[#ACD5F2] font-bold text-[#0094FF] border-[#0094FF] my-1 py-1 px-2 text-left rounded'>Dashboard</button>
-            <button className='mx-3  border-[#507385] my-1 py-1 px-2 text-left rounded'>Resources</button>
-            <button className='mx-3  border-[#507385] my-1 py-1 px-2 text-left rounded'>Engagement Analytics</button>
+
+            <button className={option === 'dashboard' ? activeButtonStyles : inactiveButtonStyles} onClick={()=>setOption('dashboard')}>
+                <div className='mt-1 mr-1'><MdSpaceDashboard /></div>
+                <div>Dashboard</div>
+            </button>
+
+            <button className={option === 'resources' ? activeButtonStyles : inactiveButtonStyles} onClick={()=>setOption('resources')}>
+                <div className='mt-1 mr-2'><GrResources/></div>
+                <div>Resources</div>
+            </button>
+
+            <button className={option === 'analytics' ? activeButtonStyles : inactiveButtonStyles} onClick={()=>setOption('analytics')}><div className='mt-1 mr-2'><SiGoogleanalytics/></div>
+            <div>Engagement Analytics</div>
+            </button>
+
         </div>
     </div>
   )

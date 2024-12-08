@@ -4,12 +4,13 @@ import Navbar from '../components/Navbar'
 import { useParams } from 'react-router-dom'
 import StudentSubjectLectures from '../components/StudentSubjectLectures'
 import StudentCalendarPreview from '../components/StudentCalendarPreview'
+import StudentSidebar from '../components/StudentSidebar'
 
 const StudentSingleSubjectPage = () => {
     const subjectName = useParams();
   return (
     <div className='flex'>
-        <DashboardSidebar />
+        <StudentSidebar />
         <div className='flex flex-col w-full px-5'>
 
             {/*Title and user avatar*/ }

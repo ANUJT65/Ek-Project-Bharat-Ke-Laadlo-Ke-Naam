@@ -10,6 +10,7 @@ import StudentSidebar from '../components/StudentSidebar';
 import { useAuth } from '../contexts/userContext';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import Navbar2 from '../components/Navbar2';
 const StudentDashboardPage = () => {
   const { user, login, logout } = useAuth();
   const navigate = useNavigate();
@@ -21,9 +22,9 @@ const StudentDashboardPage = () => {
     <div className="flex">
       <StudentSidebar />
       <div className="flex flex-col w-full">
-        <Navbar title="Student Dashboard" />
+        <Navbar2  type='Student' />
         <StudentDashboardHero />
-        <Link to="http://localhost:5173/student/lecture/recorded/Stateofmatter.mp4">NOOOOrrrrrrrrrrrrBB</Link>
+        {/*<Link to="http://localhost:5173/student/lecture/recorded/Stateofmatter.mp4">NOOOOrrrrrrrrrrrrBB</Link>*/}
         <div className="mt-10 grid grid-cols-5 gap-4 flex-grow">
           <div className='col-span-3 flex flex-col'>
           <StudentDashboardAttendance />

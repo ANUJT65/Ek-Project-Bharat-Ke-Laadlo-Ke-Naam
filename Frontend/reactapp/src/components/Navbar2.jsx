@@ -1,26 +1,24 @@
 import React from 'react'
 import coverImage from '../assets/images/logo1.jpg';
+import { useAuth } from '../contexts/userContext';
 
 
-const Navbar2 = () => {
+const Navbar2 = ({type}) => {
+  const {user} = useAuth();
   return (
-    <div className='flex justify-between w-full p-2 px-4'>
-        <div className="branding flex items-center gap-4  font-inter text-[#131B1F]">
-            <img 
-                src={coverImage}
-                alt="Gram Shiksha Logo" 
-                className="w-12 h-12 object-cover" 
-            />
-            <div className="text-2xl font-bold">Gram-Shiksha</div>
-        </div>
+    <div className='font-inter my-4 flex border-b-2 border-gray-300 justify-between w-full p-3 px-4'>
+        
+    <div className='mt-2 font-bold text-xl'>
+      {type} Portal
+    </div>
 
     <div className="user-avatar flex items-center gap-2">
-    <img 
-      src="/path-to-avatar.jpg" 
-      alt="User Avatar" 
-      className="w-10 h-10 rounded-full object-cover" 
-    />
-    <span className="text-sm font-medium">John Doe</span>
+    <div className="bg-red-200 text-3xl px-3 py-1 w-12 h-12 rounded-full flex items-center justify-center">
+    J
+  </div>
+    
+    {user ? <span className="text-sm font-medium">{user.email}</span> : <span className="text-md font-medium">User 1</span>}
+    
   </div>
     </div>
   )
