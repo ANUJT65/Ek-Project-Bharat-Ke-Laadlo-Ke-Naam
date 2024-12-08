@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAuth } from '../contexts/userContext';
 
 const StudentClassPoll = ({ videoId }) => {
+  const { user } = useAuth();
   const [mcqsEasy, setMcqsEasy] = useState([]);
   const [mcqsMedium, setMcqsMedium] = useState([]);
   const [mcqsHard, setMcqsHard] = useState([]);
@@ -9,10 +11,34 @@ const StudentClassPoll = ({ videoId }) => {
   const [currentLevel, setCurrentLevel] = useState('easy');
   const [score, setScore] = useState(0);
   const [questionsAnswered, setQuestionsAnswered] = useState(0);
+  const [correctQuestions, setCorrectQuestions] = useState(0);
+  const [wrongQuestions, setWrongQuestions] = useState(0);
   const [isDelay, setIsDelay] = useState(false);
   const [answerStatus, setAnswerStatus] = useState(null); // To track the answer status
   const [countdown, setCountdown] = useState(60); // Countdown timer state
   const optionsStyle = 'text-[#CE4760] bg-white hover:bg-[#CE4760] hover:text-white border border-[#CE4760] p-1 px-2 rounded-md my-1 text-left';
+
+  useEffect(() => {
+    const initializeQuiz = async () => {
+      const email = user.email;
+      const storedEmail = localStorage.getItem('userEmail');
+
+      if (storedEmail !== email) {
+        localStorage.setItem('userEmail', email);
+      }
+
+      try {
+        await axios.post('http://127.0.0.1:5000/qa/initialize_test', {
+          email: email,
+          video_id: videoId,
+        });
+      } catch (error) {
+        console.error('Error initializing quiz:', error);
+      }
+    };
+
+    initializeQuiz();
+  }, [user, videoId]);
 
   useEffect(() => {
     const fetchMcqs = async () => {
@@ -41,6 +67,22 @@ const StudentClassPoll = ({ videoId }) => {
     if (questionsAnswered > 0 && questionsAnswered % 3 === 0) {
       setIsDelay(true);
       setCountdown(60); // Reset countdown timer to 60 seconds
+
+      const sendTestResults = async () => {
+        const email = localStorage.getItem('userEmail');
+        try {
+          await axios.post('http://127.0.0.1:5000/qa/add_test_result', {
+            email: email,
+            video_id: videoId,
+            correct_questions: correctQuestions,
+            wrong_questions: wrongQuestions,
+          });
+        } catch (error) {
+          console.error('Error sending test results:', error);
+        }
+      };
+
+      sendTestResults();
 
       const timer = setInterval(() => {
         setCountdown((prevCountdown) => {
@@ -93,8 +135,10 @@ const StudentClassPoll = ({ videoId }) => {
       const isCorrect = selectedOption === currentQuestion.answer;
       if (isCorrect) {
         setScore(score + 1);
+        setCorrectQuestions(correctQuestions + 1);
         setAnswerStatus('correct');
       } else {
+        setWrongQuestions(wrongQuestions + 1);
         setAnswerStatus('incorrect');
       }
 
@@ -144,6 +188,7 @@ const StudentClassPoll = ({ videoId }) => {
             {answerStatus === 'incorrect' && (
               <div className='text-sm text-red-600'>Correct Answer: {currentQuestion.answer}</div>
             )}
+            <div className='text-lg font-bold'>Score: {score}</div>
           </div>
         </>
       )}

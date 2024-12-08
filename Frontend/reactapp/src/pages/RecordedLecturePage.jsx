@@ -5,14 +5,8 @@ import Navbar from '../components/Navbar';
 import StudentClassPoll from '../components/StudentClassPoll';
 import StudentClassChat from '../components/StudentClassChat';
 import RecordedLectureAttachments from '../components/RecordedLectureAttachments';
-import { useAuth } from '../contexts/userContext';
 
 const RecordedLecturePage = () => {
-  const { user } = useAuth();
-
-  useEffect(() => {
-    console.log('User context data:', user);
-  }, [user]);
 
   const { id } = useParams(); // Get the video_id from the URL
   const [videoDetails, setVideoDetails] = useState(null);
