@@ -6,7 +6,7 @@ import { useAuth } from '../contexts/userContext';
 const Navbar2 = ({type}) => {
   const {user} = useAuth();
   return (
-    <div className='font-inter my-4 flex border-b-2 border-gray-300 justify-between w-full p-3 px-4'>
+    <div className='font-inter mt-4 flex border-b-2 border-gray-300 justify-between w-full p-3 px-4'>
         
     <div className='mt-2 font-bold text-xl'>
       {type} Portal

@@ -21,7 +21,7 @@ const TeacherResourcesCard = ({title, date, duration, progress, score}) => {
                   <div className='font-semibold' onClick={()=>navigate(`/teacher/engagement-analytics/${title}`)}>View Engagement Analytics</div>
               </button>
   
-              <button className='font-bold my-1 px-2 rounded-md bg-[#ACD5F2]'>View Resource</button>
+              <button className='font-bold my-1 px-2 rounded-md bg-[#ACD5F2]' onClick={()=>navigate(`/teacher/resource/${title}`)}>View Resource</button>
           </div>
     )
   }

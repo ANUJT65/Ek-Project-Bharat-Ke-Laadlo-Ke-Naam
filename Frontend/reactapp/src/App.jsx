@@ -16,6 +16,7 @@ import PDFTest from "./pages/PDFTest"
 import { UserProvider } from "./contexts/userContext"
 import { TeacherdbProvider } from "./contexts/teacherdbContext"
 import { StudentDBProvider } from "./contexts/StudentDBContext"
+import SingleResourcePage from "./pages/SingleResourcePage"
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
       <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
       <Route path="/teacher/subject/:name" element={<TeacherSingleSubjectPage />} />
       <Route path="/teacher/engagement-analytics/:video" element={<TeacherEngagementAnalytics />} />
+      <Route path="/teacher/resource/:id" element={<SingleResourcePage />} />
       
     </Routes>
     </StudentDBProvider>
