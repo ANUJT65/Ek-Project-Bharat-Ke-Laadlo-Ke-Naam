@@ -1,6 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const TeacherResourcesCard = ({title, date, duration, progress, score}) => {
+    const navigate = useNavigate();
+
     return (
       <div className='bg-[#F4F4F8] mt-2 flex justify-between p-5 rounded-md border border-gray-200 border-2'>
   
@@ -15,7 +18,7 @@ const TeacherResourcesCard = ({title, date, duration, progress, score}) => {
               </div>
   
               <button className=''>
-                  <div className='font-semibold'>View Engagement Analytics</div>
+                  <div className='font-semibold' onClick={()=>navigate(`/teacher/engagement-analytics/${title}`)}>View Engagement Analytics</div>
               </button>
   
               <button className='font-bold my-1 px-2 rounded-md bg-[#ACD5F2]'>View Resource</button>
