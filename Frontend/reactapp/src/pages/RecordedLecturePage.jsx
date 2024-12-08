@@ -16,7 +16,7 @@ const RecordedLecturePage = () => {
   useEffect(() => {
     const fetchVideoDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/dy_db/get_video_details/${id}`);
+        const response = await axios.get(`https://backendfianlsih.azurewebsites.net/dy_db/get_video_details/${id}`);
         setVideoDetails(response.data);
       } catch (error) {
         console.error('Error fetching video details:', error);
@@ -25,9 +25,9 @@ const RecordedLecturePage = () => {
 
     const fetchTranscription = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/dy_db/transcript/${id}`);
+        const response = await axios.get(`https://backendfianlsih.azurewebsites.net/dy_db/transcript/${id}`);
         const transcriptionText = response.data.transcript;
-        await axios.post('http://localhost:5000/chat_bot/set_transcription', {
+        await axios.post('https://backendfianlsih.azurewebsites.net/chat_bot/set_transcription', {
           transcription_text: transcriptionText,
         });
       } catch (error) {

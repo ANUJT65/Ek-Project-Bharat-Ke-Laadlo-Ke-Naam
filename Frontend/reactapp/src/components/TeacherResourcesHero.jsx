@@ -11,7 +11,7 @@ const TeacherResourcesHero = () => {
   useEffect(() => {
     const fetchResources = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/dy_db/get_data');
+        const response = await axios.get('https://backendfianlsih.azurewebsites.net/dy_db/get_data');
         setResources(response.data);
       } catch (error) {
         console.error('Error fetching resources:', error);
@@ -37,7 +37,7 @@ const TeacherResourcesHero = () => {
     formData.append('s3_key', s3Key);
 
     try {
-      const response = await axios.post('http://localhost:5000/video_to_text/process', formData, {
+      const response = await axios.post('https://backendfianlsih.azurewebsites.net/video_to_text/process', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

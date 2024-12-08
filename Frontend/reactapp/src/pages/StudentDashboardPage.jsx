@@ -24,7 +24,7 @@ const StudentDashboardPage = () => {
       <div className="flex flex-col w-full">
         <Navbar2  type='Student' />
         <StudentDashboardHero />
-        {/*<Link to="http://localhost:5173/student/lecture/recorded/Stateofmatter.mp4">NOOOOrrrrrrrrrrrrBB</Link>*/}
+        {/*<Link to="https://backendfianlsih.azurewebsites.net/student/lecture/recorded/Stateofmatter.mp4">NOOOOrrrrrrrrrrrrBB</Link>*/}
         <div className="mt-10 grid grid-cols-5 gap-4 flex-grow">
           <div className='col-span-3 flex flex-col'>
           <StudentDashboardAttendance />

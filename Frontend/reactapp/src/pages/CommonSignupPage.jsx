@@ -29,9 +29,9 @@ const CommonSignupPage = () => {
         </div>
 
         {type === 'student' ? (
-          <CommonSignupForm type='Student' url='http://localhost:5000/register' />
+          <CommonSignupForm type='Student' url='https://backendfianlsih.azurewebsites.net/register' />
         ) : (
-          <CommonSignupForm type='Teacher' url='http://localhost:5000/register' />
+          <CommonSignupForm type='Teacher' url='https://backendfianlsih.azurewebsites.net/register' />
         )}
       </div>
 

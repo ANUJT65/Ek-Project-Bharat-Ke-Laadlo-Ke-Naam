@@ -38,7 +38,7 @@ const TeacherDashboardHero = () => {
     data.append('s3_key', s3Key);
 
     try {
-      const response = await axios.post('http://localhost:5000/video_to_text/process', data, {
+      const response = await axios.post('https://backendfianlsih.azurewebsites.net/video_to_text/process', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
