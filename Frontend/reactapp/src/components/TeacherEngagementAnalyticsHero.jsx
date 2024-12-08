@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Bar } from 'react-chartjs-2'; // Importing Chart.js for bar charts
 import PieChartComponent from './PieChartComponent';
 import RadarChartComponent from './RadarChartComponent';
 
 const TeacherEngagementAnalyticsHero = () => {
+  const [studentResults, setStudentResults] = useState(null);
+
+  useEffect(() => {
+    const fetchStudentResults = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:5000/qa/get_all_students_results');
+        setStudentResults(response.data);
+      } catch (error) {
+        console.error('Error fetching student results:', error);
+      }
+    };
+
+    fetchStudentResults();
+  }, []);
+
   // Sample data for demonstration
   const data = {
     labels: ['Attendance', 'Quiz Attempts', 'Average Time Spent'],
@@ -52,68 +68,20 @@ const TeacherEngagementAnalyticsHero = () => {
         <div className='rounded-md col-span-1 flex flex-col p-5 bg-white mx-2 my-4'>
           <div className='font-bold mb-2'>Recent Activity</div>
 
-          <div className='my-2 flex justify-between'>
-            <div className='flex flex-col'>
-              <div>Physics Test</div>
-              <div>December 7, 2024</div>
+          {studentResults && studentResults.students.map((student, index) => (
+            <div key={index} className='my-2 flex justify-between'>
+              <div className='flex flex-col'>
+                <div>{student.student_name}</div>
+                <div>{student.student_id}</div>
+              </div>
+              <div>Correct: {student.total_results.correct_questions}</div>
+              <div>Wrong: {student.total_results.wrong_questions}</div>
             </div>
-            <div>Completed</div>
-          </div>
-
-          <div className='my-2 flex justify-between'>
-            <div className='flex flex-col'>
-              <div>Physics Test</div>
-              <div>December 7, 2024</div>
-            </div>
-            <div>Completed</div>
-          </div>
-
-          <div className='my-2 flex justify-between'>
-            <div className='flex flex-col'>
-              <div>Physics Test</div>
-              <div>December 7, 2024</div>
-            </div>
-            <div>Completed</div>
-          </div>
-
-          <div className='my-2 flex justify-between'>
-            <div className='flex flex-col'>
-              <div>Physics Test</div>
-              <div>December 7, 2024</div>
-            </div>
-            <div>Completed</div>
-          </div>
-
-          <div className='my-2 flex justify-between'>
-            <div className='flex flex-col'>
-              <div>Physics Test</div>
-              <div>December 7, 2024</div>
-            </div>
-            <div>Completed</div>
-          </div>
-
-          <div className='my-2 flex justify-between'>
-            <div className='flex flex-col'>
-              <div>Physics Test</div>
-              <div>December 7, 2024</div>
-            </div>
-            <div>Completed</div>
-          </div>
-
-          <div className='my-2 flex justify-between'>
-            <div className='flex flex-col'>
-              <div>Physics Test</div>
-              <div>December 7, 2024</div>
-            </div>
-            <div>Completed</div>
-          </div>       
-
+          ))}
         </div>
 
         <div className='col-span-1 h-84 p-5 bg-white mx-2 my-4 rounded-md'><PieChartComponent /></div>
         <div className='col-span-1 h-84 p-5 bg-white mx-2 my-4 rounded-md'><RadarChartComponent /></div>
-
-
       </div>
     </div>
   );

@@ -17,20 +17,19 @@ import { useAuth } from '../contexts/userContext';
 const TeacherDashboard = () => {
   const { option, setOption } = useTeacherdb();
   const { user, login, logout } = useAuth();
+  console.log('User context data:', user);
 
   return (
       <div className='flex'>
         <TeacherSidebar />
 
         <div className='flex flex-col w-full'>
-          <Navbar title={user} />
+          <Navbar title={user.email} />
 
           {option === 'dashboard' ? <TeacherDashboardHero2 /> : <></>}
           {option === 'resources' ? <TeacherResourcesHero /> : <></>}
           {option === 'analytics' ? <TeacherEngagementAnalyticsHero /> : <></>}
           {option === 'students' ? <TeacherStudentAnalytics /> : <></>}
-
-          
         </div>
       </div>
   );
