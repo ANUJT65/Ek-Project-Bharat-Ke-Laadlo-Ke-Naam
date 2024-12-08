@@ -9,6 +9,7 @@ import RecordedLectureAttachments from '../components/RecordedLectureAttachments
 const RecordedLecturePage = () => {
 
   const { id } = useParams(); // Get the video_id from the URL
+  console.log(id);
   const [videoDetails, setVideoDetails] = useState(null);
   const [currentIllustrationIndex, setCurrentIllustrationIndex] = useState(0);
   const [messages, setMessages] = useState([]);

@@ -14,8 +14,10 @@ const StudentClassPoll = ({ videoId }) => {
   const [correctQuestions, setCorrectQuestions] = useState(0);
   const [wrongQuestions, setWrongQuestions] = useState(0);
   const [isDelay, setIsDelay] = useState(false);
-  const [answerStatus, setAnswerStatus] = useState(null); // To track the answer status
-  const [countdown, setCountdown] = useState(60); // Countdown timer state
+  const [answerStatus, setAnswerStatus] = useState(null);
+  const [countdown, setCountdown] = useState(60);
+  const [questionSerial, setQuestionSerial] = useState(1);
+  
   const optionsStyle = 'text-[#CE4760] bg-white hover:bg-[#CE4760] hover:text-white border border-[#CE4760] p-1 px-2 rounded-md my-1 text-left';
 
   useEffect(() => {
@@ -66,7 +68,7 @@ const StudentClassPoll = ({ videoId }) => {
   useEffect(() => {
     if (questionsAnswered > 0 && questionsAnswered % 3 === 0) {
       setIsDelay(true);
-      setCountdown(60); // Reset countdown timer to 60 seconds
+      setCountdown(60);
 
       const sendTestResults = async () => {
         const email = localStorage.getItem('userEmail');
@@ -89,11 +91,11 @@ const StudentClassPoll = ({ videoId }) => {
           if (prevCountdown === 1) {
             clearInterval(timer);
             setIsDelay(false);
-            showNextQuestion(); // Show the next question after the delay
+            showNextQuestion();
           }
           return prevCountdown - 1;
         });
-      }, 1000); // Update countdown every second
+      }, 1000);
 
       return () => clearInterval(timer);
     }
@@ -122,17 +124,31 @@ const StudentClassPoll = ({ videoId }) => {
       if (nextIndex < mcqsHard.length) {
         nextQuestion = mcqsHard[nextIndex];
       } else {
-        nextQuestion = null; // No more questions
+        nextQuestion = null;
       }
     }
 
     setCurrentQuestion(nextQuestion);
-    setAnswerStatus(null); // Reset the answer status for the next question
+    setAnswerStatus(null);
   };
 
-  const handleAnswer = (selectedOption) => {
+  const handleAnswer = async (selectedOption) => {
     if (!isDelay) {
       const isCorrect = selectedOption === currentQuestion.answer;
+
+      try {
+        await axios.post('http://localhost:5000/qa/update_question_result', {
+          email: user.email,
+          video_id: videoId,
+          question_serial: questionSerial,
+          is_correct: isCorrect
+        });
+      } catch (error) {
+        console.error('Error updating question result:', error);
+      }
+
+      setQuestionSerial(questionSerial + 1);
+
       if (isCorrect) {
         setScore(score + 1);
         setCorrectQuestions(correctQuestions + 1);
@@ -157,7 +173,7 @@ const StudentClassPoll = ({ videoId }) => {
       }
 
       setQuestionsAnswered(questionsAnswered + 1);
-      showNextQuestion(); // Show the next question immediately
+      showNextQuestion();
     }
   };
 
