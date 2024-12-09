@@ -30,7 +30,7 @@ const StudentClassPoll = ({ videoId }) => {
       }
 
       try {
-        await axios.post('http://127.0.0.1:5000/qa/initialize_test', {
+        await axios.post('https://backendfianlsih.azurewebsites.net/qa/initialize_test', {
           email: email,
           video_id: videoId,
         });
@@ -45,13 +45,13 @@ const StudentClassPoll = ({ videoId }) => {
   useEffect(() => {
     const fetchMcqs = async () => {
       try {
-        const responseEasy = await axios.get(`http://localhost:5000/dy_db/get_mcqs_easy/${videoId}`);
+        const responseEasy = await axios.get(`https://backendfianlsih.azurewebsites.net/dy_db/get_mcqs_easy/${videoId}`);
         setMcqsEasy(responseEasy.data.mcqs_easy);
 
-        const responseMedium = await axios.get(`http://localhost:5000/dy_db/get_mcqs_medium/${videoId}`);
+        const responseMedium = await axios.get(`https://backendfianlsih.azurewebsites.net/dy_db/get_mcqs_medium/${videoId}`);
         setMcqsMedium(responseMedium.data.mcqs_medium);
 
-        const responseHard = await axios.get(`http://localhost:5000/dy_db/get_mcqs_hard/${videoId}`);
+        const responseHard = await axios.get(`https://backendfianlsih.azurewebsites.net/dy_db/get_mcqs_hard/${videoId}`);
         setMcqsHard(responseHard.data.mcqs_hard);
 
         if (responseEasy.data.mcqs_easy.length > 0) {
@@ -73,7 +73,7 @@ const StudentClassPoll = ({ videoId }) => {
       const sendTestResults = async () => {
         const email = localStorage.getItem('userEmail');
         try {
-          await axios.post('http://127.0.0.1:5000/qa/add_test_result', {
+          await axios.post('https://backendfianlsih.azurewebsites.net/qa/add_test_result', {
             email: email,
             video_id: videoId,
             correct_questions: correctQuestions,
@@ -137,7 +137,7 @@ const StudentClassPoll = ({ videoId }) => {
       const isCorrect = selectedOption === currentQuestion.answer;
 
       try {
-        await axios.post('http://localhost:5000/qa/update_question_result', {
+        await axios.post('https://backendfianlsih.azurewebsites.net/qa/update_question_result', {
           email: user.email,
           video_id: videoId,
           question_serial: questionSerial,
