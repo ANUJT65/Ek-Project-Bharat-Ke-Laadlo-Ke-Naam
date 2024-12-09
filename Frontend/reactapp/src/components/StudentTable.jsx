@@ -7,7 +7,7 @@ const StudentTable = () => {
   useEffect(() => {
     const fetchStudentData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/qa/get_all_test_details');
+        const response = await axios.get('https://backendfianlsih.azurewebsites.net/qa/get_all_test_details');
         const processedData = response.data.students.map(student => {
           // Calculate scores from test_detail_score
           let totalQuestions = 0;

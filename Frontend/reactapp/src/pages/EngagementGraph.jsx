@@ -13,7 +13,7 @@ const EngagementGraph = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/qa/get_all_test_details');
+        const response = await axios.get('https://backendfianlsih.azurewebsites.net/qa/get_all_test_details');
         processData(response.data);
       } catch (error) {
         console.error('Error fetching test details:', error);
