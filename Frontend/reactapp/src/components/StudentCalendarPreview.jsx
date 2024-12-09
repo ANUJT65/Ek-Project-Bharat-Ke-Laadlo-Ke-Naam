@@ -1,7 +1,9 @@
 import React from 'react';
 import CalendarDate from './CalendarDate';
+import { useNavigate } from 'react-router-dom';
 
 const StudentCalendarPreview = () => {
+  const navigate = useNavigate();
   return (
     <div className="col-span-2 py-2 rounded-md px-5 flex flex-col border shadow-md min-h-0">
       <div className="text-xl font-bold">September 2024</div>
@@ -24,9 +26,12 @@ const StudentCalendarPreview = () => {
           <div className="text-[#878787] mt-1">4:00 pm - 5:00 pm</div>
         </div>
         <div>
-          <button className="mt-4 py-2 px-3 font-bold bg-red-500 text-white mr-2 rounded-md">
-            Join Live
-          </button>
+        <a
+          className="mt-4 py-2 px-3 font-bold bg-red-500 text-white mr-2 rounded-md"
+          href='https://sync-space-nine.vercel.app'
+        >
+          Join Live
+        </a>
         </div>
       </div>
 
