@@ -60,10 +60,6 @@ const GovernmentSidebar = () => {
                 <div>Resources</div>
             </button>
 
-            <button className={option === 'analytics' ? activeButtonStyles : inactiveButtonStyles} onClick={()=>setOptions('analytics')}><div className='mt-1 mr-2'><SiGoogleanalytics/></div>
-            <div>Engagement Analytics</div>
-            </button>
-
         </div>
     </div>
   )

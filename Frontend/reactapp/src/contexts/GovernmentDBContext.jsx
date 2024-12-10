@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 const GovernmentDBContext = createContext();
 
 export const GovernmentProvider = ({ children }) => {
-  const [option, setOptions] = useState();
+  const [option, setOptions] = useState('dashboard');
 
   // Return the provider
   return (

@@ -28,6 +28,7 @@ function App() {
     <UserProvider>
     <TeacherdbProvider>
     <StudentDBProvider>
+    <GovernmentProvider>
     <Routes>
       {/*Common Routes */}
       <Route path="/comptest" element={<ComponentTesterPage />}/>
@@ -54,7 +55,8 @@ function App() {
       <Route path="/government/dashboard/" element={<GovernmentDashboard />} />
       
     </Routes>
-
+    
+    </GovernmentProvider>
     </StudentDBProvider>
     </TeacherdbProvider>
     </UserProvider>
