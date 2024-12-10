@@ -17,6 +17,8 @@ import { UserProvider } from "./contexts/userContext"
 import { TeacherdbProvider } from "./contexts/teacherdbContext"
 import { StudentDBProvider } from "./contexts/StudentDBContext"
 import SingleResourcePage from "./pages/SingleResourcePage"
+import GovernmentDashboard from "./pages/GovernmentDashboard"
+import { GovernmentProvider } from "./contexts/GovernmentDBContext"
 
 
 function App() {
@@ -47,8 +49,12 @@ function App() {
       <Route path="/teacher/subject/:name" element={<TeacherSingleSubjectPage />} />
       <Route path="/teacher/engagement-analytics/:video" element={<TeacherEngagementAnalytics />} />
       <Route path="/teacher/resource/:id" element={<SingleResourcePage />} />
+
+      {/*Government Routes */}
+      <Route path="/government/dashboard/" element={<GovernmentDashboard />} />
       
     </Routes>
+
     </StudentDBProvider>
     </TeacherdbProvider>
     </UserProvider>

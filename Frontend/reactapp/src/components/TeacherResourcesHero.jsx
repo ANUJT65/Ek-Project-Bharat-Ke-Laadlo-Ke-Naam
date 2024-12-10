@@ -7,6 +7,7 @@ const TeacherResourcesHero = () => {
   const [filePath, setFilePath] = useState('');
   const [s3Key, setS3Key] = useState('');
   const [resources, setResources] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchResources = async () => {
@@ -32,6 +33,7 @@ const TeacherResourcesHero = () => {
   };
 
   const handleSubmit = async () => {
+    setIsLoading(true); // Start loading
     const formData = new FormData();
     formData.append('file_path', filePath);
     formData.append('s3_key', s3Key);
@@ -47,6 +49,8 @@ const TeacherResourcesHero = () => {
     } catch (error) {
       console.error('Error uploading video:', error);
       alert(error.response?.data?.error || 'An error occurred');
+    } finally {
+      setIsLoading(false); // End loading
     }
   };
 
@@ -83,8 +87,14 @@ const TeacherResourcesHero = () => {
               <button className='bg-gray-500 text-white px-4 py-2 rounded-md mr-2' onClick={handleCloseModal}>
                 Cancel
               </button>
-              <button className='bg-[#F64328] text-white px-4 py-2 rounded-md' onClick={handleSubmit}>
-                Upload
+              <button
+                className={`px-4 py-2 rounded-md ${
+                  isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#F64328] text-white'
+                }`}
+                onClick={handleSubmit}
+                disabled={isLoading}
+              >
+                {isLoading ? 'Uploading...' : 'Upload'}
               </button>
             </div>
           </div>
