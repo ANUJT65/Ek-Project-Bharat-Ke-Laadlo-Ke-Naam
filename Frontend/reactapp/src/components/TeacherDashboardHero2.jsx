@@ -2,6 +2,7 @@ import React from 'react';
 import BarGraph from './BarGraph';  // Ensure BarGraph component is imported
 import StudentSubjectCard from './StudentSubjectCard';
 import StudentCalendarPreview from './StudentCalendarPreview';
+import TeacherCalendarPreview from './TeacherCalendarPreview';
 
 const TeacherDashboardHero2 = () => {
   return (
@@ -29,8 +30,10 @@ const TeacherDashboardHero2 = () => {
           <BarGraph className='w-full h-64' /> 
         </div>
 
-        <div className='h-64 flex flex-col col-span-1 bg-white rounded-md border border-gray-400 p-5'>
-          <div className='font-bold'>Recently Added Resources</div>
+       
+
+        <div className='col-span-1 bg-white rounded-md border border-gray-400'>
+          <TeacherCalendarPreview  />
         </div>
 
         <div className='flex flex-col col-span-2 p-3'>
@@ -43,9 +46,10 @@ const TeacherDashboardHero2 = () => {
           </div> 
         </div>
 
-        <div className='col-span-1 bg-white rounded-md border border-gray-400'>
-          <StudentCalendarPreview />
+        <div className='h-64 flex flex-col col-span-1 bg-white rounded-md border border-gray-400 p-5'>
+          <div className='font-bold'>Recently Added Resources</div>
         </div>
+        
 
       </div>
     </div>
