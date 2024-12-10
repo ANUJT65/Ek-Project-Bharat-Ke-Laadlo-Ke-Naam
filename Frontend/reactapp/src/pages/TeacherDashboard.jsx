@@ -14,6 +14,7 @@ import TeacherStudentAnalytics from '../components/TeacherStudentAnalytics';
 import TeacherEngagementAnalyticsHero from '../components/TeacherEngagementAnalyticsHero';
 import { useAuth } from '../contexts/userContext';
 import Navbar2 from '../components/Navbar2';
+import TeacherUdiseAnalytics from '../components/TeacherUdiseAnalytics';
 
 
 const TeacherDashboard = () => {
@@ -32,6 +33,7 @@ const TeacherDashboard = () => {
           {option === 'resources' ? <TeacherResourcesHero /> : <></>}
           {option === 'analytics' ? <TeacherEngagementAnalyticsHero /> : <></>}
           {option === 'students' ? <TeacherStudentAnalytics /> : <></>}
+          {option === 'infrastructure' ? <TeacherUdiseAnalytics /> : <></>}
         </div>
       </div>
   );
