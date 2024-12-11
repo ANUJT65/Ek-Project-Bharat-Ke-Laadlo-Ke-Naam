@@ -26,6 +26,7 @@ import ARVR from "./components/ARVR"
 import UserProfile from "./pages/UserProfile"
 import CommonSignupPage2 from "./pages/CommonSignupPage2"
 import Signup2 from "./pages/Signup2"
+import CollegeRecommendation from "./components/CollegeRecommendation"
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
       <Route path="/student/calendar/" element={<StudentCalendar />} />
       <Route path="/student/lecture/recorded/:id" element={<RecordedLecturePage />} />
       <Route path="/student/lecture/ar" element={<ARVR />} />
+      <Route path="/student/suraj" element={<CollegeRecommendation />} />
 
       {/*Teacher Routes */}
       <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
