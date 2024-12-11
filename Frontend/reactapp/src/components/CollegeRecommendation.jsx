@@ -1,84 +1,107 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const CollegeRecommendation = () => {
   const [formData, setFormData] = useState({
-    preferredArea: '',
+    current_area: '',
     medium: '',
-    maxFees: '',
+    fees: '',
     facilities: '',
-    studentClass: '',
-    currentArea: '',
+    class: '',
+    preferred_area: ''
   });
 
   const [recommendations, setRecommendations] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData(prev => ({
+      ...prev,
+      [name]: name === 'facilities' ? value.split(',').map(f => f.trim()) : 
+              name === 'fees' ? parseInt(value) : value
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError('');
 
-    // Simulate generating recommendations
-    const generatedRecommendations = [
-      "ABC College of Science",
-      "XYZ Arts Academy",
-      "National Institute of Technology",
-    ];
-    setRecommendations(generatedRecommendations);
+    try {
+      const response = await axios.post(
+        'https://backendfianlsih.azurewebsites.net/school_recommendation/recommend',
+        formData
+      );
+      setRecommendations(response.data);
+    } catch (err) {
+      setError(err.response?.data?.error || 'Failed to fetch recommendations');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="bg-gray-100 min-h-screen flex items-center justify-center p-6">
       <div className="w-full max-w-lg bg-white shadow-md rounded-lg p-6">
-        <h2 className="text-2xl font-bold mb-6 text-center">College Recommendations</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">School Recommendations</h2>
+        
+        {error && (
+          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-md">
+            {error}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="preferredArea" className="block text-sm font-medium">
-              Preferred Area
+            <label htmlFor="current_area" className="block text-sm font-medium">
+              Current Area
             </label>
             <input
               type="text"
-              id="preferredArea"
-              name="preferredArea"
-              value={formData.preferredArea}
+              id="current_area"
+              name="current_area"
+              value={formData.current_area}
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded-md"
               required
             />
           </div>
+
           <div>
             <label htmlFor="medium" className="block text-sm font-medium">
               Medium
             </label>
-            <input
-              type="text"
+            <select
               id="medium"
               name="medium"
               value={formData.medium}
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded-md"
               required
-            />
+            >
+              <option value="">Select Medium</option>
+              <option value="English">English</option>
+              <option value="Marathi">Marathi</option>
+            </select>
           </div>
+
           <div>
-            <label htmlFor="maxFees" className="block text-sm font-medium">
+            <label htmlFor="fees" className="block text-sm font-medium">
               Maximum Affordable Fees (INR)
             </label>
             <input
               type="number"
-              id="maxFees"
-              name="maxFees"
-              value={formData.maxFees}
+              id="fees"
+              name="fees"
+              value={formData.fees}
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded-md"
               required
             />
           </div>
+
           <div>
             <label htmlFor="facilities" className="block text-sm font-medium">
               Required Facilities (comma-separated)
@@ -89,60 +112,66 @@ const CollegeRecommendation = () => {
               name="facilities"
               value={formData.facilities}
               onChange={handleChange}
+              placeholder="Sports, Labs, Arts"
               className="w-full p-2 border border-gray-300 rounded-md"
               required
             />
           </div>
+
           <div>
-            <label htmlFor="studentClass" className="block text-sm font-medium">
+            <label htmlFor="class" className="block text-sm font-medium">
               Student's Class
             </label>
             <input
               type="text"
-              id="studentClass"
-              name="studentClass"
-              value={formData.studentClass}
+              id="class"
+              name="class"
+              value={formData.class}
               onChange={handleChange}
+              placeholder="e.g. 5th"
               className="w-full p-2 border border-gray-300 rounded-md"
               required
             />
           </div>
-          <div>
-            <label htmlFor="currentArea" className="block text-sm font-medium">
-              Current Area
-            </label>
-            <input
-              type="text"
-              id="currentArea"
-              name="currentArea"
-              value={formData.currentArea}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-              required
-            />
-          </div>
+
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
+            disabled={loading}
+            className={`w-full py-2 rounded-md transition ${
+              loading 
+                ? 'bg-gray-400 cursor-not-allowed' 
+                : 'bg-blue-500 hover:bg-blue-600 text-white'
+            }`}
           >
-            Get Recommendations
+            {loading ? 'Finding Schools...' : 'Get Recommendations'}
           </button>
         </form>
 
-        <div className="mt-6">
-          <h3 className="text-lg font-semibold">Recommended Colleges:</h3>
-          <ul className="mt-2 space-y-1">
-            {recommendations.length > 0 ? (
-              recommendations.map((college, index) => (
-                <li key={index} className="p-2 border border-gray-300 rounded-md">
-                  {college}
-                </li>
-              ))
-            ) : (
-              <p className="text-gray-500">No recommendations yet. Fill the form to get started!</p>
-            )}
-          </ul>
-        </div>
+        {recommendations.length > 0 && (
+          <div className="mt-6">
+            <h3 className="text-lg font-semibold mb-4">Recommended Schools:</h3>
+            <div className="space-y-4">
+              {recommendations.map((school, index) => (
+                <div key={index} className="p-4 border border-gray-300 rounded-md">
+                  <div className="flex justify-between items-start">
+                    <h4 className="font-medium text-lg">{school.name}</h4>
+                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">
+                      {school.match_percentage.toFixed(1)}% Match
+                    </span>
+                  </div>
+                  <div className="mt-2 space-y-1 text-sm text-gray-600">
+                    <p>Area: {school.area}</p>
+                    <p>Medium: {school.medium}</p>
+                    <p>Fees: ₹{school.fees.toLocaleString()}</p>
+                    <p>Classes: {school.classes}</p>
+                    <p>Facilities: {school.facilities.join(', ')}</p>
+                    <p>Transport Available: {school.transport ? 'Yes' : 'No'}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
