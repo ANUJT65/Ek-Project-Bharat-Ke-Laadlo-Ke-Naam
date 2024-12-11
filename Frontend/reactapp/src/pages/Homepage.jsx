@@ -11,10 +11,10 @@ const Homepage = () => {
         <div className='text-2xl font-bold'>Gram Shiksha</div>
         <div className='flex justify-center'>
           <button className='text-blue-300 mx-2 p-2 border-blue-300 hover:border-b' onClick={()=>navigate('/auth/login')}>
-            Continue as a Student
+            Login
           </button>
-          <button className='text-blue-300 mx-2 p-2 border-blue-300 hover:border-b' onClick={()=>navigate('/auth/login')}>
-            Continue as a Teacher
+          <button className='text-blue-300 mx-2 p-2 border-blue-300 hover:border-b' onClick={()=>navigate('/auth/signup')}>
+            Signup
           </button>
           <button className='text-blue-300 mx-2 p-2 border-blue-300 hover:border-b' onClick={()=>navigate('/government/dashboard')}>
             Continue as a Government Official
