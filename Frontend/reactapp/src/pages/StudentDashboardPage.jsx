@@ -14,6 +14,7 @@ import Navbar2 from '../components/Navbar2';
 import { useStudentDB } from '../contexts/StudentDBContext';
 import SchoolComparator from '../components/SchoolComparator';
 import GoogleTranslate from '../components/GoogleTranslate';
+
 const StudentDashboardPage = () => {
   const { user, login, logout } = useAuth();
   const { option, setOption } = useStudentDB();
