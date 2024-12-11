@@ -1,29 +1,16 @@
-import React from 'react'
+import React from 'react';
+import { useAuth } from '../contexts/userContext';
 
 const UserAvatar = () => {
-    //im assuming some usercontext will be used which will return user data to all comps 
-    //write a function that extracts intials
+  const { user } = useAuth();
 
-    const user = 'Jane Doe';
-    const email = 'janedoe@example.com'
+  const avatarLetter = user?.email?.charAt(0).toUpperCase() || 'NA';
 
-    const getInitials = (name) => {
-        if (!name) return "U"; // Default to "U" if no name
-        return name
-          .split(" ")
-          .map((word) => word[0]?.toUpperCase())
-          .join("");
-    };
-
-    return (
-    <div className='flex justify-center'>
-        <div className='rounded-full bg-[#2F4550] font-bold text-xl text-white px-4 py-4'>{getInitials('Jane Doe')}</div>
-        <div className='flex flex-col mx-2'>
-            <div className='font-semibold'>{user}</div>
-            <div className='text-[#1E1E1E]'>{email}</div>
-        </div>
+  return (
+    <div className='bg-red-200 text-xl px-3 py-1 w-12 h-12 rounded-full flex items-center justify-center'>
+      {avatarLetter}
     </div>
-    )
-}
+  );
+};
 
-export default UserAvatar
+export default UserAvatar;

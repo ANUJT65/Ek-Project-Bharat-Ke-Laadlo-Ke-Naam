@@ -19,7 +19,7 @@ const TeacherCalendarPreview = () => {
     <div className="col-span-2 py-2 rounded-md px-5 flex flex-col border shadow-md min-h-0">
       <div className="text-xl font-bold">September 2024</div>
       
-      {/* Calendar Dates */}
+      {/* calendar */}
       <div className="flex justify-around mt-2 font-semibold">
         <CalendarDate day="Mon" date="23" today={true} />
         <CalendarDate day="Tue" date="24" />
@@ -29,7 +29,7 @@ const TeacherCalendarPreview = () => {
         <CalendarDate day="Sat" date="28" />
       </div>
       
-      {/* Upcoming/Ongoing Events */}
+      {/* events */}
       <div className="text-md font-bold mt-4">Upcoming/Ongoing</div>
 
       <div className="flex justify-between">

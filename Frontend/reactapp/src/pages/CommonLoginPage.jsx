@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CommonLoginForm from '../components/CommonLoginForm';
-import loginImage from '../assets/images/cover.jpg'; // Adjust the filename and extension as needed
+import loginImage from '../assets/images/cover.jpg'; 
 
 const CommonLoginPage = () => {
   const [type, setType] = useState('student');
