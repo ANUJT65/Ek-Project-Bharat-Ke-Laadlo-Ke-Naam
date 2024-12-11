@@ -20,6 +20,7 @@ import SingleResourcePage from "./pages/SingleResourcePage"
 import GovernmentDashboard from "./pages/GovernmentDashboard"
 import { GovernmentProvider } from "./contexts/GovernmentDBContext"
 import Homepage from "./pages/Homepage"
+import CommonLoginPage2 from "./pages/CommonLoginPage2"
 
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
       {/*Common Routes */}
       <Route path="/" element={<Homepage />} />
       <Route path="/comptest" element={<ComponentTesterPage />}/>
-      <Route path="/auth/login" element={<CommonLoginPage />}/>
+      <Route path="/auth/login" element={<CommonLoginPage2 />}/>
       <Route path="/auth/signup" element={<CommonSignupPage />}/>
       <Route path="/test/pdf" element={<PDFTest />}/>
 
