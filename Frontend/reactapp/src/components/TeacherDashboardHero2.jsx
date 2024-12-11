@@ -29,23 +29,6 @@ const TeacherDashboardHero2 = () => {
         <div className='col-span-2 bg-white border border-gray-400 rounded-md'>
           <BarGraph className='w-full h-64' /> 
         </div>
-
-       
-
-        <div className='col-span-1 bg-white rounded-md border border-gray-400'>
-          <TeacherCalendarPreview  />
-        </div>
-
-        <div className='flex flex-col col-span-2 p-3'>
-          <div className='font-bold text-xl mb-3'>Your Classes</div>
-
-          <div className='flex'>
-          <StudentSubjectCard />
-          <StudentSubjectCard />
-          <StudentSubjectCard /> 
-          </div> 
-        </div>
-
         <div className='h-64 flex flex-col col-span-1 bg-white rounded-md border border-gray-400 p-5'>
           <div className='font-bold'>Recently Added Resources</div>
         </div>
