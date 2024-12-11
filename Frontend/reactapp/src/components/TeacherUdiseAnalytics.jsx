@@ -185,8 +185,8 @@ const TeacherUdiseAnalytics = () => {
     });
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
-      <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6">
+    <div className=" flex flex-col items-center justify-start p-6">
+      <div className="w-full max-w-4xl bg-white  rounded-lg p-6">
         <header className="flex justify-start items-center mb-6">
           <h1 className="text-2xl font-bold text-gray-800">UDISE PDF Fetch, Convert & Analyze</h1>
           
