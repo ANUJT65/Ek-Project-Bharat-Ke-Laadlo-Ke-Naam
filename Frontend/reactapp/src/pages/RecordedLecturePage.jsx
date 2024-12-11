@@ -81,7 +81,12 @@ const RecordedLecturePage = () => {
       <Navbar2 />
       <div className='grid grid-cols-12 h-screen'>
         <div className='col-span-9 m-10'>
+
+          <div className='flex justify-between'>
           <div className='text-xl font-bold'>Video ID: {id}</div>
+          <button className='bg-[#CE4760] m-2 p-2 rounded-md text-white'>Take the quiz</button>
+          </div>
+          
           <div className='flex flex-col'>
             <video controls className="w-full h-full object-cover shadow-lg rounded-lg">
               <source src={videoDetails.video_url} type="video/mp4" />
