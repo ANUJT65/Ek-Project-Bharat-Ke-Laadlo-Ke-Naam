@@ -8,6 +8,11 @@ const TeacherResourcesHero = () => {
   const [s3Key, setS3Key] = useState('');
   const [resources, setResources] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [fileType, setFileType] = useState('lecture'); // state to store the selected file type
+  
+  const handleFileChange = (e) => {
+    setFilePath(e.target.files[0]);
+  };
 
   useEffect(() => {
     const fetchResources = async () => {
@@ -63,43 +68,60 @@ const TeacherResourcesHero = () => {
         </div>
 
         <button className='bg-[#F64328] text-white my-3 px-2 rounded-md' onClick={handleUploadClick}>
-          + Upload a new video
+          + Upload a new resource
         </button>
       </div>
 
       {showModal && (
-        <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
-          <div className='bg-white p-5 rounded-md'>
-            <h2 className='text-xl mb-4'>Upload a new video</h2>
-            <input
-              type='file'
-              onChange={(e) => setFilePath(e.target.files[0])}
-              className='mb-4 p-2 border border-gray-300 rounded-md'
-            />
-            <input
-              type='text'
-              placeholder='S3 Key'
-              value={s3Key}
-              onChange={(e) => setS3Key(e.target.value)}
-              className='mb-4 p-2 border border-gray-300 rounded-md'
-            />
-            <div className='flex justify-end'>
-              <button className='bg-gray-500 text-white px-4 py-2 rounded-md mr-2' onClick={handleCloseModal}>
-                Cancel
-              </button>
-              <button
-                className={`px-4 py-2 rounded-md ${
-                  isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#F64328] text-white'
-                }`}
-                onClick={handleSubmit}
-                disabled={isLoading}
-              >
-                {isLoading ? 'Uploading...' : 'Upload'}
-              </button>
-            </div>
+      <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
+        <div className='bg-white p-5 rounded-md'>
+          <h2 className='text-xl mb-4'>Upload a new Resource</h2>
+
+          {/* Dropdown for selecting file type */}
+          <div className='mb-4'>
+            <select
+              value={fileType}
+              onChange={(e) => setFileType(e.target.value)}
+              className='p-2 border border-gray-300 rounded-md'
+            >
+              <option value='lecture'>Lecture</option>
+              <option value='document'>Document</option>
+            </select>
+          </div>
+
+          {/* File input */}
+          <input
+            type='file'
+            onChange={handleFileChange}
+            className='mb-4 p-2 border border-gray-300 rounded-md'
+          />
+
+          {/* S3 Key input */}
+          <input
+            type='text'
+            placeholder='S3 Key'
+            value={s3Key}
+            onChange={(e) => setS3Key(e.target.value)}
+            className='mb-4 p-2 border border-gray-300 rounded-md'
+          />
+
+          {/* Action buttons */}
+          <div className='flex justify-end'>
+            <button className='bg-gray-500 text-white px-4 py-2 rounded-md mr-2' onClick={handleCloseModal}>
+              Cancel
+            </button>
+            <button
+              className={`px-4 py-2 rounded-md ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#F64328] text-white'}`}
+              onClick={handleSubmit}
+              disabled={isLoading}
+            >
+              {isLoading ? 'Uploading...' : 'Upload'}
+            </button>
           </div>
         </div>
-      )}
+      </div>
+    )}
+
 
       {resources.map((resource, index) => (
         <TeacherResourcesCard
