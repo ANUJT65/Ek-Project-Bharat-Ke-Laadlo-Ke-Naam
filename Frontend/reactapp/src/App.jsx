@@ -19,6 +19,7 @@ import { StudentDBProvider } from "./contexts/StudentDBContext"
 import SingleResourcePage from "./pages/SingleResourcePage"
 import GovernmentDashboard from "./pages/GovernmentDashboard"
 import { GovernmentProvider } from "./contexts/GovernmentDBContext"
+import Homepage from "./pages/Homepage"
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
     <GovernmentProvider>
     <Routes>
       {/*Common Routes */}
+      <Route path="/" element={<Homepage />} />
       <Route path="/comptest" element={<ComponentTesterPage />}/>
       <Route path="/auth/login" element={<CommonLoginPage />}/>
       <Route path="/auth/signup" element={<CommonSignupPage />}/>
