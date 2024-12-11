@@ -23,7 +23,7 @@ const UserProfile = () => {
               <li><strong>School:</strong> {user.school}</li>
               <li><strong>Location:</strong> {user.location}</li>
               <li><strong>Family Income:</strong> {user.familyIncome}</li>
-              <li><strong>Subjects Enrolled:</strong> {user.subjects.join(', ')}</li>
+              {/*<li><strong>Subjects Enrolled:</strong> {user.subjects.join(', ')}</li>*/}
             </ul>
           </div>
         ) : (

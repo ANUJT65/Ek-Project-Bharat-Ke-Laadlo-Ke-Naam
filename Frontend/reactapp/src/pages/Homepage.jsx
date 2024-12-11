@@ -5,16 +5,16 @@ import { useNavigate } from 'react-router-dom';
 const Homepage = () => {
     const navigate = useNavigate();
   return (
-    <div className='text-white h-screen bg-gradient-to-b from-[#507385] to-[#131B1F] flex flex-col'>
+    <div className='text-white h-screen bg-gradient-to-r from-[#CE4760] via-[#2F4550] to-[#CE4760] flex flex-col'>
       {/* Navbar */}
       <div className='flex justify-between p-5 font-inter'>
         <div className='text-2xl font-bold'>Gram Shiksha</div>
         <div className='flex justify-center'>
           <button className='text-blue-300 mx-2 p-2 border-blue-300 hover:border-b' onClick={()=>navigate('/auth/login')}>
-            Continue as a Student
+            Login
           </button>
-          <button className='text-blue-300 mx-2 p-2 border-blue-300 hover:border-b' onClick={()=>navigate('/auth/login')}>
-            Continue as a Teacher
+          <button className='text-blue-300 mx-2 p-2 border-blue-300 hover:border-b' onClick={()=>navigate('/auth/signup')}>
+            Signup
           </button>
           <button className='text-blue-300 mx-2 p-2 border-blue-300 hover:border-b' onClick={()=>navigate('/government/dashboard')}>
             Continue as a Government Official

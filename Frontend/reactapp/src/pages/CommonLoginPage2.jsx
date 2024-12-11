@@ -6,7 +6,7 @@ const CommonLoginPage2 = () => {
     const [type, setType] = useState('student');
   return (
     <div
-      className="bg-gradient-to-r from-indigo-500 to-green-300 font-inter h-screen w-screen bg-cover bg-center flex items-center justify-center"
+      className="bg-gradient-to-r from-[#CE4760] via-[#2F4550] to-[#CE4760] font-inter h-screen w-screen bg-cover bg-center flex items-center justify-center"
       
     >
       <div className="w-1/3 items-center bg-white rounded-lg p-8 ">
@@ -24,7 +24,7 @@ const CommonLoginPage2 = () => {
         <div className='flex justify-center mb-3'>
           <button
             className={`ml-5 border border-gray-200 p-2 px-7 rounded-r rounded-full ${
-              type === 'teacher' ? 'bg-[#A4A8D1] text-black border border-gray-600' : 'bg-white text-black'
+              type === 'teacher' ? 'bg-[#2F4550] text-white border border-gray-600' : 'bg-white text-black'
             }`}
             onClick={() => setType('teacher')}
           >
@@ -32,7 +32,7 @@ const CommonLoginPage2 = () => {
           </button>
           <button
             className={`mr-5 border border-gray-200 p-2 px-7 rounded-l rounded-full ${
-              type === 'student' ? 'bg-[#A4A8D1] text-black border border-gray-600' : 'bg-white text-black'
+              type === 'student' ? 'bg-[#CE4760] text-white border border-gray-600' : 'bg-white text-black'
             }`}
             onClick={() => setType('student')}
           >

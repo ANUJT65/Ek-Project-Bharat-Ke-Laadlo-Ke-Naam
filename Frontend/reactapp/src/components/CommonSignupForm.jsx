@@ -47,12 +47,12 @@ const CommonSignupForm = ({ url, type }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='w-full max-w-sm'>
-      <div className='justify-start w-3/4 text-left'>You're logging in as a {type}</div>
+    <form onSubmit={handleSubmit} className='flex flex-col items-center w-full max-w-sm'>
+      <div className='text-left mb-2'>You're logging in as a {type}</div>
 
-      <div className='justify-start w-3/4 text-left'>Email ID:</div>
+      <label className='text-left w-full mb-2'>Email ID:</label>
       <input
-        className='p-1 w-3/4 mb-5 border border-gray-400'
+        className='p-1 w-full  mb-5 border border-gray-400'
         type='email'
         name='email'
         value={formData.email}
@@ -60,9 +60,9 @@ const CommonSignupForm = ({ url, type }) => {
         required
       />
 
-      <div className='justify-start w-3/4 text-left'>Password:</div>
+      <label className='text-left w-full mb-2'>Password:</label>
       <input
-        className='p-1 w-3/4 mb-5 border border-gray-400'
+        className='p-1 w-full  mb-5 border border-gray-400'
         type='password'
         name='password'
         value={formData.password}
@@ -70,9 +70,9 @@ const CommonSignupForm = ({ url, type }) => {
         required
       />
 
-      <div className='justify-start w-3/4 text-left'>Confirm Password:</div>
+      <label className='text-left w-full mb-2'>Confirm Password:</label>
       <input
-        className='p-1 w-3/4 mb-5 border border-gray-400'
+        className='p-1 w-full  mb-5 border border-gray-400'
         type='password'
         name='confirmPassword'
         value={formData.confirmPassword}
@@ -82,18 +82,18 @@ const CommonSignupForm = ({ url, type }) => {
 
       {type === 'Teacher' && (
         <>
-          <div className='justify-start w-3/4 text-left'>Teacher Name:</div>
+          <label className='text-left w-full mb-2'>Teacher Name:</label>
           <input
-            className='p-1 w-3/4 mb-5 border border-gray-400'
+            className='p-1 w-full  mb-5 border border-gray-400'
             type='text'
             name='teacherName'
             value={formData.teacherName}
             onChange={handleChange}
             required
           />
-          <div className='justify-start w-3/4 text-left'>Teacher ID:</div>
+          <label className='text-left w-full mb-2'>Teacher ID:</label>
           <input
-            className='p-1 w-3/4 mb-5 border border-gray-400'
+            className='p-1 w-full  mb-5 border border-gray-400'
             type='text'
             name='teacherId'
             value={formData.teacherId}
@@ -105,18 +105,18 @@ const CommonSignupForm = ({ url, type }) => {
 
       {type === 'Student' && (
         <>
-          <div className='justify-start w-3/4 text-left'>Student Name:</div>
+          <label className='text-left w-full mb-2'>Student Name:</label>
           <input
-            className='p-1 w-3/4 mb-5 border border-gray-400'
+            className='p-1 w-full  mb-5 border border-gray-400'
             type='text'
             name='studentName'
             value={formData.studentName}
             onChange={handleChange}
             required
           />
-          <div className='justify-start w-3/4 text-left'>Student ID:</div>
+          <label className='text-left w-full mb-2'>Student ID:</label>
           <input
-            className='p-1 w-3/4 mb-5 border border-gray-400'
+            className='p-1 w-full  mb-5 border border-gray-400'
             type='text'
             name='studentId'
             value={formData.studentId}
@@ -126,7 +126,7 @@ const CommonSignupForm = ({ url, type }) => {
         </>
       )}
 
-      <button type='submit' className='p-3 bg-[#912F56] w-3/4 text-white'>
+      <button type='submit' className='p-3 bg-[#CE4760] w-3/4 text-white'>
         Sign Up as {type}
       </button>
     </form>

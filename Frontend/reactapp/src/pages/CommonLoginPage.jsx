@@ -7,12 +7,12 @@ const CommonLoginPage = () => {
 
   return (
     <div className='grid grid-cols-2 w-full'>
-      <div className='col-span-1 w-full bg-yellow-300 h-screen flex flex-col p-10 items-center justify-center'>
+      <div className='col-span-1 w-full from-[#CE4760] via-[#2F4550] to-[#CE4760] h-screen flex flex-col p-10 items-center justify-center'>
         <div className='text-xl mb-5'>Welcome back to Gram Shiksha!</div>
         <div className='flex justify-center mb-3'>
           <button
             className={`mx-5 p-2 px-7 ${
-              type === 'teacher' ? 'bg-[#A4A8D1] text-black border border-gray-600' : 'bg-white text-black'
+              type === 'teacher' ? 'bg-[#2F4550] text-black border border-gray-600' : 'bg-white text-black'
             }`}
             onClick={() => setType('teacher')}
           >
@@ -20,7 +20,7 @@ const CommonLoginPage = () => {
           </button>
           <button
             className={`mx-5 p-2 px-7 ${
-              type === 'student' ? 'bg-[#A4A8D1] text-black border border-gray-600' : 'bg-white text-black'
+              type === 'student' ? 'bg-[#CE4760] text-black border border-gray-600' : 'bg-white text-black'
             }`}
             onClick={() => setType('student')}
           >

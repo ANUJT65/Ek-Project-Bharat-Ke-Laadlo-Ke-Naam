@@ -81,7 +81,7 @@ const CommonLoginForm = ({ url, type }) => {
 
         <button
           type="submit"
-          className="w-full bg-[#912F56] text-white py-2 rounded hover:bg-[#701f41] transition"
+          className="w-full bg-[#CE4760] text-white py-2 rounded hover:bg-[#2F4550] transition"
         >
           Login as {type}
         </button>
