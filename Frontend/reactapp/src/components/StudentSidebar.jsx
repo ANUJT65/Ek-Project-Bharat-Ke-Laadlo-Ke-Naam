@@ -49,14 +49,13 @@ const StudentSidebar = () => {
                 <div>Dashboard</div>
             </button>
 
-            <button className={option === 'compare' ? activeButtonStyles : inactiveButtonStyles} onClick={()=>setOption('compare')}>
+            <button className={option === 'resources' ? activeButtonStyles : inactiveButtonStyles} onClick={()=>setOption('resources')}>
                 <div className='mt-1 mr-2'><GrResources/></div>
-                <div>Compare Schools</div>
+                <div>Resources</div>
             </button>
 
-            <button className={option === 'ar' ? activeButtonStyles : inactiveButtonStyles} onClick={()=>setOption('ar')}>
-                <div className='mt-1 mr-2'><GrResources/></div>
-                <div>AR/VR Resources</div>
+            <button className={option === 'analytics' ? activeButtonStyles : inactiveButtonStyles} onClick={()=>setOption('analytics')}><div className='mt-1 mr-2'><SiGoogleanalytics/></div>
+            <div>Engagement Analytics</div>
             </button>
 
         </div>

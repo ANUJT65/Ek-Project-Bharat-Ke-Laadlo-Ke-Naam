@@ -50,28 +50,28 @@ const StudentTable = () => {
   }, []);
 
   return (
-    <div className="p-5">
-      <h2 className="text-2xl font-bold mb-4">See how your students are performing</h2>
-      <table className="table-auto w-full border border-gray-300">
+    <div className="p-3">
+      <h2 className="text-xl font-bold mb-3">See how your students are performing</h2>
+      <table className="table-auto w-full border border-gray-300 text-sm">
         <thead>
           <tr className="bg-gray-100">
-            <th className="border px-4 py-2">Name</th>
-            <th className="border px-4 py-2">Questions Attempted</th>
-            <th className="border px-4 py-2">Correct/Wrong</th>
-            <th className="border px-4 py-2">Attendance (%)</th>
-            <th className="border px-4 py-2">Engagement Score (%)</th>
+            <th className="border px-3 py-1">Name</th>
+            <th className="border px-3 py-1">Questions Attempted</th>
+            <th className="border px-3 py-1">Correct/Wrong</th>
+            <th className="border px-3 py-1">Attendance (%)</th>
+            <th className="border px-3 py-1">Engagement Score (%)</th>
           </tr>
         </thead>
         <tbody>
           {students.map((student, index) => (
             <tr key={index} className="hover:bg-gray-50">
-              <td className="border px-4 py-2 text-center">{student.name}</td>
-              <td className="border px-4 py-2 text-center">{student.totalQuestions}</td>
-              <td className="border px-4 py-2 text-center">
+              <td className="border px-3 py-1 text-center">{student.name}</td>
+              <td className="border px-3 py-1 text-center">{student.totalQuestions}</td>
+              <td className="border px-3 py-1 text-center">
                 {student.correctAnswers}/{student.wrongAnswers}
               </td>
-              <td className="border px-4 py-2 text-center">{student.attendance}</td>
-              <td className="border px-4 py-2 text-center">{student.engagementScore}</td>
+              <td className="border px-3 py-1 text-center">{student.attendance}</td>
+              <td className="border px-3 py-1 text-center">{student.engagementScore}</td>
             </tr>
           ))}
         </tbody>
