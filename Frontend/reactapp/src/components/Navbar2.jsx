@@ -26,40 +26,54 @@ const Navbar2 = ({ type }) => {
   const menuRef = React.useRef();
 
   return (
-    <div className='font-inter mt-4 flex border-b-2 border-gray-300 justify-between w-full p-3 px-4'>
-      <div className='mt-2 font-bold text-xl'>{type} Portal</div>
+    <div className="font-inter mt-1 flex border-b border-gray-200 justify-between items-center w-full px-2 py-1 bg-white shadow-md">
+      <div className="text-xl font-semibold text-gray-800">{type} Portal</div>
 
-      <div className='user-avatar flex items-center gap-2'>
-        <div className='bg-red-200 text-xl px-3 py-1 w-12 h-12 rounded-full flex items-center justify-center'>
+      <div className="user-avatar flex items-center gap-4 relative">
+        <div className="bg-[#CE4760] text-white text-lg px-3 py-2 w-12 h-12 rounded-full flex items-center justify-center font-bold">
           {avatarLetter}
         </div>
         {user ? (
-          <span className='text-sm font-medium'>{user.email}</span>
+          <span className="text-sm font-medium text-gray-700">{user.name}</span>
         ) : (
-          <span className='text-md font-medium'>Not logged in</span>
+          <span className="text-md font-medium text-gray-500">Not logged in</span>
         )}
 
         {/* Burger menu button */}
         <button
-          className='ml-4 p-2 bg-gray-200 rounded-md'
+          className="p-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-all"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Menu"
         >
           ☰
         </button>
-      </div>
 
-      {/* Dropdown menu */}
-      {isMenuOpen && (
-        <div ref={menuRef} className='absolute right-0 mt-2 w-48 bg-white border border-gray-200 shadow-md rounded-md'>
-          <ul className='py-2'>
-            <button onClick={()=> {navigate('/user/profile')}} className='px-4 py-2 hover:bg-gray-100 cursor-pointer'>Profile</button>
-            <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer'>Settings</li>
-            <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer'>Logout</li>
-          </ul>
-        </div>
-      )}
+        {/* Dropdown menu */}
+        {isMenuOpen && (
+          <div
+            ref={menuRef}
+            className="absolute top-full right-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-md z-10"
+          >
+            <ul className="py-2">
+              <li
+                onClick={() => navigate('/user/profile')}
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-700"
+              >
+                Profile
+              </li>
+
+              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-700">
+                Logout
+              </li>
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
+
+
+
 };
 
 export default Navbar2;
