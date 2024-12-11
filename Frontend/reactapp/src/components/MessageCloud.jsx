@@ -11,7 +11,7 @@ const MessageCloud = ({ message, sender, imageUrl, imageTitle }) => {
     <span>S</span>
   )}
 </div>
-      <div className='bg-gray-200 p-1 px-2 rounded-md'>
+      <div className='bg-[#CE4760] p-1 px-2 rounded-md'>
         {message}
         {imageUrl && (
           <div className="mt-2">
