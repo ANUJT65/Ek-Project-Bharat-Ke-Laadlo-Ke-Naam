@@ -97,17 +97,7 @@ const TeacherSidebar = () => {
                     <div className='mx-1'>Student Analytics</div>
                 </button>
 
-                <button 
-                    className={`flex mx-3  my-1 py-1 px-2 text-left rounded ${
-                        option === 'infrastructure' ? 'bg-[#ACD5F2] border font-bold text-[#003D69] border-[#0094FF]' : ''
-                    }`}
-                    onClick={() => {
-                        setOption('infrastructure');
-                    }}
-                >
-                    <div className='mt-1'><SiMaterialdesignicons /></div>
-                    <div className='mx-1'>Infrastrucure Analytics</div>
-                </button>
+                
             </div>
         </div>
     );
