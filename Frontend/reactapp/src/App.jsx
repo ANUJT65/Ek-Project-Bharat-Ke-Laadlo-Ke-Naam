@@ -25,6 +25,7 @@ import StudentVocationalLearning2 from "./pages/StudentVocationalLearning2"
 import ARVR from "./components/ARVR"
 import UserProfile from "./pages/UserProfile"
 import CommonSignupPage2 from "./pages/CommonSignupPage2"
+import Signup2 from "./pages/Signup2"
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
       <Route path="/comptest" element={<ComponentTesterPage />}/>
       <Route path="/auth/login" element={<CommonLoginPage2 />}/>
       <Route path="/auth/signup" element={<CommonSignupPage2 />} />
+      <Route path="/auth/signup2" element={<Signup2 />} />
       <Route path="/test/pdf" element={<PDFTest />}/>
       <Route path="/user/profile" element={<UserProfile />}/>
 
