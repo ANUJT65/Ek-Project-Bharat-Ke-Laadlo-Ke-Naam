@@ -12,7 +12,7 @@ const PieChartComponent = () => {
         backgroundColor: ['#4caf50', '#f44336', '#ff9800'],
         hoverBackgroundColor: ['#66bb6a', '#e57373', '#ffb74d'],
         borderColor: '#fff',
-        borderWidth: 1,
+        borderWidth: 1
       },
     ],
   };
@@ -21,13 +21,16 @@ const PieChartComponent = () => {
     plugins: {
       legend: {
         position: 'bottom',
+        labels: {
+          color: 'white', // Set label color to white
+        },
       },
     },
   };
 
   return (
     <div className='flex flex-col rounded-md '>
-        <div className='mb-4 font-bold'>Student breakdown by engagement</div>
+        <div className='mb-4 font-bold text-white'>Student breakdown by engagement</div>
       <Pie data={data} options={options} />
     </div>
   );
