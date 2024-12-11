@@ -33,10 +33,6 @@ const StudentSingleSubjectPage = () => {
         <div className='flex justify-between'>
           {/* Student Lectures for the subject */}
           <StudentSubjectLectures />
-
-          <div className='w-1/2'>
-            <StudentCalendarPreview />
-          </div>
         </div>
       </div>
     </div>

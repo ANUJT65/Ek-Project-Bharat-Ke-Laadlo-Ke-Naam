@@ -28,14 +28,8 @@ const StudentDashboardHero = () => {
 
     <div className="mt-10 grid grid-cols-5 gap-4 flex-grow">
           <div className='col-span-3 flex flex-col'>
-          <StudentDashboardAttendance />
           <StudentResources />
-          <StudentVocationalLearning />
           </div>
-
-          <div className='col-span-2'>
-          <StudentCalendarPreview />
-          </div> 
 
         </div>
     </>
