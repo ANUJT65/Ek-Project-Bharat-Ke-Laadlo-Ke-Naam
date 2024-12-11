@@ -123,10 +123,20 @@ const StudentVocationalLearning2 = () => {
     // Play feedback using text-to-speech
     const playFeedback = () => {
         if (!feedback) return;
+        window.speechSynthesis.cancel(); // Stop any ongoing speech
         const utterance = new SpeechSynthesisUtterance(feedback);
-        utterance.lang = 'en-US'; // Adjust language as needed
+        utterance.lang = 'en-US';
         window.speechSynthesis.speak(utterance);
     };
+
+    useEffect(() => {
+        if (!feedback) return;
+        window.speechSynthesis.cancel(); // Stop any ongoing speech
+        const utterance = new SpeechSynthesisUtterance(feedback);
+        utterance.lang = 'en-US';
+        window.speechSynthesis.speak(utterance);
+    }, [feedback]); // Dependency array ensures it runs only when `feedback` changes.
+
 
     return (
         <div>
@@ -190,12 +200,6 @@ const StudentVocationalLearning2 = () => {
                                 <div className="bg-[#CE4760] p-4 rounded-lg">
                                     <h3 className="font-medium mb-2 text-white">Feedback:</h3>
                                     <p className="text-white">{feedback}</p>
-                                    <button
-                                        className="mt-4 px-4 py-2 bg-[#2F4550] text-white rounded hover:bg-[#243038]"
-                                        onClick={playFeedback}
-                                    >
-                                        Play Feedback
-                                    </button>
                                 </div>
                             )}
 
