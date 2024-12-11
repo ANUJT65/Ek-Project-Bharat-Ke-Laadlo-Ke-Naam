@@ -30,8 +30,8 @@ const TeacherDashboard = () => {
           <Navbar2 type='Teacher' />
 
           {option === 'dashboard' ? <TeacherDashboardHero2 /> : <></>}
+          {option === 'analytics' ? <TeacherEngagementAnalyticsHero/>:<></>}
           {option === 'resources' ? <TeacherResourcesHero /> : <></>}
-          {option === 'analytics' ? <TeacherEngagementAnalyticsHero /> : <></>}
           {option === 'students' ? <TeacherStudentAnalytics /> : <></>}
           {option === 'infrastructure' ? <TeacherUdiseAnalytics /> : <></>}
         </div>
