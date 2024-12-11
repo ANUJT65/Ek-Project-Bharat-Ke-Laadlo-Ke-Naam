@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import Navbar2 from '../components/Navbar2';
 
 const StudentVocationalLearning2 = () => {
     const { videoId } = useParams();
@@ -127,84 +129,93 @@ const StudentVocationalLearning2 = () => {
     };
 
     return (
-        <div className="p-8 bg-white min-h-screen flex">
-            {loading && <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                <div className="text-white">Loading...</div>
-            </div>}
+        <div>
+            <Navbar2 />
 
-            <div className="flex-shrink-0 w-3/4 pr-8">
-                {videoUrl && (
-                    <div className="bg-white p-4 rounded-lg shadow-lg border border-gray-300">
-                        <h2 className="text-xl font-semibold mb-4 text-center text-gray-800">
-                            Your Test Question
-                        </h2>
-                        <video className="rounded-lg shadow-md w-full" src={videoUrl} controls />
+            <div className="p-6 bg-[##4caf50] min-h-screen flex text-white">
+                {loading && (
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                        <div className="text-white">Loading...</div>
                     </div>
                 )}
-            </div>
 
-            <div className="w-1/4 bg-gray-100 p-6 rounded-lg shadow-lg flex flex-col space-y-4">
-                {error && <div className="text-red-500 p-2 bg-red-100 rounded">{error}</div>}
+                <div className="flex-shrink-0 w-2/3 ">
+                    {videoUrl && (
+                        <div className="bg-[#2F4550] p-4  shadow-lg">
+                            <h2 className="text-xl font-semibold mb-4 text-center text-white">
+                                Your Test Question
+                            </h2>
+                            <video className="shadow-md w-full" src={videoUrl} controls />
+                        </div>
+                    )}
+                </div>
 
-                {videoUrl && (
-                    <>
-                        <button
-                            className={`px-6 py-3 rounded-lg font-medium ${recognizing ? 'bg-gray-600 opacity-75 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-500'
-                                } text-white`}
-                            onClick={startRecognition}
-                            disabled={recognizing}
-                        >
-                            {recognizing ? 'Listening...' : 'Start Voice Input'}
-                        </button>
+                <div className="w-1/3 bg-white p-5 flex flex-col space-y-4">
 
-                        <button
-                            className={`px-6 py-3 rounded-lg font-medium ${!recognizing ? 'bg-gray-600 opacity-75 cursor-not-allowed' : 'bg-red-600 hover:bg-red-500'
-                                } text-white`}
-                            onClick={stopRecognition}
-                            disabled={!recognizing}
-                        >
-                            Stop Voice Input
-                        </button>
 
-                        {answer && (
-                            <div className="bg-white p-4 rounded-lg">
-                                <h3 className="font-medium mb-2">Your recorded answer:</h3>
-                                <p className="text-gray-700">{answer}</p>
-                                <button
-                                    className="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-500"
-                                    onClick={handleAnswerSubmit}
-                                >
-                                    Submit Answer
-                                </button>
-                            </div>
-                        )}
-
-                        {feedback && (
-                            <div className="bg-blue-100 p-4 rounded-lg">
-                                <h3 className="font-medium mb-2">Feedback:</h3>
-                                <p className="text-gray-700">{feedback}</p>
-                                <button
-                                    className="mt-4 px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-500"
-                                    onClick={playFeedback}
-                                >
-                                    Play Feedback
-                                </button>
-                            </div>
-                        )}
-
-                        {isNextQuestionReady && (
+                    {videoUrl && (
+                        <>
                             <button
-                                className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-500"
-                                onClick={loadNextQuestion}
+                                className={`px-6 py-3 rounded-lg font-medium ${recognizing ? 'bg-gray-500 opacity-75 cursor-not-allowed' : 'bg-[#CE4760] hover:bg-[#A53C4E]'
+                                    }`}
+                                onClick={startRecognition}
+                                disabled={recognizing}
                             >
-                                Next Question
+                                {recognizing ? 'Listening...' : 'Start Voice Input'}
                             </button>
-                        )}
-                    </>
-                )}
+
+                            <button
+                                className={`px-6 py-3 rounded-lg font-medium ${!recognizing ? 'bg-gray-500 opacity-75 cursor-not-allowed' : 'bg-[#CE4760] hover:bg-[#A53C4E]'
+                                    }`}
+                                onClick={stopRecognition}
+                                disabled={!recognizing}
+                            >
+                                Stop Voice Input
+                            </button>
+
+                            {answer && (
+                                <div className="bg-[#CE4760] p-4 rounded-lg">
+                                    <h3 className="font-medium mb-2 text-white">Your Recorded Answer:</h3>
+                                    <p className="text-white">{answer}</p>
+                                    <button
+                                        className="mt-4 px-4 py-2 bg-[#2F4550] text-white rounded hover:bg-[#243038]"
+                                        onClick={handleAnswerSubmit}
+                                    >
+                                        Submit Answer
+                                    </button>
+                                </div>
+                            )}
+
+                            {feedback && (
+                                <div className="bg-[#CE4760] p-4 rounded-lg">
+                                    <h3 className="font-medium mb-2 text-white">Feedback:</h3>
+                                    <p className="text-white">{feedback}</p>
+                                    <button
+                                        className="mt-4 px-4 py-2 bg-[#2F4550] text-white rounded hover:bg-[#243038]"
+                                        onClick={playFeedback}
+                                    >
+                                        Play Feedback
+                                    </button>
+                                </div>
+                            )}
+
+                            {isNextQuestionReady && (
+                                <button
+                                    className="px-6 py-3 bg-[#CE4760] text-white rounded-lg hover:bg-[#A53C4E]"
+                                    onClick={loadNextQuestion}
+                                >
+                                    Next Question
+                                </button>
+                            )}
+                        </>
+                    )}
+                </div>
             </div>
+            );
+
         </div>
     );
+
 };
 
 export default StudentVocationalLearning2;
