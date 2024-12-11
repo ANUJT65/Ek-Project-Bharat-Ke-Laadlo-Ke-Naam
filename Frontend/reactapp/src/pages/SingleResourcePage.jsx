@@ -45,14 +45,14 @@ const SingleResourcePage = () => {
     }
 
     return (
-        <div className="font-inter flex">
+        <div className="font-inter flex h-screen">
             <TeacherSidebar />
-            <div className="flex flex-col w-full">
+            <div className="flex flex-col w-full overflow-auto">
                 <Navbar2 type="Teacher" />
 
-                <div className="p-4 bg-gray-200 min-h-screen">
+                <div className="p-4 bg-gray-200 h-full overflow-auto">
                     <div className="bg-white rounded-lg p-4 mb-4">
-                        <h1 className="text-2xl font-bold mb-2">Resource: {id}</h1>
+                        <h1 className="text-xl font-bold ">Resource: {id}</h1>
                         <div className="text-md text-gray-800">
                             Video URL: 
                             <a 
@@ -67,7 +67,7 @@ const SingleResourcePage = () => {
                     </div>
 
                     <div className="bg-white rounded-lg p-4 mb-4">
-                        <h2 className="text-xl font-bold mb-4">MCQs</h2>
+                        <h2 className="text-xl font-bold">MCQs</h2>
                         <div className="grid grid-cols-3 gap-4">
                             <VideoMCQs type="Easy" videoId={id} />
                             <VideoMCQs type="Medium" videoId={id} />
@@ -76,7 +76,7 @@ const SingleResourcePage = () => {
                     </div>
 
                     <div className="bg-white rounded-lg p-4 mb-4">
-                        <h2 className="text-xl font-bold mb-4">Resources</h2>
+                        <h2 className="text-xl font-bold">Resources</h2>
                         <div className="grid grid-cols-3 gap-4">
                             <VideoNotes 
                                 pdfUrl={JSON.parse(videoDetails.notes).pdf_url}
@@ -90,7 +90,7 @@ const SingleResourcePage = () => {
                     </div>
 
                     <div className="bg-white rounded-lg p-4">
-                        <h2 className="text-xl font-bold mb-4">Image Links</h2>
+                        <h2 className="text-xl font-bold">Image Links</h2>
                         <div className="grid grid-cols-3 gap-4">
                             {Object.entries(videoDetails.image_links).map(([key, url]) => (
                                 <div 

@@ -5,7 +5,7 @@ import { createContext, useContext, useState } from "react";
 const TeacherdbContext = createContext();
 
 export const TeacherdbProvider = ({ children }) => {
-    const [option, setOption] = useState('dashboard');
+    const [option, setOption] = useState('analytics');
 
     return (
         <TeacherdbContext.Provider value={{ option, setOption }}>

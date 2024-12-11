@@ -45,8 +45,6 @@ const TeacherEngagementAnalyticsHero = () => {
 
   return (
     <div className='bg-gray-200 flex flex-col p-5 px-7 font-inter max-h-[calc(100vh-64px)] overflow-auto'>
-      <div className='text-xl font-bold text-center'>Engagement Analytics</div>
-      
       <div className='grid grid-cols-3'>
         
         <div className='mx-2 flex flex-col justify-center h-32 col-span-1 bg-[#CE4760] rounded-md p-5'>
