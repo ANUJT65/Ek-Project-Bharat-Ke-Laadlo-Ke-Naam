@@ -46,7 +46,7 @@ function App() {
       <Route path="/student/dashboard" element={<StudentDashboardPage />}/>
       <Route path="/student/class/:id" element={<StudentClass />} />
       <Route path="/student/subject/:name" element={<StudentSingleSubjectPage />} />
-      <Route path="/student/vocational-learning" element={<StudentVocationalLearning2 />} />
+      <Route path="/student/vocational-learning/:videoId" element={<StudentVocationalLearning2 />} />
       <Route path="/student/calendar/" element={<StudentCalendar />} />
       <Route path="/student/lecture/recorded/:id" element={<RecordedLecturePage />} />
       <Route path="/student/lecture/ar" element={<ARVR />} />

@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const RecordedLectureAttachments = ({ notes, mindMap, sendMessage }) => {
   const buttonStyles = 'bg-yellow-300 text-xl text-black mx-5 p-2 rounded-md';
   const [openSection, setOpenSection] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
+  const { id } = useParams(); // Get the video_id from the URL
 
   const toggleSection = (section) => {
     if (section === 'mindMap') {
       setShowPopup(true);
+    } else if (section === 'vocational') {
+      navigate(`/student/vocational-learning/${id}`);
     }
     setOpenSection(openSection === section ? null : section);
   };
