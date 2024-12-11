@@ -54,6 +54,11 @@ const StudentSidebar = () => {
                 <div>Compare Schools</div>
             </button>
 
+            <button className={option === 'ar' ? activeButtonStyles : inactiveButtonStyles} onClick={()=>setOption('ar')}>
+                <div className='mt-1 mr-2'><GrResources/></div>
+                <div>AR/VR Resources</div>
+            </button>
+
         </div>
     </div>
   )

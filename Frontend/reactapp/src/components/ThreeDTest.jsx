@@ -4,7 +4,7 @@ import { OrbitControls, useGLTF } from '@react-three/drei';
 
 function SampleModel({ position, scale }) {
     const group = useRef();
-    const { scene } = useGLTF('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/DamagedHelmet/glTF-Binary/DamagedHelmet.glb');
+    const { scene } = useGLTF('/assets/the_polarity_of_water.glb'); // Adjust the path as needed
 
     return (
         <group ref={group} position={position} scale={scale}>
@@ -12,6 +12,9 @@ function SampleModel({ position, scale }) {
         </group>
     );
 }
+
+// Preload the model (optional for optimization)
+useGLTF.preload('/assets/the_polarity_of_water.glb');
 
 export default function Scene() {
     return (

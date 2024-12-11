@@ -22,6 +22,7 @@ import { GovernmentProvider } from "./contexts/GovernmentDBContext"
 import Homepage from "./pages/Homepage"
 import CommonLoginPage2 from "./pages/CommonLoginPage2"
 import StudentVocationalLearning2 from "./pages/StudentVocationalLearning2"
+import ARVR from "./components/ARVR"
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
       <Route path="/student/vocational-learning" element={<StudentVocationalLearning2 />} />
       <Route path="/student/calendar/" element={<StudentCalendar />} />
       <Route path="/student/lecture/recorded/:id" element={<RecordedLecturePage />} />
+      <Route path="/student/lecture/ar" element={<ARVR />} />
 
       {/*Teacher Routes */}
       <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
