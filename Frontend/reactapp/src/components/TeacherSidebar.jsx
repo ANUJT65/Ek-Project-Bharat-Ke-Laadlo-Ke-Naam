@@ -46,7 +46,7 @@ const TeacherSidebar = () => {
             <div className='flex flex-col font-inter'>
                 <div className='text-white mt-5 font-semibold mx-3'>MAIN MENU</div>
 
-                <button 
+                {/* <button 
                     className={`flex mx-3  my-1 py-1 px-2 text-left rounded ${
                         option === 'dashboard' ? 'bg-[#CE4760] font-bold border text-white border-[#CE4760]' : ''
                     }`}
@@ -56,6 +56,19 @@ const TeacherSidebar = () => {
                     }}
                 >
                     <div className='mt-1 text-white'><MdSpaceDashboard /></div>
+                    <div className='mx-1 text-white'>Dashboard</div>
+                </button> */}
+
+                <button 
+                    className={`flex mx-3  my-1 py-1 px-2 text-left rounded ${
+                        option === 'analytics' ? 'bg-[#CE4760] border font-bold text-white border-[#CE4760]' : ''
+                    }`}
+                    onClick={() => {
+                        setOption('analytics');
+                         // Update this path if needed
+                    }}
+                >
+                    <div className='mt-1 text-white'><SiGoogleanalytics /></div>
                     <div className='mx-1 text-white'>Dashboard</div>
                 </button>
 
@@ -71,32 +84,6 @@ const TeacherSidebar = () => {
                     <div className='mt-1 text-white'><GrResources /></div>
                     <div className='mx-1 text-white'>Resources</div>
                 </button>
-
-                <button 
-                    className={`flex mx-3  my-1 py-1 px-2 text-left rounded ${
-                        option === 'analytics' ? 'bg-[#CE4760] border font-bold text-white border-[#CE4760]' : ''
-                    }`}
-                    onClick={() => {
-                        setOption('analytics');
-                         // Update this path if needed
-                    }}
-                >
-                    <div className='mt-1 text-white'><SiGoogleanalytics /></div>
-                    <div className='mx-1 text-white'>Engagement Analytics</div>
-                </button>
-
-                <button 
-                    className={`flex mx-3  my-1 py-1 px-2 text-left rounded ${
-                        option === 'students' ? 'bg-[#CE4760] border font-bold text-white border-[#CE4760]' : ''
-                    }`}
-                    onClick={() => {
-                        setOption('students');
-                    }}
-                >
-                    <div className='mt-1 text-white'><PiStudentDuotone /></div>
-                    <div className='mx-1 text-white'>Student Analytics</div>
-                </button>
-
                 
             </div>
         </div>

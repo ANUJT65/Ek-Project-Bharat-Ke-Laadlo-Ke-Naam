@@ -32,7 +32,6 @@ const TeacherDashboardHero2 = () => {
         <div className='h-64 flex flex-col col-span-1 bg-white rounded-md border border-gray-400 p-5'>
           <div className='font-bold'>Recently Added Resources</div>
         </div>
-        
 
       </div>
     </div>
