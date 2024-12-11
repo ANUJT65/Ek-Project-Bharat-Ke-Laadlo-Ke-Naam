@@ -126,7 +126,7 @@ const CommonSignupForm = ({ url, type }) => {
         </>
       )}
 
-      <button type='submit' className='p-3 bg-[#912F56] w-3/4 text-white'>
+      <button type='submit' className='p-3 bg-[#CE4760] w-3/4 text-white'>
         Sign Up as {type}
       </button>
     </form>
