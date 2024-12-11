@@ -27,19 +27,25 @@ const RadarChartComponent = () => {
 
   const options = {
     plugins: {
-      legend: { position: 'top' },
+      legend: {
+        position: 'top',
+        labels: {
+          color: 'white', // Set dataset label color to white
+        },
+      },
     },
     scales: {
       r: {
-        ticks: { beginAtZero: true },
+        ticks: { beginAtZero: true, color: 'white' }, // Radar chart tick labels
         angleLines: { color: '#ccc' }, // Styling radial lines
+        pointLabels: { color: 'white' }, // Change radial labels to white
       },
     },
   };
 
   return (
     <div className='col-span-1 h-84'>
-      <h3 className='font-bold mb-2'>Engagement Across Subjects</h3>
+      <h3 className='font-bold mb-2 text-white'>Engagement Across Subjects</h3>
       <Radar data={data} options={options} />
     </div>
   );
