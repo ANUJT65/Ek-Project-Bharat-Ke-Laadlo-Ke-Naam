@@ -4,132 +4,162 @@ import TeacherResourcesCard from './TeacherResourcesCard';
 
 const TeacherResourcesHero = () => {
   const [showModal, setShowModal] = useState(false);
-  const [filePath, setFilePath] = useState('');
-  const [s3Key, setS3Key] = useState('');
+  const [file, setFile] = useState(null);
   const [resources, setResources] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [fileType, setFileType] = useState('lecture'); // state to store the selected file type
-  
+  const [fileType, setFileType] = useState('lecture');
+  const [error, setError] = useState('');
+
+  // Allowed file types
+  const ALLOWED_TYPES = {
+    document: ['.pdf', '.docx', '.pptx'],
+    lecture: ['.mp4', '.mov', '.avi']
+  };
+
   const handleFileChange = (e) => {
-    setFilePath(e.target.files[0]);
-  };
-
-  useEffect(() => {
-    const fetchResources = async () => {
-      try {
-        const response = await axios.get('https://backendfianlsih.azurewebsites.net/dy_db/get_data');
-        setResources(response.data);
-      } catch (error) {
-        console.error('Error fetching resources:', error);
-      }
-    };
-
-    fetchResources();
-  }, []);
-
-  const handleUploadClick = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setFilePath('');
-    setS3Key('');
+    const selectedFile = e.target.files[0];
+    const fileExt = '.' + selectedFile.name.split('.').pop().toLowerCase();
+    
+    if (!ALLOWED_TYPES[fileType].includes(fileExt)) {
+      setError(`Invalid file type. Allowed types for ${fileType}: ${ALLOWED_TYPES[fileType].join(', ')}`);
+      return;
+    }
+    
+    setFile(selectedFile);
+    setError('');
   };
 
   const handleSubmit = async () => {
-    setIsLoading(true); // Start loading
+    if (!file) {
+      setError('Please select a file');
+      return;
+    }
+
+    setIsLoading(true);
+    setError('');
+
     const formData = new FormData();
-    formData.append('file_path', filePath);
-    formData.append('s3_key', s3Key);
+    formData.append('file', file);
 
     try {
-      const response = await axios.post('https://backendfianlsih.azurewebsites.net/video_to_text/process', formData, {
+      let endpoint = fileType === 'document' 
+        ? 'https://backendfianlsih.azurewebsites.net/data_form_media/upload_and_extract'
+        : 'https://backendfianlsih.azurewebsites.net/video_to_text/process';
+
+      const response = await axios.post(endpoint, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      alert('Video uploaded successfully');
+
+      alert('File uploaded successfully');
       handleCloseModal();
+      // Refresh resources list
+      fetchResources();
     } catch (error) {
-      console.error('Error uploading video:', error);
-      alert(error.response?.data?.error || 'An error occurred');
+      console.error('Error uploading file:', error);
+      setError(error.response?.data?.error || 'An error occurred during upload');
     } finally {
-      setIsLoading(false); // End loading
+      setIsLoading(false);
     }
+  };
+
+  const fetchResources = async () => {
+    try {
+      const response = await axios.get('https://backendfianlsih.azurewebsites.net/dy_db/get_data');
+      setResources(response.data);
+    } catch (error) {
+      console.error('Error fetching resources:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchResources();
+  }, []);
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setFile(null);
+    setError('');
   };
 
   return (
     <div className='bg-gray-200 flex flex-col p-5 px-7 font-inter max-h-[calc(100vh-64px)] overflow-auto'>
       <div className='flex justify-between'>
         <div className='flex flex-col'>
-          <div className='text-xl font-bold my-1'>Videos</div>
+          <div className='text-xl font-bold my-1'>Resources</div>
           <div className='text-sm text-gray-600 mb-2'>View all your resources at a single place.</div>
         </div>
 
-        <button className='bg-[#F64328] text-white my-3 px-2 rounded-md' onClick={handleUploadClick}>
-          + Upload a new resource
+        <button className='bg-[#F64328] text-white my-3 px-4 py-2 rounded-md' onClick={() => setShowModal(true)}>
+          + Upload Resource
         </button>
       </div>
 
       {showModal && (
-      <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
-        <div className='bg-white p-5 rounded-md'>
-          <h2 className='text-xl mb-4'>Upload a new Resource</h2>
+        <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
+          <div className='bg-white p-6 rounded-lg w-96'>
+            <h2 className='text-xl font-bold mb-4'>Upload Resource</h2>
 
-          {/* Dropdown for selecting file type */}
-          <div className='mb-4'>
-            <select
-              value={fileType}
-              onChange={(e) => setFileType(e.target.value)}
-              className='p-2 border border-gray-300 rounded-md'
-            >
-              <option value='lecture'>Lecture</option>
-              <option value='document'>Document</option>
-            </select>
-          </div>
+            {error && (
+              <div className='mb-4 p-3 bg-red-100 text-red-700 rounded-md'>
+                {error}
+              </div>
+            )}
 
-          {/* File input */}
-          <input
-            type='file'
-            onChange={handleFileChange}
-            className='mb-4 p-2 border border-gray-300 rounded-md'
-          />
+            <div className='mb-4'>
+              <label className='block text-sm font-medium mb-2'>Resource Type</label>
+              <select
+                value={fileType}
+                onChange={(e) => setFileType(e.target.value)}
+                className='w-full p-2 border border-gray-300 rounded-md'
+              >
+                <option value='lecture'>Video Lecture</option>
+                <option value='document'>Document</option>
+              </select>
+            </div>
 
-          {/* S3 Key input */}
-          <input
-            type='text'
-            placeholder='S3 Key'
-            value={s3Key}
-            onChange={(e) => setS3Key(e.target.value)}
-            className='mb-4 p-2 border border-gray-300 rounded-md'
-          />
+            <div className='mb-6'>
+              <label className='block text-sm font-medium mb-2'>File</label>
+              <input
+                type='file'
+                onChange={handleFileChange}
+                accept={ALLOWED_TYPES[fileType].join(',')}
+                className='w-full p-2 border border-gray-300 rounded-md'
+              />
+              <p className='mt-1 text-sm text-gray-500'>
+                Allowed types: {ALLOWED_TYPES[fileType].join(', ')}
+              </p>
+            </div>
 
-          {/* Action buttons */}
-          <div className='flex justify-end'>
-            <button className='bg-gray-500 text-white px-4 py-2 rounded-md mr-2' onClick={handleCloseModal}>
-              Cancel
-            </button>
-            <button
-              className={`px-4 py-2 rounded-md ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#F64328] text-white'}`}
-              onClick={handleSubmit}
-              disabled={isLoading}
-            >
-              {isLoading ? 'Uploading...' : 'Upload'}
-            </button>
+            <div className='flex justify-end gap-3'>
+              <button 
+                className='px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-md'
+                onClick={handleCloseModal}
+              >
+                Cancel
+              </button>
+              <button
+                className={`px-4 py-2 rounded-md ${
+                  isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#F64328] hover:bg-[#E33317]'
+                } text-white`}
+                onClick={handleSubmit}
+                disabled={isLoading || !file}
+              >
+                {isLoading ? 'Uploading...' : 'Upload'}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    )}
-
+      )}
 
       {resources.map((resource, index) => (
         <TeacherResourcesCard
           key={index}
-          title={resource.video_id}
+          title={resource.document_id || resource.video_id}
           date='24 September, 2024'
-          duration='Science'
-          score={resource.video_url}
+          duration={resource.document_id ? 'Document' : 'Video'}
+          score={resource.s3_url || resource.video_url}
         />
       ))}
     </div>
