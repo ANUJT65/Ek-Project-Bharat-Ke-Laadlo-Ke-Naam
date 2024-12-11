@@ -7,7 +7,7 @@ const CommonSignupPage2 = () => {
     const [type, setType] = useState('student');
     return (
         <div
-          className="bg-gradient-to-r from-[#CE4760] via-[#2F4550] to-[#CE4760] font-inter h-screen w-screen bg-cover bg-center flex items-center justify-center"
+          className="bg-gradient-to-r from-[#CE4760] via-[#2F4550] to-[#CE4760] font-inter h-screen w-screen bg-cover bg-center flex items-center justify-center overflow-hidden"
           
         >
           <div className="w-1/3 items-center bg-white rounded-lg p-8 ">
