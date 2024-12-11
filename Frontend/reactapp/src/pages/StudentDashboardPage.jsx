@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import Navbar2 from '../components/Navbar2';
 import { useStudentDB } from '../contexts/StudentDBContext';
 import SchoolComparator from '../components/SchoolComparator';
+import GoogleTranslate from '../components/GoogleTranslate';
 const StudentDashboardPage = () => {
   const { user, login, logout } = useAuth();
   const { option, setOption } = useStudentDB();
@@ -26,7 +27,7 @@ const StudentDashboardPage = () => {
       <StudentSidebar />
       <div className="flex flex-col w-full">
         <Navbar2  type='Student' /> 
-
+        <GoogleTranslate />
         {option === 'dashboard' ? <StudentDashboardHero /> : <></>}
         {option === 'compare' ? <SchoolComparator /> : <></>}
         
