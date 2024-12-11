@@ -36,8 +36,8 @@ const StudentVocationalLearning2 = () => {
         setLoading(true);
         setError('');
         try {
-            const response = await axios.post('http://localhost:5000/get-next-question', 
-                { transcript: transcriptData, currentIndex }, 
+            const response = await axios.post('http://localhost:5000/get-next-question',
+                { transcript: transcriptData, currentIndex },
                 { responseType: 'blob' }
             );
             const videoUrl = URL.createObjectURL(response.data);
@@ -66,8 +66,8 @@ const StudentVocationalLearning2 = () => {
         setLoading(true);
         setError('');
         try {
-            const nextVideoResponse = await axios.post('http://localhost:5000/get-next-question', 
-                { transcript, currentIndex }, 
+            const nextVideoResponse = await axios.post('http://localhost:5000/get-next-question',
+                { transcript, currentIndex },
                 { responseType: 'blob' }
             );
             const videoUrl = URL.createObjectURL(nextVideoResponse.data);
@@ -118,12 +118,20 @@ const StudentVocationalLearning2 = () => {
         }
     };
 
+    // Play feedback using text-to-speech
+    const playFeedback = () => {
+        if (!feedback) return;
+        const utterance = new SpeechSynthesisUtterance(feedback);
+        utterance.lang = 'en-US'; // Adjust language as needed
+        window.speechSynthesis.speak(utterance);
+    };
+
     return (
         <div className="p-8 bg-white min-h-screen flex">
             {loading && <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                 <div className="text-white">Loading...</div>
             </div>}
-            
+
             <div className="flex-shrink-0 w-3/4 pr-8">
                 {videoUrl && (
                     <div className="bg-white p-4 rounded-lg shadow-lg border border-gray-300">
@@ -137,13 +145,12 @@ const StudentVocationalLearning2 = () => {
 
             <div className="w-1/4 bg-gray-100 p-6 rounded-lg shadow-lg flex flex-col space-y-4">
                 {error && <div className="text-red-500 p-2 bg-red-100 rounded">{error}</div>}
-                
+
                 {videoUrl && (
                     <>
                         <button
-                            className={`px-6 py-3 rounded-lg font-medium ${
-                                recognizing ? 'bg-gray-600 opacity-75 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-500'
-                            } text-white`}
+                            className={`px-6 py-3 rounded-lg font-medium ${recognizing ? 'bg-gray-600 opacity-75 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-500'
+                                } text-white`}
                             onClick={startRecognition}
                             disabled={recognizing}
                         >
@@ -151,9 +158,8 @@ const StudentVocationalLearning2 = () => {
                         </button>
 
                         <button
-                            className={`px-6 py-3 rounded-lg font-medium ${
-                                !recognizing ? 'bg-gray-600 opacity-75 cursor-not-allowed' : 'bg-red-600 hover:bg-red-500'
-                            } text-white`}
+                            className={`px-6 py-3 rounded-lg font-medium ${!recognizing ? 'bg-gray-600 opacity-75 cursor-not-allowed' : 'bg-red-600 hover:bg-red-500'
+                                } text-white`}
                             onClick={stopRecognition}
                             disabled={!recognizing}
                         >
@@ -164,7 +170,7 @@ const StudentVocationalLearning2 = () => {
                             <div className="bg-white p-4 rounded-lg">
                                 <h3 className="font-medium mb-2">Your recorded answer:</h3>
                                 <p className="text-gray-700">{answer}</p>
-                                <button 
+                                <button
                                     className="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-500"
                                     onClick={handleAnswerSubmit}
                                 >
@@ -177,11 +183,17 @@ const StudentVocationalLearning2 = () => {
                             <div className="bg-blue-100 p-4 rounded-lg">
                                 <h3 className="font-medium mb-2">Feedback:</h3>
                                 <p className="text-gray-700">{feedback}</p>
+                                <button
+                                    className="mt-4 px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-500"
+                                    onClick={playFeedback}
+                                >
+                                    Play Feedback
+                                </button>
                             </div>
                         )}
 
                         {isNextQuestionReady && (
-                            <button 
+                            <button
                                 className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-500"
                                 onClick={loadNextQuestion}
                             >
