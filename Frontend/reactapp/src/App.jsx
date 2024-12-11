@@ -21,6 +21,7 @@ import GovernmentDashboard from "./pages/GovernmentDashboard"
 import { GovernmentProvider } from "./contexts/GovernmentDBContext"
 import Homepage from "./pages/Homepage"
 import CommonLoginPage2 from "./pages/CommonLoginPage2"
+import StudentVocationalLearning2 from "./pages/StudentVocationalLearning2"
 
 
 function App() {
@@ -44,7 +45,7 @@ function App() {
       <Route path="/student/dashboard" element={<StudentDashboardPage />}/>
       <Route path="/student/class/:id" element={<StudentClass />} />
       <Route path="/student/subject/:name" element={<StudentSingleSubjectPage />} />
-      <Route path="/student/vocational-learning" element={<StudentVocationalLearningPage />} />
+      <Route path="/student/vocational-learning" element={<StudentVocationalLearning2 />} />
       <Route path="/student/calendar/" element={<StudentCalendar />} />
       <Route path="/student/lecture/recorded/:id" element={<RecordedLecturePage />} />
 
