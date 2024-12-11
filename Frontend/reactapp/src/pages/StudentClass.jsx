@@ -14,12 +14,12 @@ const StudentClass = () => {
             <hr></hr>
 
             <div className="grid grid-cols-7 h-full">
-            <div className="grid grid-rows-10 col-span-5 flex flex-col  h-screen p-4 bg-[#F4F4F8]">
+            <div className="grid grid-rows-10 col-span-5 flex-col  h-screen p-4 bg-[#F4F4F8]">
                 <div className="row-span-7"><StudentClassPresentation /></div>
                 <div className="row-span-3"><StudentClassAttendees /></div>
             </div>
 
-            <div className="col-span-2 grid grid-rows-10 flex flex-col border h-full">
+            <div className="col-span-2 grid grid-rows-10 flex-col border h-full">
                 <div className="row-span-4"><StudentClassPoll /></div>
                 <div className="row-span-6"><StudentClassChat /></div>
             </div>

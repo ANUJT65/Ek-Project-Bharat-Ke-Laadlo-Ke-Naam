@@ -69,10 +69,18 @@ const EngagementGraph = () => {
     plugins: {
       legend: {
         position: 'top',
+        labels: {
+          font: {
+            size: 10,  // Smaller font size for the legend
+          },
+        },
       },
       title: {
         display: true,
         text: 'Student Engagement Over Time',
+        font: {
+          size: 14,  // Smaller title font size
+        },
       },
     },
     scales: {
@@ -80,12 +88,18 @@ const EngagementGraph = () => {
         title: {
           display: true,
           text: 'Time (minutes)',
+          font: {
+            size: 12,  // Smaller x-axis label font size
+          },
         },
       },
       y: {
         title: {
           display: true,
           text: 'Engagement Score',
+          font: {
+            size: 12,  // Smaller y-axis label font size
+          },
         },
         min: 0,
         max: 100,
@@ -98,9 +112,11 @@ const EngagementGraph = () => {
   }
 
   return (
-    <div className="p-5">
-      <h2 className="text-2xl font-bold mb-4">Engagement Graph</h2>
-      <Line data={chartData} options={options} />
+    <div className="p-3">
+      <h2 className="text-xl font-bold mb-3">Engagement Graph</h2>
+      <div style={{ width: '80%', height: '300px' }}>
+        <Line data={chartData} options={options} />
+      </div>
     </div>
   );
 };
