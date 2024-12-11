@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Navbar from '../components/Navbar';
+import Navbar2 from '../components/Navbar2';
 import StudentClassPoll from '../components/StudentClassPoll';
 import StudentClassChat from '../components/StudentClassChat';
 import RecordedLectureAttachments from '../components/RecordedLectureAttachments';
 
 const RecordedLecturePage = () => {
-
   const { id } = useParams(); // Get the video_id from the URL
-  console.log(id);
   const [videoDetails, setVideoDetails] = useState(null);
   const [currentIllustrationIndex, setCurrentIllustrationIndex] = useState(0);
   const [messages, setMessages] = useState([]);
-  
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   useEffect(() => {
     const fetchVideoDetails = async () => {
       try {
@@ -48,9 +47,9 @@ const RecordedLecturePage = () => {
           handleSendMessage(`Illustration: ${Object.keys(videoDetails.image_links)[newIndex]}`, Object.values(videoDetails.image_links)[newIndex]);
           return newIndex;
         });
-      }, 30000); // Send illustration to chat every 30 seconds
+      }, 30000); 
 
-      return () => clearInterval(interval); // Cleanup interval on component unmount
+      return () => clearInterval(interval); 
     }
   }, [videoDetails]);
 
@@ -59,25 +58,39 @@ const RecordedLecturePage = () => {
     setMessages((prevMessages) => [...prevMessages, message]);
   };
 
+  const handleClickOutside = (event) => {
+    if (isMenuOpen) {
+      setIsMenuOpen(false); // Close the menu if clicked outside
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside, true); // Capture clicks outside
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true);
+    };
+  }, [isMenuOpen]);
+
   if (!videoDetails) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className='flex flex-col'>
-      <Navbar title='Recorded Lecture' />
+      <Navbar2 />
       <div className='grid grid-cols-12 h-screen'>
-        <div className='col-span-9 bg-green-400'>
+        <div className='col-span-9 m-10'>
           <div className='text-xl font-bold'>Video ID: {id}</div>
           <div className='flex flex-col'>
-            <video controls className='w-full h-full'>
-              <source src={videoDetails.video_url} type='video/mp4' />
+            <video controls className="w-full h-full object-cover shadow-lg rounded-lg">
+              <source src={videoDetails.video_url} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
         </div>
-        <div className='col-span-3 flex flex-col'>
-          <StudentClassPoll videoId={id} />
+        <div className='h-screen col-span-3 flex flex-col'>
+          {/*<StudentClassPoll videoId={id} />*/}
           <StudentClassChat messages={messages} />
         </div>
       </div>
