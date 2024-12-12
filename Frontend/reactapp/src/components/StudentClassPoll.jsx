@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/userContext';
 import { useParams } from 'react-router-dom';
 
 const StudentClassPoll = () => {
-  const id = useParams();
+  const {id} = useParams();
   const { user } = useAuth();
   const [mcqsEasy, setMcqsEasy] = useState([]);
   const [mcqsMedium, setMcqsMedium] = useState([]);
