@@ -6,7 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     mimeTypes: {
-      'application/gltf-binary': ['glb'],  // Ensure that GLTF files are served correctly
+      'application/gltf-binary': ['glb'],  // Ensure GLTF file types are served correctly
+      'text/plain': ['gltf'],  // Optional: Also add GLTF text files
     },
   },
 });

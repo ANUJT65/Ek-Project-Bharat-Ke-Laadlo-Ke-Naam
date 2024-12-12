@@ -5,6 +5,8 @@ import { MdSpaceDashboard, MdMenu, MdClose } from "react-icons/md";
 import { FaSchool } from "react-icons/fa";
 import { useStudentDB } from '../contexts/StudentDBContext';
 import { useNavigate } from 'react-router-dom';
+import { GrResources } from "react-icons/gr";
+
 
 const StudentSidebar = () => {
     const { option, setOption } = useStudentDB();
@@ -57,7 +59,7 @@ const StudentSidebar = () => {
 
             {/* Buttons */}
             <div className='flex flex-col flex-grow'>
-                <div className='text-gray-500 mt-5 font-semibold mx-3 text-white'>MAIN MENU</div>
+                <div className='mt-5 font-semibold mx-3 text-white'>MAIN MENU</div>
 
                 {menuButtons.map((button) => (
                     <button
@@ -80,12 +82,25 @@ const StudentSidebar = () => {
                 <button 
                     className='flex justify-start text-left p-2 m-3 rounded-md bg-[#CE4760] border font-bold text-white border-[#CE4760]' 
                     onClick={() => {
-                        navigate('/student/suraj');
+                        navigate('/student/recommendation');
                         setIsMobileMenuOpen(false); // Close mobile menu on navigation
                     }}
                 >
                     <div className='ml-1 mt-1 mr-2'><FaSchool /></div>
                     School Search
+                </button>
+
+                <button 
+                    className={`text-white flex mx-3  my-1 py-1 px-2 text-left rounded ${
+                        option === 'ar' ? 'bg-[#CE4760] border font-bold text-white border-[#CE4760]' : ''
+                    }`}
+                    onClick={() => {
+                        setOption('ar');
+                        navigate('/student/lecture/ar')
+                    }}
+                >
+                    <div className='mr-2 text-white'><GrResources /></div>
+                    <div>AR Resource</div>
                 </button>
             </div>
         </>

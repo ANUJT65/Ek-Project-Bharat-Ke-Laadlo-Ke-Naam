@@ -4,6 +4,8 @@ import axios from 'axios';
 import Navbar2 from '../components/Navbar2';
 import StudentClassChat from '../components/StudentClassChat';
 import RecordedLectureAttachments from '../components/RecordedLectureAttachments';
+import { IoMdArrowRoundBack } from "react-icons/io";
+
 
 const RecordedLecturePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -99,6 +101,7 @@ const RecordedLecturePage = () => {
       <Navbar2 />
 
       <div className='container mx-auto px-4 py-6'>
+        <button className='bg-[#2F4550] rounded-md p-2 text-white m-2' onClick={()=> navigate(-1)}><IoMdArrowRoundBack />All recorded lectures</button>
         <div className='grid grid-cols-12 gap-4'>
           <div className='col-span-12 flex justify-between items-center mb-4'>
             <div className="relative">

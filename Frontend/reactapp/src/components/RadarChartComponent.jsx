@@ -26,27 +26,57 @@ const RadarChartComponent = () => {
   };
 
   const options = {
+    responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'top',
         labels: {
-          color: 'white', // Set dataset label color to white
+          color: 'white',
+          font: {
+            size: 10 // Smaller font size for compact view
+          }
         },
       },
+      title: {
+        display: true,
+        text: 'Engagement Across Subjects',
+        color: 'white',
+        font: {
+          size: 12
+        }
+      }
     },
     scales: {
       r: {
-        ticks: { beginAtZero: true, color: 'white' }, // Radar chart tick labels
-        angleLines: { color: '#ccc' }, // Styling radial lines
-        pointLabels: { color: 'white' }, // Change radial labels to white
+        ticks: { 
+          beginAtZero: true, 
+          color: 'white',
+          font: {
+            size: 9 // Smaller tick label size
+          }
+        },
+        angleLines: { 
+          color: 'white' // Changed from gray to white
+        },
+        grid: {
+          color: 'white' // Grid lines now white
+        },
+        pointLabels: { 
+          color: 'white',
+          font: {
+            size: 10 // Smaller point label size
+          }
+        },
       },
     },
   };
 
   return (
-    <div className='col-span-1 h-84'>
-      <h3 className='font-bold mb-2 text-white'>Engagement Across Subjects</h3>
-      <Radar data={data} options={options} />
+    <div className='flex flex-col h-full w-full'>
+      <div className='relative h-40 md:h-48 lg:h-56'>
+        <Radar data={data} options={options} />
+      </div>
     </div>
   );
 };
