@@ -26,7 +26,7 @@ const Navbar2 = ({ type }) => {
   const menuRef = React.useRef();
 
   return (
-    <div className="font-inter mt-1 flex border-b border-gray-200 justify-between items-center w-full px-2 py-1 bg-white shadow-md">
+    <div className="font-inter sticky top-0 flex border-b border-gray-200 justify-between items-center w-full px-2 py-1 bg-white shadow-md ">
       <div className="text-xl font-semibold text-gray-800">{type} Portal</div>
 
       <div className="user-avatar flex items-center gap-4 relative">
