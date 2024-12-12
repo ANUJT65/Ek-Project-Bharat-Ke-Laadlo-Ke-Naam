@@ -2,9 +2,9 @@ import React, { Suspense, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 
-function SampleModel({ position, scale }) {
+function SampleModel({ modelPath, position, scale }) {
     const group = useRef();
-    const { scene } = useGLTF('/assets/the_polarity_of_water.glb'); // Adjust the path as needed
+    const { scene } = useGLTF(modelPath);
 
     return (
         <group ref={group} position={position} scale={scale}>
@@ -13,10 +13,19 @@ function SampleModel({ position, scale }) {
     );
 }
 
-// Preload the model (optional for optimization)
-useGLTF.preload('/assets/the_polarity_of_water.glb');
+// Preload all models (optional for optimization)
+useGLTF.preload(['/assets/the_polarity_of_water.glb']);
+useGLTF.preload(['/assets/chemical_reaction.glb']);
+useGLTF.preload(['/assets/calcite_lattice.glb']);
 
 export default function Scene() {
+    // Grid layout positions
+    const models = [
+        { modelPath: '/assets/the_polarity_of_water.glb', position: [-3, 2, 0], scale: [1, 1, 1] },
+        { modelPath: '/assets/chemical_reaction.glb', position: [3, 2, 0], scale: [1, 1, 1] },
+        { modelPath: '/assets/calcite_lattice.glb', position: [0, -2, 0], scale: [1, 1, 1] },
+    ];
+
     return (
         <>
             {/* Display loading message outside Canvas */}
@@ -26,7 +35,16 @@ export default function Scene() {
                 <Suspense fallback={null}>
                     <ambientLight intensity={0.5} />
                     <directionalLight position={[0, 10, 5]} intensity={1} />
-                    <SampleModel position={[0, 0, 0]} scale={[2, 2, 2]} />
+
+                    {models.map((model, index) => (
+                        <SampleModel
+                            key={index}
+                            modelPath={model.modelPath}
+                            position={model.position}
+                            scale={model.scale}
+                        />
+                    ))}
+
                     <OrbitControls />
                 </Suspense>
             </Canvas>
