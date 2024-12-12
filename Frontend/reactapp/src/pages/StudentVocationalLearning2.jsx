@@ -52,10 +52,21 @@ const StudentVocationalLearning2 = () => {
     };
 
     const handleAnswerSubmit = async () => {
+        if (!transcript) {
+            setError('Transcript not loaded.');
+            return;
+        }
+
         setLoading(true);
         setError('');
         try {
-            const response = await axios.post('http://localhost:5000/submit-answer', { answer });
+            // Include the current question and answer in the request
+            const currentQuestion = transcript[currentIndex - 1]; // Assuming `currentIndex` corresponds to the transcript index
+            const response = await axios.post('http://localhost:5000/submit-answer', {
+                question: currentQuestion,
+                answer,
+            });
+
             setFeedback(response.data.feedback);
             setIsNextQuestionReady(true);
         } catch (error) {
@@ -63,6 +74,7 @@ const StudentVocationalLearning2 = () => {
         }
         setLoading(false);
     };
+
 
     const loadNextQuestion = async () => {
         setLoading(true);
