@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Navbar2 from './Navbar2';
 import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
+
 
 const CollegeRecommendation = () => {
   const navigate = useNavigate();
@@ -65,10 +67,10 @@ const CollegeRecommendation = () => {
         <div className="w-full max-w-lg bg-white shadow-md rounded-lg p-6">
           <h2 className="text-2xl font-bold mb-6 text-center">School Recommendations</h2>
           <button
-            className="p-2 bg-[#2F4550] text-white rounded-md"
+            className="my-2 p-2 bg-[#2F4550] text-white rounded-md"
             onClick={() => navigate('/student/dashboard')}
           >
-            Back to Dashboard
+            <FaArrowLeft />
           </button>
           {error && (
             <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-md">
