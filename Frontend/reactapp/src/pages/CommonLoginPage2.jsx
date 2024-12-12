@@ -1,41 +1,38 @@
 import React, { useState } from 'react';
 import coverImage from '../assets/images/logo1.jpg';
 import CommonLoginForm from '../components/CommonLoginForm';
-import GoogleTranslate from '../components/GoogleTranslate';
 
 const CommonLoginPage2 = () => {
-    const [type, setType] = useState('student');
+  const [type, setType] = useState('student');
+
   return (
     <div
-      className="bg-gradient-to-r from-[#CE4760] via-[#2F4550] to-[#CE4760] font-inter h-screen w-screen bg-cover bg-center flex items-center justify-center"
-      
+      className="bg-gradient-to-r from-[#CE4760] via-[#2F4550] to-[#CE4760] font-inter h-screen w-screen flex items-center justify-center"
     >
-      <GoogleTranslate />
-      <div className="w-1/3 items-center bg-white rounded-lg p-8 ">
-        {/*Name */}
-        
-        <div className=" branding flex justify-center items-center gap-2 p-3 my-2 font-inter text-[#131B1F]">
-            <img 
-                src={coverImage}
-                alt="Gram Shiksha Logo" 
-                className="w-12 h-12 object-cover rounded-md" 
-            />
-            
+      <div className="w-11/12 sm:w-2/3 md:w-1/2 lg:w-1/3 bg-white rounded-lg p-6 sm:p-8 shadow-lg">
+        {/* Branding */}
+        <div className="flex justify-center items-center gap-2 mb-4">
+          <img
+            src={coverImage}
+            alt="Gram Shiksha Logo"
+            className="w-12 h-12 object-cover rounded-md"
+          />
         </div>
-        <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
-        
-        <div className='flex justify-center mb-3'>
+        <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center">Login</h2>
+
+        {/* User Type Selection */}
+        <div className="flex justify-center mb-5">
           <button
-            className={`ml-5 border border-gray-200 p-2 px-7 rounded-r rounded-full ${
-              type === 'teacher' ? 'bg-[#2F4550] text-white border border-gray-600' : 'bg-white text-black'
+            className={`px-6 py-2 mx-2 rounded-full ${
+              type === 'teacher' ? 'bg-[#2F4550] text-white' : 'bg-white text-black border border-gray-300'
             }`}
             onClick={() => setType('teacher')}
           >
             Teacher
           </button>
           <button
-            className={`mr-5 border border-gray-200 p-2 px-7 rounded-l rounded-full ${
-              type === 'student' ? 'bg-[#CE4760] text-white border border-gray-600' : 'bg-white text-black'
+            className={`px-6 py-2 mx-2 rounded-full ${
+              type === 'student' ? 'bg-[#CE4760] text-white' : 'bg-white text-black border border-gray-300'
             }`}
             onClick={() => setType('student')}
           >
@@ -43,12 +40,12 @@ const CommonLoginPage2 = () => {
           </button>
         </div>
 
+        {/* Login Form */}
         {type === 'student' ? (
-          <CommonLoginForm type='Student' url='https://backendfianlsih.azurewebsites.net/login/login' />
+          <CommonLoginForm type="Student" url="https://backendfianlsih.azurewebsites.net/login/login" />
         ) : (
-          <CommonLoginForm type='Teacher' url='https://backendfianlsih.azurewebsites.net/login/login' />
+          <CommonLoginForm type="Teacher" url="https://backendfianlsih.azurewebsites.net/login/login" />
         )}
-        
       </div>
     </div>
   );

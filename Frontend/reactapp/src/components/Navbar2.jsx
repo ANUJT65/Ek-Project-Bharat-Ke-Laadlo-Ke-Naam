@@ -26,27 +26,24 @@ const Navbar2 = ({ type }) => {
   const menuRef = React.useRef();
 
   return (
-    <div className="font-inter sticky top-0 flex border-b border-gray-200 justify-between items-center w-full px-2 py-1 bg-white shadow-md ">
+    <div className="font-inter sticky top-0 flex border-b border-gray-200 justify-end gap-4 items-center w-full px-2 py-1 bg-white shadow-md">
       <div className="text-xl font-semibold text-gray-800">{type} Portal</div>
 
       <div className="user-avatar flex items-center gap-4 relative">
-        <div className="bg-[#CE4760] text-white text-lg px-3 py-2 w-12 h-12 rounded-full flex items-center justify-center font-bold">
+        {/* Avatar */}
+        <div
+          className="bg-[#CE4760] text-white text-lg px-3 py-2 w-12 h-12 rounded-full flex items-center justify-center font-bold cursor-pointer"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
           {avatarLetter}
         </div>
+
+        {/* User Info */}
         {user ? (
           <span className="text-sm font-medium text-gray-700">{user.name}</span>
         ) : (
           <span className="text-md font-medium text-gray-500">Not logged in</span>
         )}
-
-        {/* Burger menu button */}
-        <button
-          className="p-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-all"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Menu"
-        >
-          ☰
-        </button>
 
         {/* Dropdown menu */}
         {isMenuOpen && (
@@ -61,8 +58,13 @@ const Navbar2 = ({ type }) => {
               >
                 Profile
               </li>
-
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-700" onClick={() => { logout(); navigate('/auth/login') }}>
+              <li
+                onClick={() => {
+                  logout();
+                  navigate('/auth/login');
+                }}
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-700"
+              >
                 Logout
               </li>
             </ul>
@@ -71,9 +73,6 @@ const Navbar2 = ({ type }) => {
       </div>
     </div>
   );
-
-
-
 };
 
 export default Navbar2;
