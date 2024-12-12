@@ -44,11 +44,17 @@ const CollegeRecommendation = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
-
+  
+    // Convert class to the expected format
+    const formattedFormData = {
+      ...formData,
+      class: `${formData.class}th`
+    };
+  
     try {
       const response = await axios.post(
         'https://backendfianlsih.azurewebsites.net/school_recommendation/recommend',
-        formData
+        formattedFormData
       );
       setRecommendations(response.data);
     } catch (err) {
@@ -57,7 +63,6 @@ const CollegeRecommendation = () => {
       setLoading(false);
     }
   };
-
   return (
     <div className="flex flex-col">
       <div className="w-full">
