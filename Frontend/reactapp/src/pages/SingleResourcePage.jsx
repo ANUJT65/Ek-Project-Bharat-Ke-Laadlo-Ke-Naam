@@ -50,34 +50,37 @@ const SingleResourcePage = () => {
             <div className="flex flex-col w-full overflow-auto">
                 <Navbar2 type="Teacher" />
 
-                <div className="p-4 bg-gray-200 h-full overflow-auto">
+                <div className="p-2 sm:p-4 md:p-6 bg-gray-200 h-full overflow-auto">
+                    {/* Video Details */}
                     <div className="bg-white rounded-lg p-4 mb-4">
-                        <h1 className="text-xl font-bold ">Resource: {id}</h1>
-                        <div className="text-md text-gray-800">
+                        <h1 className="text-lg sm:text-xl font-bold">Resource: {id}</h1>
+                        <div className="text-sm sm:text-md text-gray-800">
                             Video URL: 
                             <a 
                                 href={videoDetails.video_url} 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                className="text-blue-600 hover:text-blue-800 ml-2"
+                                className="text-blue-600 hover:text-blue-800 ml-2 break-words"
                             >
                                 {videoDetails.video_url}
                             </a>
                         </div>
                     </div>
 
+                    {/* MCQs Section */}
                     <div className="bg-white rounded-lg p-4 mb-4">
-                        <h2 className="text-xl font-bold">MCQs</h2>
-                        <div className="grid grid-cols-3 gap-4">
+                        <h2 className="text-lg sm:text-xl font-bold">MCQs</h2>
+                        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             <VideoMCQs type="Easy" videoId={id} />
                             <VideoMCQs type="Medium" videoId={id} />
                             <VideoMCQs type="Hard" videoId={id} />
                         </div>
                     </div>
 
+                    {/* Resources Section */}
                     <div className="bg-white rounded-lg p-4 mb-4">
-                        <h2 className="text-xl font-bold">Resources</h2>
-                        <div className="grid grid-cols-3 gap-4">
+                        <h2 className="text-lg sm:text-xl font-bold">Resources</h2>
+                        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             <VideoNotes 
                                 pdfUrl={JSON.parse(videoDetails.notes).pdf_url}
                                 title={id}
@@ -89,19 +92,20 @@ const SingleResourcePage = () => {
                         </div>
                     </div>
 
+                    {/* Image Links Section */}
                     <div className="bg-white rounded-lg p-4">
-                        <h2 className="text-xl font-bold">Image Links</h2>
-                        <div className="grid grid-cols-3 gap-4">
+                        <h2 className="text-lg sm:text-xl font-bold">Image Links</h2>
+                        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             {Object.entries(videoDetails.image_links).map(([key, url]) => (
                                 <div 
                                     key={key} 
                                     className="flex flex-col items-center bg-gray-50 rounded-lg p-4"
                                 >
-                                    <h3 className="text-lg font-bold mb-2">{key}</h3>
+                                    <h3 className="text-sm sm:text-lg font-bold mb-2">{key}</h3>
                                     <img 
                                         src={url} 
                                         alt={key} 
-                                        className="w-full h-48 object-cover rounded-md shadow-md hover:shadow-lg transition-shadow duration-300"
+                                        className="w-full max-w-full h-48 object-cover rounded-md shadow-md hover:shadow-lg transition-shadow duration-300"
                                     />
                                 </div>
                             ))}
