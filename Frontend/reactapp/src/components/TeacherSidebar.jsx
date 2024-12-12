@@ -59,24 +59,26 @@ const TeacherSidebar = ({ onOptionSelect }) => {
                 <div className='text-white mt-5 font-semibold mx-3'>MAIN MENU</div>
 
                 <button 
-                    className={`flex items-center mx-3 my-1 py-2 px-2 text-left rounded ${
-                        option === 'analytics' 
-                            ? 'bg-[#CE4760] border font-bold text-white border-[#CE4760]' 
-                            : 'text-white hover:bg-[#3C5F73]'
+                    className={`flex mx-3  my-1 py-1 px-2 text-left rounded ${
+                        option === 'analytics' ? 'bg-[#CE4760] border font-bold text-white border-[#CE4760]' : ''
                     }`}
-                    onClick={() => handleOptionSelect('analytics')}
+                    onClick={() => {
+                        setOption('analytics');
+                         navigate('/teacher/dashboard')
+                    }}
                 >
                     <div className='mr-2 text-white'><SiGoogleanalytics /></div>
                     <div>Dashboard</div>
                 </button>
 
                 <button 
-                    className={`flex items-center mx-3 my-1 py-2 px-2 text-left rounded ${
-                        option === 'resources' 
-                            ? 'bg-[#CE4760] border font-bold text-white border-[#CE4760]' 
-                            : 'text-white hover:bg-[#3C5F73]'
+                    className={`flex mx-3  my-1 py-1 px-2 text-left rounded ${
+                        option === 'resources' ? 'bg-[#CE4760] border font-bold text-white border-[#CE4760]' : ''
                     }`}
-                    onClick={() => handleOptionSelect('resources')}
+                    onClick={() => {
+                        setOption('resources');
+                        
+                    }}
                 >
                     <div className='mr-2 text-white'><GrResources /></div>
                     <div>Resources</div>
