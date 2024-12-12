@@ -92,65 +92,63 @@ const RecordedLecturePage = () => {
 
   return (
     <div className='flex flex-col overflow-hidden'>
-      <Navbar2 />
-      <div className={`grid ${isChatVisible ? 'grid-cols-12' : 'grid-cols-9'} h-screen`}>
-        <div className={`${isChatVisible ? 'col-span-9' : 'col-span-12'} m-10`}>
-          <div className='flex justify-between'>
-            <div className='text-xl font-bold'>Video ID: {id}</div>
-            <div className="relative inline-block">
-              <button
-                className="bg-[#CE4760] text-white px-4 py-2 rounded-md mb-2"
-                onClick={toggleDropdown}
-                style={{marginRight:"500px"}}
+      <Navbar2 className='sticky top-0 z-50' />
+      <div className='grid grid-cols-12 gap-4 p-4'>
+        <div className='col-span-12 flex justify-between items-center'>
+          <div className='text-xl font-bold'>Video ID: {id}</div>
+          <div className="relative inline-block">
+            <button
+              className="bg-[#CE4760] text-white px-4 py-2 rounded-md"
+              onClick={toggleDropdown}
+            >
+              Options
+            </button>
+            {isOpen && (
+              <div
+                className="absolute mt-2 bg-white border border-gray-300 rounded-md shadow-lg w-48 z-50"
+                onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
               >
-                Options
-              </button>
-              {isOpen && (
-                <div
-                  className="absolute mt-2 bg-white border border-gray-300 rounded-md shadow-lg w-48 z-50"
-                  onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+                <button
+                  className="w-full text-left px-4 py-2 hover:bg-gray-200"
+                  onClick={() => handleButtonClick('Take the Quiz')}
                 >
-                  <button
-                    className="w-full text-left px-4 py-2 hover:bg-gray-200"
-                    onClick={() => handleButtonClick('Take the Quiz')}
-                  >
-                    Take the Quiz
-                  </button>
-                  <button
-                    className="w-full text-left px-4 py-2 hover:bg-gray-200"
-                    onClick={() => handleButtonClick('View Notes')}
-                  >
-                    View Notes
-                  </button>
-                  <button
-                    className="w-full text-left px-4 py-2 hover:bg-gray-200"
-                    onClick={() => handleButtonClick('View Mindmaps')}
-                  >
-                    View Mindmaps
-                  </button>
-                  <button
-                    className="w-full text-left px-4 py-2 hover:bg-gray-200"
-                    onClick={() => handleButtonClick('Vocational Learning Module')}
-                  >
-                    Vocational Learning Module
-                  </button>
-                  <button
-                    className="w-full text-left px-4 py-2 hover:bg-gray-200"
-                    onClick={() => setIsChatVisible(!isChatVisible)} // Toggle chat visibility
-                  >
-                    Toggle Chat
-                  </button>
-                </div>
-              )}
-            </div>
+                  Take the Quiz
+                </button>
+                <button
+                  className="w-full text-left px-4 py-2 hover:bg-gray-200"
+                  onClick={() => handleButtonClick('View Notes')}
+                >
+                  View Notes
+                </button>
+                <button
+                  className="w-full text-left px-4 py-2 hover:bg-gray-200"
+                  onClick={() => handleButtonClick('View Mindmaps')}
+                >
+                  View Mindmaps
+                </button>
+                <button
+                  className="w-full text-left px-4 py-2 hover:bg-gray-200"
+                  onClick={() => handleButtonClick('Vocational Learning Module')}
+                >
+                  Vocational Learning Module
+                </button>
+                <button
+                  className="w-full text-left px-4 py-2 hover:bg-gray-200"
+                  onClick={() => setIsChatVisible(!isChatVisible)} // Toggle chat visibility
+                >
+                  Toggle Chat
+                </button>
+              </div>
+            )}
           </div>
-
-          <div className='flex flex-col'>
-            <video controls className="w-full h-full object-cover shadow-lg rounded-lg">
-              <source src={videoDetails.video_url} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
+        </div>
+      </div>
+      <div className={`grid ${isChatVisible ? 'grid-cols-12' : 'grid-cols-9'} h-screen`}>
+        <div className={`${isChatVisible ? 'col-span-9' : 'col-span-12'} p-10`}>
+          <video controls className="w-full h-full object-cover shadow-lg rounded-lg">
+            <source src={videoDetails.video_url} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
         {isChatVisible && (
           <div className='h-screen col-span-3 flex flex-col'>
@@ -158,8 +156,6 @@ const RecordedLecturePage = () => {
           </div>
         )}
       </div>
-
-
       {showPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 border border-gray-300 rounded-lg shadow-lg w-2/3 max-h-96 overflow-y-auto relative">

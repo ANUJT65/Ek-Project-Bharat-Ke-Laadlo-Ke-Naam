@@ -62,7 +62,7 @@ const Navbar2 = ({ type }) => {
                 Profile
               </li>
 
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-700" onClick={()=>{logout(); navigate('/auth/login')}}>
+              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-700" onClick={() => { logout(); navigate('/auth/login') }}>
                 Logout
               </li>
             </ul>
