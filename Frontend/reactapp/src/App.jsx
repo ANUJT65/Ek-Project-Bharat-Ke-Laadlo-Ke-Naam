@@ -59,6 +59,7 @@ function App() {
       <Route path="/student/lecture/ar" element={<ARVR />} />
       <Route path="/student/suraj" element={<CollegeRecommendation />} />
       <Route path="/student/quiz/:id" element={<StudentQuiz />} />
+      <Route path="/student/suraj" element={<CollegeRecommendation />} />
 
 
       {/*Teacher Routes */}

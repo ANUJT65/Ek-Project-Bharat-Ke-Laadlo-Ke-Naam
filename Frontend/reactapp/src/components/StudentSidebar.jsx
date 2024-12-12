@@ -5,9 +5,11 @@ import { MdSpaceDashboard } from "react-icons/md";
 import { GrResources } from "react-icons/gr";
 import { SiGoogleanalytics } from "react-icons/si";
 import { useStudentDB } from '../contexts/StudentDBContext';
+import { useNavigate } from 'react-router-dom';
 
 const StudentSidebar = () => {
     const { option, setOption } = useStudentDB();
+    const navigate = useNavigate();
 
     // Define button configurations to ensure consistent layout
     const menuButtons = [
@@ -15,7 +17,7 @@ const StudentSidebar = () => {
             key: 'dashboard',
             icon: <MdSpaceDashboard />,
             label: 'Dashboard'
-        },
+        }
 
     ];
 
@@ -65,6 +67,9 @@ const StudentSidebar = () => {
                         <div>{button.label}</div>
                     </button>
                 ))}
+                <button className='p-2 m-3 rounded-md bg-[#CE4760] border font-bold text-white border-[#CE4760]' onClick={()=>navigate('/student/suraj')}>
+                    School Recommendation system
+                </button>
             </div>
         </div>
     )
