@@ -16,6 +16,8 @@ const StudentVocationalLearning2 = () => {
     const [recognitionInstance, setRecognitionInstance] = useState(null);
     const [isNextQuestionReady, setIsNextQuestionReady] = useState(false);
     const [transcript, setTranscript] = useState(null);
+    const [question, setQuestion] = useState('');
+    const [feedbackVideoUrl, setFeedbackVideoUrl] = useState(null);  // New state for feedback video
 
     // Fetch transcript
     useEffect(() => {
@@ -38,13 +40,30 @@ const StudentVocationalLearning2 = () => {
         setLoading(true);
         setError('');
         try {
-            const response = await axios.post('http://localhost:5000/get-next-question',
-                { transcript: transcriptData, currentIndex },
-                { responseType: 'blob' }
-            );
-            const videoUrl = URL.createObjectURL(response.data);
-            setVideoUrl(videoUrl);
+            // Fetch next question from backend
+            const response = await axios.post('http://localhost:5000/get-next-question', {
+                transcript: transcriptData,
+                currentIndex,
+            });
+
+            const question = response.data.question;
+            const questionIndex = response.data.questionIndex;
+
+            // Destructure the response
+            setQuestion(question); // Set the question text
             setCurrentIndex(currentIndex + 1);
+            setAnswer('');
+            setFeedback('');
+            setIsNextQuestionReady(false);
+
+            // Now fetch the video
+            const videoResponse = await axios.post('http://localhost:5000/get-question-video', {
+                question: question,
+                questionIndex: questionIndex
+            }, { responseType: 'blob' });
+
+            const videoUrl = URL.createObjectURL(videoResponse.data);
+            setVideoUrl(videoUrl); // Set the video URL
         } catch (error) {
             setError('Failed to fetch the initial video.');
         }
@@ -60,14 +79,21 @@ const StudentVocationalLearning2 = () => {
         setLoading(true);
         setError('');
         try {
-            // Include the current question and answer in the request
-            const currentQuestion = transcript[currentIndex - 1]; // Assuming `currentIndex` corresponds to the transcript index
+            const currentQuestion = question; // Assuming `currentIndex` corresponds to the transcript index
             const response = await axios.post('http://localhost:5000/submit-answer', {
                 question: currentQuestion,
                 answer,
             });
 
             setFeedback(response.data.feedback);
+
+            const feedbackVideoResponse = await axios.post('http://localhost:5000/get-feedback-video', {
+                feedback: response.data.feedback,  // Send the feedback to create video
+            }, { responseType: 'blob' });
+
+            const feedbackVideoUrl = URL.createObjectURL(feedbackVideoResponse.data);
+            setFeedbackVideoUrl(feedbackVideoUrl);  // Set the feedback video URL
+
             setIsNextQuestionReady(true);
         } catch (error) {
             setError('Failed to submit the answer.');
@@ -75,17 +101,27 @@ const StudentVocationalLearning2 = () => {
         setLoading(false);
     };
 
-
     const loadNextQuestion = async () => {
         setLoading(true);
         setError('');
         try {
-            const nextVideoResponse = await axios.post('http://localhost:5000/get-next-question',
-                { transcript, currentIndex },
-                { responseType: 'blob' }
-            );
-            const videoUrl = URL.createObjectURL(nextVideoResponse.data);
-            setVideoUrl(videoUrl);
+            // Fetch the next question and video
+            const Response = await axios.post('http://localhost:5000/get-next-question', {
+                transcript,
+                currentIndex,
+            });
+            const questionIndex = Response.data.questionIndex;
+            const nextQuestionResponse = Response.data.question
+
+            const videoResponse = await axios.post('http://localhost:5000/get-question-video', {
+                question: nextQuestionResponse,
+                questionIndex: questionIndex
+            }, { responseType: 'blob' });
+
+            const videoUrl = URL.createObjectURL(videoResponse.data);
+            setVideoUrl(videoUrl);  // Set the video URL to display in a video tag
+            const question = nextQuestionResponse.data.question;
+            setQuestion(question); // Set the question text
             setCurrentIndex(currentIndex + 1);
             setAnswer('');
             setFeedback('');
@@ -133,21 +169,8 @@ const StudentVocationalLearning2 = () => {
     };
 
     // Play feedback using text-to-speech
-    const playFeedback = () => {
-        if (!feedback) return;
-        window.speechSynthesis.cancel(); // Stop any ongoing speech
-        const utterance = new SpeechSynthesisUtterance(feedback);
-        utterance.lang = 'en-US';
-        window.speechSynthesis.speak(utterance);
-    };
 
-    useEffect(() => {
-        if (!feedback) return;
-        window.speechSynthesis.cancel(); // Stop any ongoing speech
-        const utterance = new SpeechSynthesisUtterance(feedback);
-        utterance.lang = 'en-US';
-        window.speechSynthesis.speak(utterance);
-    }, [feedback]); // Dependency array ensures it runs only when `feedback` changes.
+
 
 
     return (
@@ -164,22 +187,24 @@ const StudentVocationalLearning2 = () => {
                 <div className="flex-shrink-0 w-2/3 ">
                     {videoUrl && (
                         <div className="bg-[#2F4550] p-4  shadow-lg">
-                            <h2 className="text-xl font-semibold mb-4 text-center text-white">
-                                Your Test Question
-                            </h2>
+
                             <video className="shadow-md w-full" src={videoUrl} controls />
+                        </div>
+                    )}
+
+                    {feedbackVideoUrl && ( // Display feedback video
+                        <div className="bg-[#2F4550] p-4 shadow-lg mt-4">
+                            <h2 className="text-xl font-semibold mb-4 text-center text-white">Feedback Video</h2>
+                            <video className="shadow-md w-full" src={feedbackVideoUrl} controls />
                         </div>
                     )}
                 </div>
 
                 <div className="w-1/3 bg-white p-5 flex flex-col space-y-4">
-
-
                     {videoUrl && (
                         <>
                             <button
-                                className={`px-6 py-3 rounded-lg font-medium ${recognizing ? 'bg-gray-500 opacity-75 cursor-not-allowed' : 'bg-[#CE4760] hover:bg-[#A53C4E]'
-                                    }`}
+                                className={`px-6 py-3 rounded-lg font-medium ${recognizing ? 'bg-gray-500 opacity-75 cursor-not-allowed' : 'bg-[#CE4760] hover:bg-[#A53C4E]'} `}
                                 onClick={startRecognition}
                                 disabled={recognizing}
                             >
@@ -187,8 +212,7 @@ const StudentVocationalLearning2 = () => {
                             </button>
 
                             <button
-                                className={`px-6 py-3 rounded-lg font-medium ${!recognizing ? 'bg-gray-500 opacity-75 cursor-not-allowed' : 'bg-[#CE4760] hover:bg-[#A53C4E]'
-                                    }`}
+                                className={`px-6 py-3 rounded-lg font-medium ${!recognizing ? 'bg-gray-500 opacity-75 cursor-not-allowed' : 'bg-[#CE4760] hover:bg-[#A53C4E]'} `}
                                 onClick={stopRecognition}
                                 disabled={!recognizing}
                             >
@@ -208,12 +232,7 @@ const StudentVocationalLearning2 = () => {
                                 </div>
                             )}
 
-                            {feedback && (
-                                <div className="bg-[#CE4760] p-4 rounded-lg">
-                                    <h3 className="font-medium mb-2 text-white">Feedback:</h3>
-                                    <p className="text-white">{feedback}</p>
-                                </div>
-                            )}
+
 
                             {isNextQuestionReady && (
                                 <button
@@ -227,11 +246,8 @@ const StudentVocationalLearning2 = () => {
                     )}
                 </div>
             </div>
-            );
-
         </div>
     );
-
 };
 
 export default StudentVocationalLearning2;
