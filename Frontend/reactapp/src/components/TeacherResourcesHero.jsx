@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import UploadModal from './UploadModal';
+import StudentResources from './StudentResources';
 
 const TeacherResourcesHero = () => {
   const navigate = useNavigate();
@@ -88,6 +89,8 @@ const TeacherResourcesHero = () => {
               </td>
             </tr>
           ))}
+          <StudentResources />
+          
         </tbody>
       </table>
     </div>
