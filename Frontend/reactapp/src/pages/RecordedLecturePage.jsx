@@ -99,7 +99,7 @@ const RecordedLecturePage = () => {
             <div className='text-xl font-bold'>Video ID: {id}</div>
             <div className="relative inline-block">
               <button
-                className="bg-[#CE4760] text-white px-4 py-2 rounded-md"
+                className="bg-[#CE4760] text-white px-4 py-2 rounded-md mb-2"
                 onClick={toggleDropdown}
               >
                 Options
@@ -157,9 +157,7 @@ const RecordedLecturePage = () => {
           </div>
         )}
       </div>
-      <div className='notes-and-stuff p-5'>
-        <RecordedLectureAttachments notes={videoDetails.notes} mindMap={videoDetails.mind_map} sendMessage={handleSendMessage} />
-      </div>
+
 
       {showPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
