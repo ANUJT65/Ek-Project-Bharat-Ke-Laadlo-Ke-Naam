@@ -27,11 +27,12 @@ const TeacherDashboardHero2 = () => {
         </div>
 
         <div className='col-span-2 bg-white border border-gray-400 rounded-md'>
-          <BarGraph className='w-full h-64' /> 
+          <BarGraph className='w-full h-64' />
         </div>
         <div className='h-64 flex flex-col col-span-1 bg-white rounded-md border border-gray-400 p-5'>
           <div className='font-bold'>Recently Added Resources</div>
         </div>
+
 
       </div>
     </div>
