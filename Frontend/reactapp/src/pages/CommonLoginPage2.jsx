@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import coverImage from '../assets/images/logo1.jpg';
 import CommonLoginForm from '../components/CommonLoginForm';
+import GoogleTranslate from '../components/GoogleTranslate';
 
 const CommonLoginPage2 = () => {
     const [type, setType] = useState('student');
@@ -9,8 +10,10 @@ const CommonLoginPage2 = () => {
       className="bg-gradient-to-r from-[#CE4760] via-[#2F4550] to-[#CE4760] font-inter h-screen w-screen bg-cover bg-center flex items-center justify-center"
       
     >
+      <GoogleTranslate />
       <div className="w-1/3 items-center bg-white rounded-lg p-8 ">
         {/*Name */}
+        
         <div className=" branding flex justify-center items-center gap-2 p-3 my-2 font-inter text-[#131B1F]">
             <img 
                 src={coverImage}

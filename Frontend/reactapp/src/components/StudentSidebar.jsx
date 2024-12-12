@@ -6,6 +6,8 @@ import { GrResources } from "react-icons/gr";
 import { SiGoogleanalytics } from "react-icons/si";
 import { useStudentDB } from '../contexts/StudentDBContext';
 import { useNavigate } from 'react-router-dom';
+import { FaSchool } from "react-icons/fa";
+
 
 const StudentSidebar = () => {
     const { option, setOption } = useStudentDB();
@@ -67,8 +69,11 @@ const StudentSidebar = () => {
                         <div>{button.label}</div>
                     </button>
                 ))}
-                <button className='p-2 m-3 rounded-md bg-[#CE4760] border font-bold text-white border-[#CE4760]' onClick={()=>navigate('/student/suraj')}>
-                    School Recommendation system
+                <button className='flex justify-start text-left p-2 m-3 rounded-md bg-[#CE4760] border font-bold text-white border-[#CE4760]' onClick={()=>navigate('/student/suraj')}>
+                    <div className='ml-1 mt-1 mr-2'><FaSchool /></div>
+                
+
+                    School Search
                 </button>
             </div>
         </div>

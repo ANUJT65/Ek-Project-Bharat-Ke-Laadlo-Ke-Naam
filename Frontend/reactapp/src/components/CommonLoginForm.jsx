@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/userContext';
+import GoogleTranslate from './GoogleTranslate';
 
 const CommonLoginForm = ({ url, type }) => {
   const [formData, setFormData] = useState({

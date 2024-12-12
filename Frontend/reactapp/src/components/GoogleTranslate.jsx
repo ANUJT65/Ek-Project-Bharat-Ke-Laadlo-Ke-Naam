@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import './GoogleTranslate.css';
 
 const GoogleTranslate = () => {
   useEffect(() => {
@@ -13,7 +14,7 @@ const GoogleTranslate = () => {
 
     window.googleTranslateElementInit = () => {
       new window.google.translate.TranslateElement(
-        { pageLanguage: 'en' }, // Set your default page language
+        { pageLanguage: 'en' },
         'google_translate_element'
       );
     };
@@ -21,7 +22,7 @@ const GoogleTranslate = () => {
 
   return (
     <div className="google-translate-container">
-      <div id="google_translate_element"></div>
+      <div id="google_translate_element" className="translate-widget"></div>
     </div>
   );
 };

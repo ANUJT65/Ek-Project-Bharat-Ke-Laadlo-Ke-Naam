@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import CommonLoginForm from '../components/CommonLoginForm';
 import loginImage from '../assets/images/cover.jpg'; 
+import GoogleTranslate from '../components/GoogleTranslate';
 
 const CommonLoginPage = () => {
   const [type, setType] = useState('student');
 
   return (
     <div className='grid grid-cols-2 w-full'>
+      
       <div className='col-span-1 w-full from-[#CE4760] via-[#2F4550] to-[#CE4760] h-screen flex flex-col p-10 items-center justify-center'>
         <div className='text-xl mb-5'>Welcome back to Gram Shiksha!</div>
         <div className='flex justify-center mb-3'>
