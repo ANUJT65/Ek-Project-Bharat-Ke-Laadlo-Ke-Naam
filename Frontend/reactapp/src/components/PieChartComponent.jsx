@@ -18,20 +18,34 @@ const PieChartComponent = () => {
   };
 
   const options = {
+    responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'bottom',
         labels: {
-          color: 'white', // Set label color to white
+          color: 'white',
+          font: {
+            size: 10 
+          }
         },
       },
+      title: {
+        display: true,
+        text: 'Student Engagement Breakdown',
+        color: 'white',
+        font: {
+          size: 12
+        }
+      }
     },
   };
 
   return (
-    <div className='flex flex-col rounded-md '>
-        <div className='mb-4 font-bold text-white'>Student breakdown by engagement</div>
-      <Pie data={data} options={options} />
+    <div className='flex flex-col h-full w-full'>
+      <div className='relative h-84 md:h-48 lg:h-84'>
+        <Pie data={data} options={options} />
+      </div>
     </div>
   );
 };
