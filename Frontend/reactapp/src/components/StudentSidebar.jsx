@@ -72,7 +72,8 @@ const StudentSidebar = () => {
                         `}
                         onClick={() => {
                             setOption(button.key);
-                            setIsMobileMenuOpen(false); // Close mobile menu on selection
+                            setIsMobileMenuOpen(false);
+                            navigate(`/student/${button.key}`) // Close mobile menu on selection
                         }}
                     >
                         <div className='mr-2 text-white'>{button.icon}</div>
