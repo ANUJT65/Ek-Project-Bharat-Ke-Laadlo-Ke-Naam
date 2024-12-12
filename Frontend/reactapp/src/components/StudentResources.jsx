@@ -54,7 +54,7 @@ const StudentResources = () => {
                     <tr
                       key={index}
                       className={`${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'
-                        } hover:bg-[#4caf50]/10 transition-colors duration-150 ease-in-out`}
+                        } `}
                     >
                       <td className='px-6 py-4'>
                         <div className='flex items-center'>
@@ -82,7 +82,7 @@ const StudentResources = () => {
                       <td className='px-6 py-4 text-right'>
                         <button
                           onClick={() => window.open(doc.s3_url, '_blank')}
-                          className='inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#CE4760] hover:bg-[#b13d53] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#CE4760] transition-colors duration-150 ease-in-out'
+                          className='inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#CE4760] hover:bg-[#2F4550] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#CE4760] transition-colors duration-150 ease-in-out'
                         >
                           <svg
                             className='-ml-1 mr-2 h-5 w-5'
