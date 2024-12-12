@@ -3,6 +3,7 @@ import Scene from './ThreeDTest'
 import Navbar from './Navbar'
 import StudentSidebar from './StudentSidebar'
 import Navbar2 from './Navbar2'
+import ModelGrid from './ModelGrid'
 
 const ARVR = () => {
   return (
@@ -12,7 +13,8 @@ const ARVR = () => {
 
         <div className='w-4/5 flex flex-col'>
             <Navbar2 />
-            <Scene />
+            <ModelGrid />
+            
         </div>
     </div>
     
