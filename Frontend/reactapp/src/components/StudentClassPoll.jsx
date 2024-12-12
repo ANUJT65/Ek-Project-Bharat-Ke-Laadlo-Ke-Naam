@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../contexts/userContext';
+import { useParams } from 'react-router-dom';
 
-const StudentClassPoll = ({ videoId }) => {
+const StudentClassPoll = () => {
+  const {id} = useParams();
   const { user } = useAuth();
   const [mcqsEasy, setMcqsEasy] = useState([]);
   const [mcqsMedium, setMcqsMedium] = useState([]);
@@ -20,6 +22,7 @@ const StudentClassPoll = ({ videoId }) => {
   
   const optionsStyle = 'text-[#CE4760] bg-white hover:bg-[#CE4760] hover:text-white border border-[#CE4760] p-1 px-2 rounded-md my-1 text-left';
 
+  console.log(user);
   useEffect(() => {
     const initializeQuiz = async () => {
       const email = user.email;
@@ -32,7 +35,7 @@ const StudentClassPoll = ({ videoId }) => {
       try {
         await axios.post('https://backendfianlsih.azurewebsites.net/qa/initialize_test', {
           email: email,
-          video_id: videoId,
+          video_id: id,
         });
       } catch (error) {
         console.error('Error initializing quiz:', error);
@@ -40,18 +43,19 @@ const StudentClassPoll = ({ videoId }) => {
     };
 
     initializeQuiz();
-  }, [user, videoId]);
+  }, [user, id]);
 
   useEffect(() => {
     const fetchMcqs = async () => {
       try {
-        const responseEasy = await axios.get(`https://backendfianlsih.azurewebsites.net/dy_db/get_mcqs_easy/${videoId}`);
+        console.log(`https://backendfianlsih.azurewebsites.net/dy_db/get_mcqs_easy/${id}`); 
+        const responseEasy = await axios.get(`https://backendfianlsih.azurewebsites.net/dy_db/get_mcqs_easy/${id}`);
         setMcqsEasy(responseEasy.data.mcqs_easy);
 
-        const responseMedium = await axios.get(`https://backendfianlsih.azurewebsites.net/dy_db/get_mcqs_medium/${videoId}`);
+        const responseMedium = await axios.get(`https://backendfianlsih.azurewebsites.net/dy_db/get_mcqs_medium/${id}`);
         setMcqsMedium(responseMedium.data.mcqs_medium);
 
-        const responseHard = await axios.get(`https://backendfianlsih.azurewebsites.net/dy_db/get_mcqs_hard/${videoId}`);
+        const responseHard = await axios.get(`https://backendfianlsih.azurewebsites.net/dy_db/get_mcqs_hard/${id}`);
         setMcqsHard(responseHard.data.mcqs_hard);
 
         if (responseEasy.data.mcqs_easy.length > 0) {
@@ -63,7 +67,7 @@ const StudentClassPoll = ({ videoId }) => {
     };
 
     fetchMcqs();
-  }, [videoId]);
+  }, [id]);
 
   useEffect(() => {
     if (questionsAnswered > 0 && questionsAnswered % 3 === 0) {
@@ -75,7 +79,7 @@ const StudentClassPoll = ({ videoId }) => {
         try {
           await axios.post('https://backendfianlsih.azurewebsites.net/qa/add_test_result', {
             email: email,
-            video_id: videoId,
+            video_id: id,
             correct_questions: correctQuestions,
             wrong_questions: wrongQuestions,
           });
@@ -139,7 +143,7 @@ const StudentClassPoll = ({ videoId }) => {
       try {
         await axios.post('https://backendfianlsih.azurewebsites.net/qa/update_question_result', {
           email: user.email,
-          video_id: videoId,
+          video_id: id,
           question_serial: questionSerial,
           is_correct: isCorrect
         });
