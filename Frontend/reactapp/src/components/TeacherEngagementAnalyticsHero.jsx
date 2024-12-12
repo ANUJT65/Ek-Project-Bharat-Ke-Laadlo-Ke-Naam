@@ -45,6 +45,14 @@ const TeacherEngagementAnalyticsHero = () => {
 
   return (
     <div className='bg-gray-200 flex flex-col p-5 px-7 font-inter max-h-[calc(100vh-64px)] overflow-auto'>
+      <a
+        className="mt-4 py-2 px-3 mb-4 font-bold bg-[#CE4760] text-white rounded-md inline-block hover:bg-[#2F4550] hover:text-white"
+        href="https://sync-space-nine.vercel.app"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Join Now
+      </a>
       <div className='grid grid-cols-3'>
 
         <div className='mx-2 flex flex-col justify-center h-32 col-span-1 bg-[#CE4760] rounded-md p-5'>
@@ -80,15 +88,6 @@ const TeacherEngagementAnalyticsHero = () => {
         <div className='col-span-1 h-84 p-5 mx-2 my-4 rounded-md bg-[#CE4760]'><PieChartComponent /></div>
         <div className='col-span-1 h-84 p-5 mx-2 my-4 rounded-md bg-[#2F4550]'><RadarChartComponent /></div>
       </div>
-
-      <a
-        className="mt-4 py-2 px-3 font-bold bg-[#2F4550] text-white rounded-md inline-block hover:bg-white hover:text-black"
-        href="https://sync-space-nine.vercel.app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Join Now
-      </a>
     </div>
   );
 };
