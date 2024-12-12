@@ -46,20 +46,20 @@ const TeacherEngagementAnalyticsHero = () => {
   return (
     <div className='bg-gray-200 flex flex-col p-5 px-7 font-inter max-h-[calc(100vh-64px)] overflow-auto'>
       <div className='grid grid-cols-3'>
-        
+
         <div className='mx-2 flex flex-col justify-center h-32 col-span-1 bg-[#CE4760] rounded-md p-5'>
-            <div className='text-md text-white'>Overall Class Engagement</div>
-            <div className='text-4xl font-bold text-white mt-2'>Good</div>
+          <div className='text-md text-white'>Overall Class Engagement</div>
+          <div className='text-4xl font-bold text-white mt-2'>Good</div>
         </div>
 
         <div className='bg-[#2F4550] text-white mx-2 flex flex-col justify-center h-32 col-span-1 rounded-md  p-5'>
-            <div className='text-md'>Total Student footfall</div>
-            <div className='text-4xl font-bold mt-2'>300</div>
+          <div className='text-md'>Total Student footfall</div>
+          <div className='text-4xl font-bold mt-2'>300</div>
         </div>
-        
+
         <div className='mx-2 flex flex-col justify-center h-32 col-span-1 bg-[#CE4760] rounded-md  p-5'>
-            <div className='text-md text-white'>Attention</div>
-            <div className='text-4xl font-bold mt-2 text-white'>200 hr</div>
+          <div className='text-md text-white'>Attention</div>
+          <div className='text-4xl font-bold mt-2 text-white'>200 hr</div>
         </div>
 
         <div className='rounded-md col-span-1 flex flex-col p-5 bg-[#2F4550] mx-2 my-4'>
@@ -80,6 +80,15 @@ const TeacherEngagementAnalyticsHero = () => {
         <div className='col-span-1 h-84 p-5 mx-2 my-4 rounded-md bg-[#CE4760]'><PieChartComponent /></div>
         <div className='col-span-1 h-84 p-5 mx-2 my-4 rounded-md bg-[#2F4550]'><RadarChartComponent /></div>
       </div>
+
+      <a
+        className="mt-4 py-2 px-3 font-bold bg-[#2F4550] text-white rounded-md inline-block hover:bg-white hover:text-black"
+        href="https://sync-space-nine.vercel.app"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Join Now
+      </a>
     </div>
   );
 };
