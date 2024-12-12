@@ -168,13 +168,13 @@ const RecordedLecturePage = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto relative p-6">
             <button
-              className="absolute top-4 right-4 text-red-500 hover:text-red-700 text-2xl font-bold"
+              className="sticky top-0 right-0 absolute right-0 text-red-500 hover:text-red-700 text-4xl font-bold"
               onClick={closePopup}
             >
               &times;
             </button>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-1 gap-6">
               {videoDetails.mind_map.urls.map((url, index) => (
                 <div
                   key={index}

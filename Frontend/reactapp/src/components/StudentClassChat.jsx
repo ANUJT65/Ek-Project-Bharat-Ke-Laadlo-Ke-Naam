@@ -65,9 +65,9 @@ const StudentClassChat = () => {
   };
 
   return (
-    <div className='m-2 rounded-md text-white bg-[#2F4550] h-full p-3 flex flex-col justify-between'>
+    <div className='m-2 rounded-md text-white bg-[#2F4550] h-full p-3 flex flex-col justify-between '>
       <div className='font-bold text-xl'>Chat</div>
-      <div className='flex-grow overflow-y-auto h-90'> {/* Set fixed height */}
+      <div className="flex-grow overflow-y-auto h-64 p-2 border rounded-md bg-[#2F4550]/90">
         <StudentClassChatMessages messages={messages} />
       </div>
       <div className='flex'>
