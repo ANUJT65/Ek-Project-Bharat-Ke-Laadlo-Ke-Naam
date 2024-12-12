@@ -22,7 +22,7 @@ const StudentResources = () => {
   }, []);
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-8'>
+    <div className='min-h-screen bg-white p-8'>
       <div className='max-w-7xl mx-auto'>
         <h1 className='text-3xl font-bold text-[#2F4550] mb-2'>Resources</h1>
         <p className='text-gray-600 mb-8'>Access your learning materials and documents</p>
@@ -51,15 +51,14 @@ const StudentResources = () => {
                 </thead>
                 <tbody className='divide-y divide-gray-200'>
                   {documents.map((doc, index) => (
-                    <tr 
+                    <tr
                       key={index}
-                      className={`${
-                        index % 2 === 0 ? 'bg-white' : 'bg-gray-50'
-                      } hover:bg-[#4caf50]/10 transition-colors duration-150 ease-in-out`}
+                      className={`${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'
+                        } hover:bg-[#4caf50]/10 transition-colors duration-150 ease-in-out`}
                     >
                       <td className='px-6 py-4'>
                         <div className='flex items-center'>
-                          <svg 
+                          <svg
                             className='h-5 w-5 text-[#2F4550] mr-3'
                             fill='none'
                             strokeLinecap='round'
@@ -81,7 +80,7 @@ const StudentResources = () => {
                         </div>
                       </td>
                       <td className='px-6 py-4 text-right'>
-                      <button
+                        <button
                           onClick={() => window.open(doc.s3_url, '_blank')}
                           className='inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#CE4760] hover:bg-[#b13d53] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#CE4760] transition-colors duration-150 ease-in-out'
                         >
@@ -97,8 +96,8 @@ const StudentResources = () => {
                             <path d='M15 12a3 3 0 11-6 0 3 3 0 016 0z' />
                             <path d='M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z' />
                           </svg>
-                                                  View Document
-                                                </button>
+                          View Document
+                        </button>
                       </td>
                     </tr>
                   ))}
