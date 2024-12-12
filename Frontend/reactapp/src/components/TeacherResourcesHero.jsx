@@ -16,7 +16,7 @@ const TeacherResourcesHero = () => {
 
   const fetchResources = async () => {
     try {
-      const response = await axios.get('https://backendfianlsih.azurewebsites.net/dy_db/get_data');
+      const response = await axios.get('https://backendfianlsih.azurewebsites.net/dy_db/get_all_videos_basic_details');
       setResources(response.data);
     } catch (error) {
       console.error('Error fetching resources:', error);
@@ -50,7 +50,9 @@ const TeacherResourcesHero = () => {
       <table className="table-auto w-full mt-5 border-collapse border border-gray-300">
         <thead>
           <tr className="bg-gray-100">
-            <th className="border border-gray-300 px-4 py-2 text-left">Title</th>
+            <th className="border border-gray-300 px-4 py-2 text-left">Lecture</th>
+            <th className="border border-gray-300 px-4 py-2 text-left">Subject</th>
+            <th className="border border-gray-300 px-4 py-2 text-left">Time</th>
             <th className="border border-gray-300 px-4 py-2 text-left">Type</th>
             <th className="border border-gray-300 px-4 py-2 text-left">Actions</th>
           </tr>
@@ -59,21 +61,27 @@ const TeacherResourcesHero = () => {
           {resources.map((resource, index) => (
             <tr key={index} className="hover:bg-gray-50">
               <td className="border border-gray-300 px-4 py-2">
-                {resource.document_id || resource.video_id}
+                {resource.lecture}
               </td>
               <td className="border border-gray-300 px-4 py-2">
-                {resource.document_id ? 'Document' : 'Video'}
+                {resource.subject}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {resource.time}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                Video
               </td>
               <td className="border border-gray-300 px-4 py-2">
                 <button 
                   className="text-blue-600 hover:underline mr-4"
-                  onClick={() => navigate(`/teacher/engagement-analytics/${resource.document_id || resource.video_id}`)}
+                  onClick={() => navigate(`/teacher/engagement-analytics/${resource.video_id}`)}
                 >
                   View Analytics
                 </button>
                 <button 
                   className="text-blue-600 hover:underline"
-                  onClick={() => navigate(`/teacher/resource/${resource.document_id || resource.video_id}`)}
+                  onClick={() => window.open(resource.video_url, '_blank')}
                 >
                   View Resource
                 </button>
