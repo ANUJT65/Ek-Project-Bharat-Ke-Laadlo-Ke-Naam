@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar2 from '../components/Navbar2';
 import StudentClassChat from '../components/StudentClassChat';
@@ -8,10 +8,27 @@ import RecordedLectureAttachments from '../components/RecordedLectureAttachments
 const RecordedLecturePage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isChatVisible, setIsChatVisible] = useState(true); // State to toggle chat visibility
+  const [showPopup, setShowPopup] = useState(false);
   const toggleDropdown = () => setIsOpen(!isOpen);
+  const navigate = useNavigate();
 
   const handleButtonClick = (action) => {
-    alert(`Selected: ${action}`);
+    switch (action) {
+      case 'Take the Quiz':
+        alert('Selected: Take the Quiz');
+        break;
+      case 'View Notes':
+        window.open(JSON.parse(videoDetails.notes).pdf_url, '_blank');
+        break;
+      case 'View Mindmaps':
+        setShowPopup(true);
+        break;
+      case 'Vocational Learning Module':
+        navigate(`/student/vocational-learning/${id}`);
+        break;
+      default:
+        alert(`Selected: ${action}`);
+    }
     setIsOpen(false);
   };
 
@@ -65,6 +82,10 @@ const RecordedLecturePage = () => {
     setMessages((prevMessages) => [...prevMessages, message]);
   };
 
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
   if (!videoDetails) {
     return <div>Loading...</div>;
   }
@@ -84,7 +105,10 @@ const RecordedLecturePage = () => {
                 Options
               </button>
               {isOpen && (
-                <div className="absolute mt-2 bg-white border border-gray-300 rounded-md shadow-lg w-48">
+                <div
+                  className="absolute mt-2 bg-white border border-gray-300 rounded-md shadow-lg w-48 z-50"
+                  onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+                >
                   <button
                     className="w-full text-left px-4 py-2 hover:bg-gray-200"
                     onClick={() => handleButtonClick('Take the Quiz')}
@@ -129,13 +153,38 @@ const RecordedLecturePage = () => {
         </div>
         {isChatVisible && (
           <div className='h-screen col-span-3 flex flex-col'>
-            <StudentClassChat messages={messages} />
+            <StudentClassChat messages={messages} setMessages={setMessages} />
           </div>
         )}
       </div>
       <div className='notes-and-stuff p-5'>
         <RecordedLectureAttachments notes={videoDetails.notes} mindMap={videoDetails.mind_map} sendMessage={handleSendMessage} />
       </div>
+
+      {showPopup && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 border border-gray-300 rounded-lg shadow-lg w-2/3 max-h-96 overflow-y-auto relative">
+            <button
+              className="absolute top-2 right-2 text-red-600 hover:text-red-800"
+              onClick={closePopup}
+            >
+              X
+            </button>
+            {videoDetails.mind_map.urls.map((url, index) => (
+              <div key={index} className="mb-4">
+                <img
+                  src={url}
+                  alt={`Mind Map ${index + 1}`}
+                  className="w-full h-auto rounded-md shadow-md"
+                />
+                <div className="text-center mt-2 font-medium">
+                  Mind Map {index + 1}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
