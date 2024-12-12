@@ -22,7 +22,7 @@ const StudentResources = () => {
   }, []);
 
   return (
-    <div className='min-h-screen bg-white p-8'>
+    <div className='min-h-screen bg-white pl-5'>
       <div className='max-w-7xl mx-auto'>
         <h1 className='text-3xl font-bold text-[#2F4550] mb-2'>Resources</h1>
         <p className='text-gray-600 mb-8'>Access your learning materials and documents</p>

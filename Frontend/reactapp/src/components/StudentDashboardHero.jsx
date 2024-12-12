@@ -27,7 +27,7 @@ const StudentDashboardHero = () => {
               <h3 className="text-xl font-bold">Join Live</h3>
               <p className="text-sm mt-1">Connect to your live class session</p>
               <a
-                className="mt-4 py-2 px-3 font-bold bg-[#2F4550] text-white rounded-md inline-block"
+                className="mt-4 py-2 px-3 font-bold bg-[#2F4550] text-white rounded-md inline-block hover:bg-white hover:text-black"
                 href="https://sync-space-nine.vercel.app"
                 target="_blank"
                 rel="noopener noreferrer"
