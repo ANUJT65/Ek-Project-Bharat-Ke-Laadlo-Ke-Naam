@@ -57,6 +57,8 @@ function App() {
       <Route path="/student/lecture/recorded/:id" element={<RecordedLecturePage />} />
       <Route path="/student/lecture/ar" element={<ARVR />} />
       <Route path="/student/suraj" element={<CollegeRecommendation />} />
+      <Route path="/student/quiz/:id" element={<StudentQuiz />} />
+
 
       {/*Teacher Routes */}
       <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
