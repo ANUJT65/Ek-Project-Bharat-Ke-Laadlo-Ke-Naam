@@ -27,6 +27,7 @@ import UserProfile from "./pages/UserProfile"
 import CommonSignupPage2 from "./pages/CommonSignupPage2"
 import Signup2 from "./pages/Signup2"
 import CollegeRecommendation from "./components/CollegeRecommendation"
+import StudentQuiz from "./pages/StudentQuiz"
 
 
 function App() {
