@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../contexts/userContext';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
 
 const StudentClassPoll = () => {
+  const navigate= useNavigate();
   const {id} = useParams();
   const { user } = useAuth();
   const [mcqsEasy, setMcqsEasy] = useState([]);
@@ -187,6 +189,7 @@ const StudentClassPoll = () => {
 
   return (
     <div className="bg-[#F4F4F8] h-full flex p-3 flex-col border-l-2 border-[#D9D9D9]">
+      <button className='bg-[#2F4550] text-white w-10 rounded-md p-2 m-3' onClick={()=> navigate(-1)}> <FaArrowLeft /></button>
       <div className='text-xl font-bold'>Poll</div>
       {isDelay ? (
         <div className='text-red-500'>
