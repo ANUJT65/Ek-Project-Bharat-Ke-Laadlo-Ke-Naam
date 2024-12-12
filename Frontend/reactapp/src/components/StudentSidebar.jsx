@@ -20,7 +20,7 @@ const StudentSidebar = () => {
     ];
 
     return (
-        <div className='flex flex-col w-1/5 min-h-screen border-r border-gray-300 bg-[#2F4550]'>
+        <div className='flex flex-col w-1/5 min-h-screen border-r border-gray-300 bg-[#2F4550] '>
             {/*Name */}
             <div className="branding flex items-center gap-2 p-3 my-2 font-inter text-[#131B1F]">
                 <img
