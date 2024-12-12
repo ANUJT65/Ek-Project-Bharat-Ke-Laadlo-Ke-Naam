@@ -81,7 +81,7 @@ const TeacherResourcesHero = () => {
                 </button>
                 <button 
                   className="text-blue-600 hover:underline"
-                  onClick={() => window.open(resource.video_url, '_blank')}
+                  onClick={() => navigate(`/teacher/resource/${resource.video_id}`)}
                 >
                   View Resource
                 </button>
