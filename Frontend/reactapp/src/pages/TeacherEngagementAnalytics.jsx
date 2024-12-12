@@ -22,7 +22,6 @@ const TeacherEngagementAnalytics = () => {
         <div className="w-1/6 text-white rounded-md flex justify-start items-center mt-5 mx-5 p-2 bg-[#2F4550]">
       <button className="flex items-center gap-2" onClick={()=> navigate('/teacher/dashboard/resources')}>
         <FaArrowLeft />
-        All resources
       </button>
     </div>
         
