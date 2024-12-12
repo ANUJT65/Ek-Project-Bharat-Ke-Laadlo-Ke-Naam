@@ -57,7 +57,7 @@ const StudentSidebar = () => {
 
             {/* Buttons */}
             <div className='flex flex-col flex-grow'>
-                <div className='text-gray-500 mt-5 font-semibold mx-3 text-white'>MAIN MENU</div>
+                <div className='mt-5 font-semibold mx-3 text-white'>MAIN MENU</div>
 
                 {menuButtons.map((button) => (
                     <button
@@ -80,7 +80,7 @@ const StudentSidebar = () => {
                 <button 
                     className='flex justify-start text-left p-2 m-3 rounded-md bg-[#CE4760] border font-bold text-white border-[#CE4760]' 
                     onClick={() => {
-                        navigate('/student/suraj');
+                        navigate('/student/recommendation');
                         setIsMobileMenuOpen(false); // Close mobile menu on navigation
                     }}
                 >

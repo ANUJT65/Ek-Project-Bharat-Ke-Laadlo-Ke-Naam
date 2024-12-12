@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Navbar2 from './Navbar2';
 
 const CollegeRecommendation = () => {
   const [formData, setFormData] = useState({
@@ -58,6 +59,8 @@ const CollegeRecommendation = () => {
   };
 
   return (
+    <div>
+      <Navbar2/>
     <div className="bg-gradient-to-r from-[#CE4760] via-[#2F4550] to-[#CE4760] min-h-screen flex items-center justify-center p-6">
       <div className="w-full max-w-lg bg-white shadow-md rounded-lg p-6">
         <h2 className="text-2xl font-bold mb-6 text-center">School Recommendations</h2>
@@ -218,6 +221,7 @@ const CollegeRecommendation = () => {
         }
       </div >
     </div >
+    </div>
   );
 };
 
