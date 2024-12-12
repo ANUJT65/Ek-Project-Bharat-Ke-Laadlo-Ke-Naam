@@ -59,7 +59,7 @@ const TeacherSidebar = ({ onOptionSelect }) => {
                 <div className='text-white mt-5 font-semibold mx-3'>MAIN MENU</div>
 
                 <button 
-                    className={`flex mx-3  my-1 py-1 px-2 text-left rounded ${
+                    className={`text-white flex mx-3  my-1 py-1 px-2 text-left rounded ${
                         option === 'analytics' ? 'bg-[#CE4760] border font-bold text-white border-[#CE4760]' : ''
                     }`}
                     onClick={() => {
@@ -72,17 +72,20 @@ const TeacherSidebar = ({ onOptionSelect }) => {
                 </button>
 
                 <button 
-                    className={`flex mx-3  my-1 py-1 px-2 text-left rounded ${
+                    className={`text-white flex mx-3  my-1 py-1 px-2 text-left rounded ${
                         option === 'resources' ? 'bg-[#CE4760] border font-bold text-white border-[#CE4760]' : ''
                     }`}
                     onClick={() => {
                         setOption('resources');
+                        navigate('/teacher/dashboard/resources')
                         
                     }}
                 >
                     <div className='mr-2 text-white'><GrResources /></div>
                     <div>Resources</div>
                 </button>
+
+                
             </div>
         </div>
     );

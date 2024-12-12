@@ -5,6 +5,8 @@ import { MdSpaceDashboard, MdMenu, MdClose } from "react-icons/md";
 import { FaSchool } from "react-icons/fa";
 import { useStudentDB } from '../contexts/StudentDBContext';
 import { useNavigate } from 'react-router-dom';
+import { GrResources } from "react-icons/gr";
+
 
 const StudentSidebar = () => {
     const { option, setOption } = useStudentDB();
@@ -86,6 +88,19 @@ const StudentSidebar = () => {
                 >
                     <div className='ml-1 mt-1 mr-2'><FaSchool /></div>
                     School Search
+                </button>
+
+                <button 
+                    className={`text-white flex mx-3  my-1 py-1 px-2 text-left rounded ${
+                        option === 'ar' ? 'bg-[#CE4760] border font-bold text-white border-[#CE4760]' : ''
+                    }`}
+                    onClick={() => {
+                        setOption('ar');
+                        navigate('/student/lecture/ar')
+                    }}
+                >
+                    <div className='mr-2 text-white'><GrResources /></div>
+                    <div>AR Resource</div>
                 </button>
             </div>
         </>
