@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Bar } from 'react-chartjs-2';
 import PieChartComponent from './PieChartComponent';
 import RadarChartComponent from './RadarChartComponent';
+import GoogleTranslate from './GoogleTranslate';
 
 const TeacherEngagementAnalyticsHero = () => {
   const [studentResults, setStudentResults] = useState(null);
@@ -55,6 +56,8 @@ const TeacherEngagementAnalyticsHero = () => {
       >
         Join Now
       </a>
+
+      <GoogleTranslate />
       
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
         {/* Overview Cards */}

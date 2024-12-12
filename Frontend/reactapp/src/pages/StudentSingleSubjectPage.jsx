@@ -5,6 +5,7 @@ import Navbar2 from '../components/Navbar2';
 import StudentSubjectLectures from '../components/StudentSubjectLectures';
 import StudentCalendarPreview from '../components/StudentCalendarPreview';
 import cover_math from '../assets/images/science-animated.avif';
+import GoogleTranslate from '../components/GoogleTranslate';
 
 const StudentSingleSubjectPage = () => {
   const subjectName = useParams();
@@ -15,6 +16,7 @@ const StudentSingleSubjectPage = () => {
       <div className='flex flex-col w-full px-5'>
         {/* Title and user avatar */}
         <Navbar2 type='Student' />
+        <GoogleTranslate />
 
         {/* Subject name on photo */}
         <div className='relative w-full h-48 overflow-hidden'>
