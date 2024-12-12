@@ -16,26 +16,27 @@ import { useAuth } from '../contexts/userContext';
 import Navbar2 from '../components/Navbar2';
 import TeacherUdiseAnalytics from '../components/TeacherUdiseAnalytics';
 
-
 const TeacherDashboard = () => {
   const { option, setOption } = useTeacherdb();
   const { user, login, logout } = useAuth();
   console.log('User context data:', user);
 
   return (
-      <div className='flex'>
-        <TeacherSidebar />
+    <div className='flex min-h-screen overflow-hidden'>
+      <TeacherSidebar />
 
-        <div className='flex flex-col w-full'>
-          <Navbar2 type='Teacher' />
+      <div className='flex flex-col w-full'>
+        <Navbar2 type='Teacher' />
 
-          {option === 'dashboard' ? <TeacherDashboardHero2 /> : <></>}
-          {option === 'analytics' ? <TeacherEngagementAnalyticsHero/>:<></>}
-          {option === 'resources' ? <TeacherResourcesHero /> : <></>}
-          {option === 'students' ? <TeacherStudentAnalytics /> : <></>}
-          {option === 'infrastructure' ? <TeacherUdiseAnalytics /> : <></>}
+        <div className="flex-grow">
+          {option === 'dashboard' && <TeacherDashboardHero2 />}
+          {option === 'analytics' && <TeacherEngagementAnalyticsHero />}
+          {option === 'resources' && <TeacherResourcesHero />}
+          {option === 'students' && <TeacherStudentAnalytics />}
+          {option === 'infrastructure' && <TeacherUdiseAnalytics />}
         </div>
       </div>
+    </div>
   );
 };
 
