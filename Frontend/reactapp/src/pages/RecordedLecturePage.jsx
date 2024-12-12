@@ -91,7 +91,7 @@ const RecordedLecturePage = () => {
   }
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col overflow-hidden'>
       <Navbar2 />
       <div className={`grid ${isChatVisible ? 'grid-cols-12' : 'grid-cols-9'} h-screen`}>
         <div className={`${isChatVisible ? 'col-span-9' : 'col-span-12'} m-10`}>
@@ -101,6 +101,7 @@ const RecordedLecturePage = () => {
               <button
                 className="bg-[#CE4760] text-white px-4 py-2 rounded-md mb-2"
                 onClick={toggleDropdown}
+                style={{marginRight:"500px"}}
               >
                 Options
               </button>
