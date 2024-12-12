@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Navbar2 = ({ type }) => {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, login, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Extract the first letter of the user's email, if available
@@ -62,7 +62,7 @@ const Navbar2 = ({ type }) => {
                 Profile
               </li>
 
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-700">
+              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-700" onClick={()=>{logout(); navigate('/auth/login')}}>
                 Logout
               </li>
             </ul>
