@@ -25,21 +25,20 @@ const UploadModal = ({ onClose, onSuccess }) => {
     if (!selectedFile) return;
 
     if (!validateFile(selectedFile, fileType)) {
-        setError(`Invalid file type. Allowed types: ${ALLOWED_TYPES[fileType].join(', ')}`);
-        return;
-      }
+      setError(`Invalid file type. Allowed types: ${ALLOWED_TYPES[fileType].join(', ')}`);
+      return;
+    }
 
     setFile(selectedFile);
     setError('');
 
     if (fileType === 'lecture') {
-        const timestamp = new Date().getTime();
-        setFormData(prev => ({
-          ...prev,
-          s3Key: `videos/${timestamp}_${selectedFile.name}`
-        }));
-      }
-      
+      const timestamp = new Date().getTime();
+      setFormData(prev => ({
+        ...prev,
+        s3Key: `videos/${timestamp}_${selectedFile.name}`
+      }));
+    }
   };
 
   const handleInputChange = (e) => {
