@@ -16,7 +16,7 @@ const StudentSubjectCard = ({ subjectName, teacherName, link }) => {
         <div className="text-sm text-gray-500 mb-4">{teacherName}</div>
         <button
           onClick={()=> navigate(`/student/subject/${subjectName}`)}
-          className="mt-auto p-2 text-center bg-[#2F4550] text-white rounded hover:bg-blue-600 transition duration-200"
+          className="mt-auto p-2 text-center bg-[#2F4550] text-white rounded hover:bg-[#CE4760] transition duration-200"
         >
           See Class
         </button>
