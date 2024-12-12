@@ -28,6 +28,7 @@ import CommonSignupPage2 from "./pages/CommonSignupPage2"
 import Signup2 from "./pages/Signup2"
 import CollegeRecommendation from "./components/CollegeRecommendation"
 import StudentQuiz from "./pages/StudentQuiz"
+import TeacherDBResources from "./pages/TeacherDBResources"
 
 
 function App() {
@@ -60,10 +61,12 @@ function App() {
       <Route path="/student/suraj" element={<CollegeRecommendation />} />
       <Route path="/student/quiz/:id" element={<StudentQuiz />} />
       <Route path="/student/suraj" element={<CollegeRecommendation />} />
+      
 
 
       {/*Teacher Routes */}
       <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
+      <Route path="/teacher/dashboard/resources" element={<TeacherDBResources />} />
       <Route path="/teacher/subject/:name" element={<TeacherSingleSubjectPage />} />
       <Route path="/teacher/engagement-analytics/:video" element={<TeacherEngagementAnalytics />} />
       <Route path="/teacher/resource/:id" element={<SingleResourcePage />} />

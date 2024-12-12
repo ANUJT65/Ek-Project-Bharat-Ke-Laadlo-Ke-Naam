@@ -4,8 +4,12 @@ import { useAuth } from '../contexts/userContext';
 import axios from 'axios';
 import { FaUser, FaEnvelope, FaGraduationCap, FaBirthdayCake, FaSchool, FaMapMarkerAlt, FaMoneyBillWave } from 'react-icons/fa';
 import StudentSidebar from '../components/StudentSidebar';
+import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
+
 
 const UserProfile = () => {
+  const navigate = useNavigate();
   const { user } = useAuth();
   const [studentData, setStudentData] = useState(null);
   const [error, setError] = useState(null);
@@ -47,7 +51,9 @@ const UserProfile = () => {
                           />
                         </div>
                       </div>
-
+                      
+                      <button className="flex items-center gap-2" onClick={()=> navigate(-1)}>
+                    <FaArrowLeft />Dashboard</button>
                       <div className="grid md:grid-cols-2 gap-6">
                         <InfoItem icon={<FaUser />} label="Name" value={studentData.student_name} />
                         <InfoItem icon={<FaEnvelope />} label="Email" value={studentData.email} />

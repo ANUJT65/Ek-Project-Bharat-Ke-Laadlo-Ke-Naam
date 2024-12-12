@@ -65,7 +65,7 @@ const TeacherSidebar = () => {
                     }`}
                     onClick={() => {
                         setOption('analytics');
-                         // Update this path if needed
+                         navigate('/teacher/dashboard')
                     }}
                 >
                     <div className='mt-1 text-white'><SiGoogleanalytics /></div>
@@ -78,6 +78,7 @@ const TeacherSidebar = () => {
                     }`}
                     onClick={() => {
                         setOption('resources');
+                        navigate('/teacher/dashboard/resources');
                         
                     }}
                 >
