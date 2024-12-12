@@ -29,6 +29,7 @@ import Signup2 from "./pages/Signup2"
 import CollegeRecommendation from "./components/CollegeRecommendation"
 import StudentQuiz from "./pages/StudentQuiz"
 import TeacherDBResources from "./pages/TeacherDBResources"
+import StudentClassPoll from "./components/StudentClassPoll"
 
 
 function App() {
@@ -59,7 +60,7 @@ function App() {
       <Route path="/student/lecture/recorded/:id" element={<RecordedLecturePage />} />
       <Route path="/student/lecture/ar" element={<ARVR />} />
       <Route path="/student/recommendation" element={<CollegeRecommendation />} />
-      <Route path="/student/quiz/:id" element={<StudentQuiz />} />
+      <Route path="/student/quiz/:id" element={<StudentClassPoll />} />
 
 
       {/*Teacher Routes */}

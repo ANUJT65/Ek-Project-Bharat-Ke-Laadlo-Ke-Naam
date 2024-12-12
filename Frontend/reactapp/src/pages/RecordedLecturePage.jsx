@@ -15,7 +15,8 @@ const RecordedLecturePage = () => {
   const handleButtonClick = (action) => {
     switch (action) {
       case 'Take the Quiz':
-        alert('Selected: Take the Quiz');
+        // Replace '/quiz-page' with your desired quiz path
+        navigate(`/student/quiz/${id}`);  // This will navigate to the quiz page for the given `id`
         break;
       case 'View Notes':
         window.open(JSON.parse(videoDetails.notes).pdf_url, '_blank');
@@ -30,7 +31,7 @@ const RecordedLecturePage = () => {
         alert(`Selected: ${action}`);
     }
     setIsOpen(false);
-  };
+  };  
 
   const { id } = useParams();
   const [videoDetails, setVideoDetails] = useState(null);
