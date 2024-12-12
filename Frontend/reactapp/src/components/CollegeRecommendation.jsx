@@ -43,7 +43,7 @@ const CollegeRecommendation = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen flex items-center justify-center p-6">
+    <div className="bg-gradient-to-r from-[#CE4760] via-[#2F4550] to-[#CE4760] min-h-screen flex items-center justify-center p-6">
       <div className="w-full max-w-lg bg-white shadow-md rounded-lg p-6">
         <h2 className="text-2xl font-bold mb-6 text-center">School Recommendations</h2>
         
@@ -140,7 +140,7 @@ const CollegeRecommendation = () => {
             className={`w-full py-2 rounded-md transition ${
               loading 
                 ? 'bg-gray-400 cursor-not-allowed' 
-                : 'bg-blue-500 hover:bg-blue-600 text-white'
+                : 'bg-[#CE4760] hover:bg-[#2F4550] text-white'
             }`}
           >
             {loading ? 'Finding Schools...' : 'Get Recommendations'}
