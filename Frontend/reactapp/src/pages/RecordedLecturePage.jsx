@@ -3,13 +3,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar2 from '../components/Navbar2';
 import StudentClassChat from '../components/StudentClassChat';
-import RecordedLectureAttachments from '../components/RecordedLectureAttachments';
 import { IoMdArrowRoundBack } from "react-icons/io";
-
 
 const RecordedLecturePage = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isChatVisible, setIsChatVisible] = useState(true); // State to toggle chat visibility
+  const [isChatVisible, setIsChatVisible] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
   const toggleDropdown = () => setIsOpen(!isOpen);
   const navigate = useNavigate();
@@ -34,7 +32,7 @@ const RecordedLecturePage = () => {
     setIsOpen(false);
   };
 
-  const { id } = useParams(); // Get the video_id from the URL
+  const { id } = useParams();
   const [videoDetails, setVideoDetails] = useState(null);
   const [currentIllustrationIndex, setCurrentIllustrationIndex] = useState(0);
   const [messages, setMessages] = useState([]);
@@ -93,73 +91,74 @@ const RecordedLecturePage = () => {
   }
 
   return (
-
-
-
-
-    <div className='min-h-screen bg-gray-50 flex flex-col'>
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       <Navbar2 />
 
-      <div className='container mx-auto px-4 py-6'>
-        <button className='bg-[#2F4550] rounded-md p-2 text-white m-2' onClick={()=> navigate(-1)}><IoMdArrowRoundBack />All recorded lectures</button>
-        <div className='grid grid-cols-12 gap-4'>
-          <div className='col-span-12 flex justify-between items-center mb-4'>
-            <div className="relative">
-              <button
-                className="bg-[#CE4760] text-white px-5 py-2 rounded-lg shadow-md hover:bg-[#B03A50] transition-colors duration-300"
-                onClick={toggleDropdown}
+      <div className="container mx-auto px-4 py-6">
+        {/* Flex container for Back and Options buttons */}
+        <div className="flex flex-col md:flex-row justify-between mb-4">
+          {/* Back Button */}
+          <button
+            className="bg-[#2F4550] text-white flex items-center gap-2 px-4 py-2 rounded-md shadow-md hover:bg-[#1E2E38] transition mb-4 md:mb-0"
+            onClick={() => navigate(-1)}
+          >
+            <IoMdArrowRoundBack className="text-lg" />
+            Back to Recorded Lectures
+          </button>
+
+          {/* Options Dropdown Button */}
+          <div>
+            <button
+              className="bg-[#CE4760] text-white px-6 py-3 rounded-lg shadow-md hover:bg-[#B03A50] transition"
+              onClick={toggleDropdown}
+            >
+              Options
+            </button>
+
+            {isOpen && (
+              <div
+                className="absolute right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl w-56 z-50"
+                onClick={(e) => e.stopPropagation()}
               >
-                Options
-              </button>
-
-              {isOpen && (
-                <div
-                  className="absolute right--1 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl w-56 z-50 overflow-hidden"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  {[
-                    'Take the Quiz',
-                    'View Notes',
-                    'View Mindmaps',
-                    'Vocational Learning Module',
-                    'Toggle Chat'
-                  ].map((action) => (
-                    <button
-                      key={action}
-                      className="w-full text-left px-4 py-3 hover:bg-gray-100 transition-colors duration-200 text-gray-700"
-                      onClick={() =>
-                        action === 'Toggle Chat'
-                          ? setIsChatVisible(!isChatVisible)
-                          : handleButtonClick(action)
-                      }
-                    >
-                      {action}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-
+                {[
+                  'Take the Quiz',
+                  'View Notes',
+                  'View Mindmaps',
+                  'Vocational Learning Module',
+                  'Toggle Chat'
+                ].map((action) => (
+                  <button
+                    key={action}
+                    className="w-full text-left px-4 py-3 hover:bg-gray-100 transition-colors duration-200 text-gray-700"
+                    onClick={() =>
+                      action === 'Toggle Chat'
+                        ? setIsChatVisible(!isChatVisible)
+                        : handleButtonClick(action)
+                    }
+                  >
+                    {action}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
-        <div className={`grid ${isChatVisible ? 'grid-cols-12' : 'grid-cols-1'} gap-4`}>
-          <div className={`${isChatVisible ? 'col-span-9' : 'col-span-12'}`}>
-            <div className='bg-white rounded-xl shadow-lg overflow-hidden'>
-              <video
-                controls
-                className="w-full h-full object-cover"
-              >
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+          {/* Video Section */}
+          <div className={`col-span-12 ${isChatVisible ? 'md:col-span-9' : 'col-span-12'}`}>
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <video controls className="w-full h-full object-cover">
                 <source src={videoDetails.video_url} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
           </div>
 
+          {/* Chat Section */}
           {isChatVisible && (
-            <div className='col-span-3'>
-              <div className='bg-white rounded-xl shadow-lg h-full'>
+            <div className="col-span-12 md:col-span-3">
+              <div className="bg-white rounded-xl shadow-lg h-full">
                 <StudentClassChat messages={messages} setMessages={setMessages} />
               </div>
             </div>
@@ -171,7 +170,7 @@ const RecordedLecturePage = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto relative p-6">
             <button
-              className="sticky top-0 right-0 absolute right-0 text-red-500 hover:text-red-700 text-4xl font-bold"
+              className="sticky top-0 right-0 text-red-500 hover:text-red-700 text-4xl font-bold"
               onClick={closePopup}
             >
               &times;
@@ -200,6 +199,5 @@ const RecordedLecturePage = () => {
     </div>
   );
 };
-
 
 export default RecordedLecturePage;

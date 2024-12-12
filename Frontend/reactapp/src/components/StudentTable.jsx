@@ -51,31 +51,43 @@ const StudentTable = () => {
 
   return (
     <div className="p-3">
-      <h2 className="text-xl font-bold mb-3">See how your students are performing</h2>
-      <table className="table-auto w-full border border-gray-300 text-sm">
-        <thead>
-          <tr className="bg-gray-100">
-            <th className="border px-3 py-1">Name</th>
-            <th className="border px-3 py-1">Questions Attempted</th>
-            <th className="border px-3 py-1">Correct/Wrong</th>
-            <th className="border px-3 py-1">Attendance (%)</th>
-            <th className="border px-3 py-1">Engagement Score (%)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {students.map((student, index) => (
-            <tr key={index} className="hover:bg-gray-50">
-              <td className="border px-3 py-1 text-center">{student.name}</td>
-              <td className="border px-3 py-1 text-center">{student.totalQuestions}</td>
-              <td className="border px-3 py-1 text-center">
-                {student.correctAnswers}/{student.wrongAnswers}
-              </td>
-              <td className="border px-3 py-1 text-center">{student.attendance}</td>
-              <td className="border px-3 py-1 text-center">{student.engagementScore}</td>
+      <h2 className="text-lg sm:text-xl font-bold mb-3 text-center sm:text-left">
+        See how your students are performing
+      </h2>
+      <div className="overflow-auto">
+        <table className="table-auto w-full border border-gray-300 text-sm">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="border px-2 sm:px-3 py-1">Name</th>
+              <th className="border px-2 sm:px-3 py-1">Questions Attempted</th>
+              <th className="border px-2 sm:px-3 py-1">Correct/Wrong</th>
+              <th className="border px-2 sm:px-3 py-1">Attendance (%)</th>
+              <th className="border px-2 sm:px-3 py-1">Engagement Score (%)</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {students.map((student, index) => (
+              <tr key={index} className="hover:bg-gray-50">
+                <td className="border px-2 sm:px-3 py-1 text-center break-words">
+                  {student.name}
+                </td>
+                <td className="border px-2 sm:px-3 py-1 text-center">
+                  {student.totalQuestions}
+                </td>
+                <td className="border px-2 sm:px-3 py-1 text-center">
+                  {student.correctAnswers}/{student.wrongAnswers}
+                </td>
+                <td className="border px-2 sm:px-3 py-1 text-center">
+                  {student.attendance}
+                </td>
+                <td className="border px-2 sm:px-3 py-1 text-center">
+                  {student.engagementScore}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
