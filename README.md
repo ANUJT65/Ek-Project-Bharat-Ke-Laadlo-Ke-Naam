@@ -1,6 +1,14 @@
 
 # **GramShiksha: Providing Fast Education To Remotest Places**  
 
+<div style="display: flex; justify-content: space-around;">
+
+  <img src="https://github.com/user-attachments/assets/07b289e6-fa25-477f-a049-de0edfa18c7f" alt="Image 1" width="45%">
+
+  <img src="https://github.com/user-attachments/assets/2bf7caa2-95ed-45c0-9170-20d6d695dd8a" alt="Image 2" width="45%">
+
+</div>
+
 ## **Problem Statement And Team Details (WITH ID 9804)**
 ![image](https://github.com/user-attachments/assets/312049de-4b10-4c8f-bee6-e7ed2e58c614)
 
@@ -8,16 +16,17 @@
 - **TEAM NAME: @CYBER WARDENS**
 - **TEAM ID: 9804**
   
-- **Contributers:**
-- Sneha Jain
-- Pratham Gadkari
-- Suraj Chavan
-- Siddhartha Chakrabarty
-- Sakshi Salunke
-- Anuj Tadkase
+## Contributors
 
-![image](https://github.com/user-attachments/assets/07b289e6-fa25-477f-a049-de0edfa18c7f)
-![WhatsApp Image 2024-12-06 at 12 23 59 AM](https://github.com/user-attachments/assets/2bf7caa2-95ed-45c0-9170-20d6d695dd8a)
+- **Sneha Jain**  
+- **Pratham Gadkari**  
+- **Suraj Chavan**  
+- **Siddhartha Chakrabarty**  
+- **Sakshi Salunke**  
+- **Anuj Tadkase**  
+
+
+
 
 
 
