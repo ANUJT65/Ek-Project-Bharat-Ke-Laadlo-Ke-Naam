@@ -13,7 +13,7 @@ const StudentClassChat = () => {
   useEffect(() => {
     const fetchImageLinks = async () => {
       try {
-        const response = await axios.get(`https://backendfianlsih.azurewebsites.net/dy_db/get_video_details/${id}`);
+        const response = await axios.get(`https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/dy_db/get_video_details/${id}`);
         setImageLinks(Object.entries(response.data.image_links));
       } catch (error) {
         console.error('Error fetching image links:', error);
@@ -48,7 +48,7 @@ const StudentClassChat = () => {
     setMessages((prevMessages) => [...prevMessages, userMessage]);
 
     try {
-      const response = await axios.post('https://backendfianlsih.azurewebsites.net/chat_bot/chat', { query: input });
+      const response = await axios.post('https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/chat_bot/chat', { query: input });
       const botMessage = { sender: 'bot', text: response.data.response };
       setMessages((prevMessages) => [...prevMessages, botMessage]);
     } catch (error) {

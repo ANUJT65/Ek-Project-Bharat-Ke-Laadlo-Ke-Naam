@@ -43,9 +43,9 @@ const CommonSignupPage2 = () => {
         
         {/* Form Section */}
         {type === 'student' ? (
-          <CommonSignupForm type="Student" url="https://backendfianlsih.azurewebsites.net/register" />
+          <CommonSignupForm type="Student" url="https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/register" />
         ) : (
-          <CommonSignupForm type="Teacher" url="https://backendfianlsih.azurewebsites.net/register" />
+          <CommonSignupForm type="Teacher" url="https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/register" />
         )}
       </div>
     </div>

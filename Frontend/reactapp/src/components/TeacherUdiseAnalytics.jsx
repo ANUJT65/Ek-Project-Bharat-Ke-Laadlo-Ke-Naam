@@ -34,7 +34,7 @@ const TeacherUdiseAnalytics = () => {
       setLoading(true);
   
       try {
-        const response = await axios.post("https://backendfianlsih.azurewebsites.net/gov_data/fetch_convert_analyze", {
+        const response = await axios.post("https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/gov_data/fetch_convert_analyze", {
           udiseCode,
         });
         setPdfUrl(response.data.pdf_url);

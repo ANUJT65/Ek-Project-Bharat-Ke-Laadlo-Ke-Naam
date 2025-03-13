@@ -18,7 +18,7 @@ const SingleResourcePage = () => {
         const fetchVideoDetails = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`https://backendfianlsih.azurewebsites.net/dy_db/get_video_details/${id}`);
+                const response = await axios.get(`https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/dy_db/get_video_details/${id}`);
                 setVideoDetails(response.data);
                 setError(null);
             } catch (error) {

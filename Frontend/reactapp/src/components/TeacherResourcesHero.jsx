@@ -17,7 +17,7 @@ const TeacherResourcesHero = () => {
 
   const fetchResources = async () => {
     try {
-      const response = await axios.get('https://backendfianlsih.azurewebsites.net/dy_db/get_all_videos_basic_details');
+      const response = await axios.get('https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/dy_db/get_all_videos_basic_details');
       setResources(response.data);
     } catch (error) {
       console.error('Error fetching resources:', error);

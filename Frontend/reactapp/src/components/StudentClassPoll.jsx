@@ -35,7 +35,7 @@ const StudentClassPoll = () => {
       }
 
       try {
-        await axios.post('https://backendfianlsih.azurewebsites.net/qa/initialize_test', {
+        await axios.post('https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/qa/initialize_test', {
           email: email,
           video_id: id,
         });
@@ -50,14 +50,14 @@ const StudentClassPoll = () => {
   useEffect(() => {
     const fetchMcqs = async () => {
       try {
-        console.log(`https://backendfianlsih.azurewebsites.net/dy_db/get_mcqs_easy/${id}`); 
-        const responseEasy = await axios.get(`https://backendfianlsih.azurewebsites.net/dy_db/get_mcqs_easy/${id}`);
+        console.log(`https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/dy_db/get_mcqs_easy/${id}`); 
+        const responseEasy = await axios.get(`https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/dy_db/get_mcqs_easy/${id}`);
         setMcqsEasy(responseEasy.data.mcqs_easy);
 
-        const responseMedium = await axios.get(`https://backendfianlsih.azurewebsites.net/dy_db/get_mcqs_medium/${id}`);
+        const responseMedium = await axios.get(`https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/dy_db/get_mcqs_medium/${id}`);
         setMcqsMedium(responseMedium.data.mcqs_medium);
 
-        const responseHard = await axios.get(`https://backendfianlsih.azurewebsites.net/dy_db/get_mcqs_hard/${id}`);
+        const responseHard = await axios.get(`https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/dy_db/get_mcqs_hard/${id}`);
         setMcqsHard(responseHard.data.mcqs_hard);
 
         if (responseEasy.data.mcqs_easy.length > 0) {
@@ -79,7 +79,7 @@ const StudentClassPoll = () => {
       const sendTestResults = async () => {
         const email = localStorage.getItem('userEmail');
         try {
-          await axios.post('https://backendfianlsih.azurewebsites.net/qa/add_test_result', {
+          await axios.post('https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/qa/add_test_result', {
             email: email,
             video_id: id,
             correct_questions: correctQuestions,
@@ -143,7 +143,7 @@ const StudentClassPoll = () => {
       const isCorrect = selectedOption === currentQuestion.answer;
 
       try {
-        await axios.post('https://backendfianlsih.azurewebsites.net/qa/update_question_result', {
+        await axios.post('https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/qa/update_question_result', {
           email: user.email,
           video_id: id,
           question_serial: questionSerial,

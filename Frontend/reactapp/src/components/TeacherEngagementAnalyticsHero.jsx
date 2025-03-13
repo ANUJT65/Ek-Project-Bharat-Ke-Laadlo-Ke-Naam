@@ -11,7 +11,7 @@ const TeacherEngagementAnalyticsHero = () => {
   useEffect(() => {
     const fetchStudentResults = async () => {
       try {
-        const response = await axios.get('https://backendfianlsih.azurewebsites.net/qa/get_all_students_results');
+        const response = await axios.get('https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/qa/get_all_students_results');
         setStudentResults(response.data);
       } catch (error) {
         console.error('Error fetching student results:', error);

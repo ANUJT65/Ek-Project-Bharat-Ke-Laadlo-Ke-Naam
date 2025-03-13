@@ -7,7 +7,7 @@ const TeacherCalendarPreview = () => {
 
   const handleSendReminder = async () => {
     try {
-      const response = await axios.get('https://backendfianlsih.azurewebsites.net/email/send');
+      const response = await axios.get('https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/email/send');
       setMessage('Reminder sent successfully!');
     } catch (error) {
       setMessage('Error sending reminder.');

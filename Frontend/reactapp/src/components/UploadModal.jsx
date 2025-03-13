@@ -85,8 +85,8 @@ const UploadModal = ({ onClose, onSuccess }) => {
       formDataToSend.append('date', formData.date);
 
       const endpoint = fileType === 'lecture'
-        ? 'https://backendfianlsih.azurewebsites.net/video_to_text/process'
-        : 'https://backendfianlsih.azurewebsites.net/data_form_media/upload_and_extract';
+        ? 'https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/video_to_text/process'
+        : 'https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/data_form_media/upload_and_extract';
 
       await axios.post(endpoint, formDataToSend, {
         headers: { 'Content-Type': 'multipart/form-data' }

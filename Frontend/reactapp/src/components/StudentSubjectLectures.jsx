@@ -8,7 +8,7 @@ const StudentSubjectLectures = () => {
   useEffect(() => {
     const fetchLectures = async () => {
       try {
-        const response = await axios.get('https://backendfianlsih.azurewebsites.net/dy_db/get_video_ids_and_urls');
+        const response = await axios.get('https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/dy_db/get_video_ids_and_urls');
         setLectures(response.data);
       } catch (error) {
         console.error('Error fetching lectures:', error);

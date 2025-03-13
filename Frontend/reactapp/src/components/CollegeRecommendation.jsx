@@ -53,7 +53,7 @@ const CollegeRecommendation = () => {
   
     try {
       const response = await axios.post(
-        'https://backendfianlsih.azurewebsites.net/school_recommendation/recommend',
+        'https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/school_recommendation/recommend',
         formattedFormData
       );
       setRecommendations(response.data);

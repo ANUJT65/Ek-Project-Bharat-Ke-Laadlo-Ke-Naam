@@ -16,7 +16,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     if (user && user.email) {
-      axios.get(`https://backendfianlsih.azurewebsites.net/qa/get_student_details?email=${user.email}`)
+      axios.get(`https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/qa/get_student_details?email=${user.email}`)
         .then(response => {
           setStudentData(response.data);
         })

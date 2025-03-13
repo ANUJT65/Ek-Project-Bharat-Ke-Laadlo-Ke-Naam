@@ -9,7 +9,7 @@ const StudentResources = () => {
   useEffect(() => {
     const fetchDocuments = async () => {
       try {
-        const response = await axios.get('https://backendfianlsih.azurewebsites.net/doc_db/documents');
+        const response = await axios.get('https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/doc_db/documents');
         setDocuments(response.data);
       } catch (err) {
         setError('Failed to fetch resources');

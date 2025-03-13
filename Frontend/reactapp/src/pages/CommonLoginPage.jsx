@@ -31,9 +31,9 @@ const CommonLoginPage = () => {
         </div>
 
         {type === 'student' ? (
-          <CommonLoginForm type="Student" url="https://backendfianlsih.azurewebsites.net/login/login" />
+          <CommonLoginForm type="Student" url="https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/login/login" />
         ) : (
-          <CommonLoginForm type="Teacher" url="https://backendfianlsih.azurewebsites.net/login/login" />
+          <CommonLoginForm type="Teacher" url="https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/login/login" />
         )}
       </div>
 

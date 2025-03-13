@@ -16,7 +16,7 @@ const TeacherSingleSubjectPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://backendfianlsih.azurewebsites.net/dy_db/get_data');
+        const response = await axios.get('https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/dy_db/get_data');
         setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);

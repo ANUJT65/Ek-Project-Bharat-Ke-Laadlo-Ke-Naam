@@ -10,7 +10,7 @@ const VideoTranscript = ({ videoId }) => {
     const fetchTranscript = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`https://backendfianlsih.azurewebsites.net/dy_db/transcript/${videoId}`);
+        const response = await axios.get(`https://backendfianlsih-ema2eqdrc8gwhzcg.canadacentral-01.azurewebsites.net/dy_db/transcript/${videoId}`);
         setTranscript(response.data.transcript);
         setError(null);
       } catch (error) {
