@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar2 from '../components/Navbar2';
 import StudentClassChat from '../components/StudentClassChat';
+import StudentClassPoll from '../components/StudentClassPoll';
 import { IoMdArrowRoundBack } from "react-icons/io";
 
 const RecordedLecturePage = () => {
@@ -14,10 +15,6 @@ const RecordedLecturePage = () => {
 
   const handleButtonClick = (action) => {
     switch (action) {
-      case 'Take the Quiz':
-        // Replace '/quiz-page' with your desired quiz path
-        navigate(`/student/quiz/${id}`);  // This will navigate to the quiz page for the given `id`
-        break;
       case 'View Notes':
         window.open(JSON.parse(videoDetails.notes).pdf_url, '_blank');
         break;
@@ -108,7 +105,7 @@ const RecordedLecturePage = () => {
           </button>
 
           {/* Options Dropdown Button */}
-          <div>
+          <div className="relative">
             <button
               className="bg-[#CE4760] text-white px-6 py-3 rounded-lg shadow-md hover:bg-[#B03A50] transition"
               onClick={toggleDropdown}
@@ -122,7 +119,6 @@ const RecordedLecturePage = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 {[
-                  'Take the Quiz',
                   'View Notes',
                   'View Mindmaps',
                   'Vocational Learning Module',
@@ -145,9 +141,9 @@ const RecordedLecturePage = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-          {/* Video Section */}
-          <div className={`col-span-12 ${isChatVisible ? 'md:col-span-9' : 'col-span-12'}`}>
+        <div className="grid grid-cols-12 gap-4">
+          {/* Left side - Video Section */}
+          <div className="col-span-12 md:col-span-8">
             <div className="bg-white rounded-xl shadow-lg overflow-hidden">
               <video controls className="w-full h-full object-cover">
                 <source src={videoDetails.video_url} type="video/mp4" />
@@ -156,14 +152,27 @@ const RecordedLecturePage = () => {
             </div>
           </div>
 
-          {/* Chat Section */}
-          {isChatVisible && (
-            <div className="col-span-12 md:col-span-3">
-              <div className="bg-white rounded-xl shadow-lg h-full">
-                <StudentClassChat messages={messages} setMessages={setMessages} />
+          {/* Right side - Quiz and Chat */}
+          <div className="col-span-12 md:col-span-4">
+            <div className="grid grid-cols-1 gap-4">
+              {/* Quiz Section - Using StudentClassPoll component directly */}
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                <StudentClassPoll />
               </div>
+              
+              {/* Chat Section */}
+              {isChatVisible && (
+                <div className="bg-white rounded-xl shadow-lg h-[400px]">
+                  <div className="flex justify-between items-center px-4 py-2 border-b border-gray-200">
+                    <h3 className="font-semibold">Chat</h3>
+                  </div>
+                  <div className="h-[355px]">
+                    <StudentClassChat messages={messages} setMessages={setMessages} />
+                  </div>
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
       </div>
 
