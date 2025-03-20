@@ -9,6 +9,7 @@ const StudentClassChat = ({ initialMessages, parentSetMessages }) => {
   const [imageLinks, setImageLinks] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [sentImageIds, setSentImageIds] = useState(new Set()); // Track sent images
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
 
@@ -40,14 +41,32 @@ const StudentClassChat = ({ initialMessages, parentSetMessages }) => {
     scrollToBottom();
   }, [messages]);
 
-  // Image rotation interval
+  // Image rotation interval - with non-repeating logic
   useEffect(() => {
     let interval;
     
     if (imageLinks.length > 0) {
       interval = setInterval(() => {
-        const newIndex = (currentImageIndex + 1) % imageLinks.length;
+        // Find an unsent image
+        const availableImageIndexes = imageLinks
+          .map((_, index) => index)
+          .filter(index => {
+            const [imageTitle] = imageLinks[index];
+            return !sentImageIds.has(imageTitle);
+          });
+
+        // If all images have been sent, don't send more
+        if (availableImageIndexes.length === 0) {
+          return;
+        }
+
+        // Pick the next unsent image
+        const newIndex = availableImageIndexes[0];
         const [imageTitle, imageUrl] = imageLinks[newIndex];
+        
+        // Mark this image as sent
+        setSentImageIds(prev => new Set([...prev, imageTitle]));
+        
         const imageMessage = { 
           id: Date.now(), 
           sender: 'system', 
@@ -55,6 +74,7 @@ const StudentClassChat = ({ initialMessages, parentSetMessages }) => {
           imageUrl, 
           imageTitle 
         };
+        
         setMessages(prevMessages => [...prevMessages, imageMessage]);
         setCurrentImageIndex(newIndex);
       }, 60000); // Send image every 60 seconds
@@ -63,7 +83,7 @@ const StudentClassChat = ({ initialMessages, parentSetMessages }) => {
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [imageLinks, currentImageIndex]);
+  }, [imageLinks, currentImageIndex, sentImageIds]);
 
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -135,7 +155,9 @@ const StudentClassChat = ({ initialMessages, parentSetMessages }) => {
         case 'bot':
           return 'bg-gradient-to-r from-green-600 to-green-500 text-white shadow-lg mr-auto border-t border-green-400/30';
         case 'system':
-          return 'bg-gradient-to-br from-gray-600 to-gray-700 text-white shadow-lg mx-auto text-center border-t border-gray-500/30';
+          return imageUrl 
+            ? 'bg-gradient-to-br from-gray-600 to-gray-700 text-white shadow-lg w-full text-center border-t border-gray-500/30'
+            : 'bg-gradient-to-br from-gray-600 to-gray-700 text-white shadow-lg mx-auto text-center border-t border-gray-500/30';
         default:
           return 'bg-gray-600 text-white';
       }
@@ -172,22 +194,26 @@ const StudentClassChat = ({ initialMessages, parentSetMessages }) => {
       }
     };
     
-    // Show image message with larger image
+    // Show image message with full-width image
     if (imageUrl) {
       return (
-        <div className="relative px-1 py-0.5">
-          <div className={`relative rounded-lg p-2.5 mb-2 mx-auto max-w-[85%] text-sm ${getMessageStyles()}`}>
+        <div className="relative py-1.5 px-0.5">
+          <div className={`relative rounded-lg p-2.5 mb-2 text-sm ${getMessageStyles()}`}>
             {getSenderIcon()}
-            <div className="font-medium mb-1">
+            <div className="font-medium mb-2 text-center">
               {text}
             </div>
-            <div className="rounded bg-black/10 p-1.5 overflow-hidden">
-              <p className="text-xs italic mb-1 text-gray-100 opacity-80">{imageTitle}</p>
+            <div className="rounded bg-black/30 p-2 overflow-hidden flex flex-col items-center">
+              <p className="text-xs italic mb-2 text-gray-100 opacity-90 font-medium">{imageTitle}</p>
               <img 
                 src={imageUrl} 
                 alt={imageTitle || "Image"} 
-                className="max-w-full rounded border border-white/20 shadow-inner hover:opacity-95 transition-opacity" 
-                style={{ maxHeight: '120px', objectFit: 'contain' }}
+                className="w-full rounded border border-white/40 shadow-md hover:opacity-95 transition-opacity" 
+                style={{ 
+                  maxHeight: '180px', 
+                  objectFit: 'contain',
+                  backgroundColor: 'rgba(0,0,0,0.2)'
+                }}
               />
             </div>
             <div className="absolute bottom-0.5 right-2 text-[9px] opacity-60 font-mono">
